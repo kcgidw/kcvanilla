@@ -1,13 +1,30 @@
 --- STEAMODDED HEADER
 --- MOD_NAME: KCVanilla
---- MOD_AUTHOR: krackocloud
+--- MOD_ID: KCVanilla
 --- MOD_DESCRIPTION: KCVanilla
+--- MOD_AUTHOR: [krackocloud]
 --- LOADER_VERSION_GEQ: 1.0.0
+SMODS.Atlas {
+    key = 'kcvanillajokeratlas',
+    path = "jokeratlas.png",
+    px = 71,
+    py = 95
+}
+
 SMODS.Joker {
     key = "fortunecookie",
     name = "Fortune Cookie",
+    atlas = 'kcvanillajokeratlas',
+    pos = {
+        x = 0,
+        y = 0
+    },
     rarity = 1,
     cost = 3,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = false,
+    perishable_compat = true,
     config = {
         extra = {
             chips = 150,
@@ -18,10 +35,6 @@ SMODS.Joker {
         name = "Fortune Cookie",
         text = {"+#1# Chips,", "-#2# Chips when Tarot card is used"}
     },
-    eternal_compat = false,
-    perishable_compat = true,
-    unlocked = true,
-    discovered = false,
     loc_vars = function(self, info_queue, card)
         return {
             vars = {self.ability.chips, self.ability.extra.chip_mod}

@@ -2,55 +2,55 @@ let jokers = [
 	{
 		name: 'Composition',
 		text: ['+4 Mult for each Joker to the left, +50 Chips for each Joker to the right'],
-		image_url: 'assets/2x/mondrian.png',
+		image_url: 'assets/originals/mondrian.png',
 		rarity: 'Common',
 	},
 	{
 		name: 'Fortune Cookie',
 		text: ['+150 Chips, -50 Chips when Tarot card is used'],
-		image_url: 'assets/2x/fortunecookie.png',
+		image_url: 'assets/originals/fortunecookie.png',
 		rarity: 'Common',
 	},
 	{
 		name: 'Squid',
 		text: ['+5 hand size on final hand of round'],
-		image_url: 'assets/2x/squid.png',
+		image_url: 'assets/originals/squid.png',
 		rarity: 'Common',
 	},
 	{
 		name: 'Swiss Joker',
 		text: ['+5 Mult for each unscored card played in previous hand'],
-		image_url: 'assets/2x/cheese.png',
+		image_url: 'assets/originals/cheese.png',
 		rarity: 'Common',
 	},
 	{
 		name: 'Robo-Joker',
 		text: ['Steel cards give X1.5 Mult when scored'],
-		image_url: 'assets/2x/robo.png',
+		image_url: 'assets/originals/robo.png',
 		rarity: 'Uncommon',
 	},
 	{
 		name: 'Royal Guard',
 		text: ['After 13 Kings or Queens score, sell this to make a random Joker Negative'],
-		image_url: 'assets/2x/guard.png',
+		image_url: 'assets/originals/guard.png',
 		rarity: 'Uncommon',
 	},
 	{
 		name: 'Red Envelope',
 		text: ['At end of round, earn $8 if 0 hands remain'],
-		image_url: 'assets/2x/redenvelope.png',
+		image_url: 'assets/originals/redenvelope.png',
 		rarity: 'Uncommon',
 	},
 	{
 		name: 'Joker-chan',
 		text: ['Retrigger Common Jokers'],
-		image_url: 'assets/2x/chan.png',
+		image_url: 'assets/originals/chan.png',
 		rarity: 'Uncommon',
 	},
 	{
 		name: 'Handy Joker',
 		text: ['If first hand of round has exactly 1 card, X3 Mult for rest of round'],
-		image_url: 'assets/2x/sock.png',
+		image_url: 'assets/originals/sock.png',
 		rarity: 'Uncommon',
 	},
 	{
@@ -58,7 +58,7 @@ let jokers = [
 		text: [
 			'At end of round, held Planet cards have 1 in 3 chance to transform into a Black Hole',
 		],
-		image_url: 'assets/2x/collapse.png',
+		image_url: 'assets/originals/collapse.png',
 		rarity: 'Uncommon',
 	},
 	{
@@ -66,19 +66,19 @@ let jokers = [
 		text: [
 			`If played hand contains a Straight, increase played cards' ranks by 1 (up to 10 J Q K A)`,
 		],
-		image_url: 'assets/2x/5day.png',
+		image_url: 'assets/originals/5day.png',
 		rarity: 'Uncommon',
 	},
 	{
 		name: 'Power Grid',
 		text: ['Mult and Steel cards count as both'],
-		image_url: 'assets/2x/powergrid.png',
+		image_url: 'assets/originals/powergrid.png',
 		rarity: 'Rare',
 	},
 	{
 		name: 'Luck of the Irish',
 		text: ['Lucky Clubs are 4X more likely to succeed'],
-		image_url: 'assets/2x/irish.png',
+		image_url: 'assets/originals/irish.png',
 		rarity: 'Rare',
 	},
 	{
@@ -86,7 +86,7 @@ let jokers = [
 		text: [
 			'Gains X0.25 Mult when a Wild card scores in a 5-card poker hand, resets if hand contains a Flush',
 		],
-		image_url: 'assets/2x/energy.png',
+		image_url: 'assets/originals/energy.png',
 		rarity: 'Rare',
 	},
 ];
@@ -98,7 +98,7 @@ let consumables = [
 	//   text: [
 	//     "{C:mult}+4{} Mult"
 	//   ],
-	//   image_url: "assets/2x/j_joker.png",
+	//   image_url: "assets/originals/j_joker.png",
 	//   rarity: "Tarot"
 	// },
 	// {
@@ -106,7 +106,7 @@ let consumables = [
 	//   text: [
 	//     "{C:mult}+4{} Mult"
 	//   ],
-	//   image_url: "assets/2x/j_joker.png",
+	//   image_url: "assets/originals/j_joker.png",
 	//   rarity: "Planet"
 	// },
 	// {
@@ -114,7 +114,7 @@ let consumables = [
 	//   text: [
 	//     "{C:mult}+4{} Mult"
 	//   ],
-	//   image_url: "assets/2x/j_joker.png",
+	//   image_url: "assets/originals/j_joker.png",
 	//   rarity: "Spectral"
 	// },
 ];
@@ -125,7 +125,7 @@ let card_modifications = [
 	//   text: [
 	//     "{C:mult}+4{} Mult"
 	//   ],
-	//   image_url: "assets/2x/j_joker.png",
+	//   image_url: "assets/originals/j_joker.png",
 	//   rarity: "Enhancement"
 	// },
 	// {
@@ -133,7 +133,7 @@ let card_modifications = [
 	//   text: [
 	//     "{C:mult}+4{} Mult"
 	//   ],
-	//   image_url: "assets/2x/j_joker.png",
+	//   image_url: "assets/originals/j_joker.png",
 	//   rarity: "Edition"
 	// },
 	// {
@@ -141,7 +141,7 @@ let card_modifications = [
 	//   text: [
 	//     "{C:mult}+4{} Mult"
 	//   ],
-	//   image_url: "assets/2x/sticker_example.png",
+	//   image_url: "assets/originals/sticker_example.png",
 	//   rarity: "Seal"
 	// },
 ];
@@ -152,7 +152,7 @@ let decks = [
 	//   text: [
 	//     "{C:mult}+4{} Mult"
 	//   ],
-	//   image_url: "assets/2x/j_joker.png",
+	//   image_url: "assets/originals/j_joker.png",
 	//   rarity: "Deck"
 	// },
 ];
@@ -163,7 +163,7 @@ let stickers = [
 	//   text: [
 	//     "{C:mult}+4{} Mult"
 	//   ],
-	//   image_url: "assets/2x/sticker_example.png",
+	//   image_url: "assets/originals/sticker_example.png",
 	//   rarity: "Sticker"
 	// },
 ];
@@ -176,7 +176,7 @@ let blinds = [
 	//     "{C:inactive}({C:red}4x{C:inactive} Base for {C:attention}$$$$${C:inactive})",
 	//     "{C:inactive}(Appears from Ante 2)"
 	//   ],
-	//   image_url: "assets/2x/the_wall.png",
+	//   image_url: "assets/originals/the_wall.png",
 	//   rarity: "Boss Blind"
 	// },
 	// {
@@ -186,7 +186,7 @@ let blinds = [
 	//     "{C:inactive}({C:red}6x{C:inactive} Base for {C:attention}$$$$$$$${C:inactive})",
 	//     "{C:inactive}(Appears from Ante 8)"
 	//   ],
-	//   image_url: "assets/2x/violet_vessel.png",
+	//   image_url: "assets/originals/violet_vessel.png",
 	//   rarity: "Showdown"
 	// },
 ];
