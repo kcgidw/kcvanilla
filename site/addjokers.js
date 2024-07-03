@@ -64,7 +64,7 @@ let jokers = [
 	{
 		name: 'Five-Day Forecast',
 		text: [
-			`If played hand contains a Straight, increase played cards' ranks by 1 (up to 10 J Q K A)`,
+			`If played hand contains a Straight, increase played cards' ranks by 1 (ignores Aces)`,
 		],
 		image_url: 'assets/originals/5day.png',
 		rarity: 'Uncommon',

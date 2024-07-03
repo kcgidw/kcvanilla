@@ -37,14 +37,14 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         return {
-            vars = {self.ability.chips, self.ability.extra.chip_mod}
+            vars = {card.ability.extra.chips, card.ability.extra.chip_mod}
         }
     end,
     calculate = function(card, context)
         if context.using_consumeable and (context.consumeable.ability.set == "Tarot") and not context.blueprint then
             new_chip_val = self.ability.extra.chips - self.ability.extra.chip_mod
             if (new_chip_val > 0) then
-                self.ability.chips = new_chip_val
+                self.ability.extra.chips = new_chip_val
                 return {
                     message = localize {
                         type = 'variable',
