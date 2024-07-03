@@ -1,0 +1,1 @@
+cp -r .  ~/AppData/Roaming/Balatro/Mods/kcvanilla
