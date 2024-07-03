@@ -1,0 +1,120 @@
+/* import m6x11plus.ttf */
+
+@font-face {
+	font-family: 'm6x11plus';
+	src: url('m6x11plus.ttf') format('truetype');
+}
+
+body,
+a {
+	font-family: 'm6x11plus';
+	text-shadow: #000 2px 2px 0px;
+}
+
+a {
+	color: white;
+	border-bottom: solid 4px white;
+}
+
+main {
+	text-align: center;
+	color: white;
+	padding: 1rem;
+	width: min(60rem, 100%);
+	margin: 1rem auto;
+	font-size: 1.25rem;
+}
+
+h1 {
+	font-size: 3rem;
+}
+
+h3,
+h4 {
+	margin: 0;
+	font-weight: normal;
+}
+
+.cards {
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	flex-wrap: wrap;
+}
+.joker {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	padding: 1rem;
+	border: 2px solid white;
+	border-radius: 1rem;
+	width: 15rem;
+
+	background-color: #374244;
+}
+.joker img {
+	height: 190px;
+	image-rendering: pixelated;
+	filter: drop-shadow(4px 12px 0 #0003);
+}
+img.hasback {
+	background-image: url('img/sticker_bg.png');
+	background-size: 142px 190px;
+}
+@keyframes blind-animate {
+	from {
+		object-position: 0px 0px;
+	}
+	to {
+		object-position: -2720px 0px;
+	}
+}
+.blinds .joker img {
+	width: 136px;
+	height: 136px;
+	object-fit: cover;
+	animation: blind-animate 2.1s linear infinite;
+	animation-timing-function: steps(20, start);
+}
+
+.rarity {
+	width: 100px;
+	border-radius: 8px;
+	padding: 4px;
+	font-size: 1rem;
+	text-shadow: none;
+}
+.soulholder {
+	width: 142px;
+	height: 190px;
+	position: relative;
+}
+.soulholder img {
+	position: absolute;
+}
+@keyframes soul-rotate {
+	from {
+		transform: rotateZ(-3deg);
+	}
+	to {
+		transform: rotateZ(3deg);
+	}
+}
+.soul-top {
+	width: 142px;
+	object-fit: cover;
+	object-position: bottom;
+	top: 0;
+	left: 0;
+	filter: drop-shadow(0px 0px 5px #4f6367);
+	animation: soul-rotate 15s ease-in-out infinite alternate;
+	animation-delay: -7.5s;
+}
+.soul-bg {
+	width: 142px;
+	object-fit: cover;
+	object-position: top;
+	top: 0;
+	left: 0;
+}
