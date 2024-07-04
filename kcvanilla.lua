@@ -40,7 +40,7 @@ SMODS.Joker {
     config = {},
     loc_txt = {
         name = "Composition",
-        text = {"+4 Mult for each", "Joker to the left,", "+50 Chips for each", "Joker to the right"}
+        text = {"+4 Mult for each", "Joker to the left,", "+30 Chips for each", "Joker to the right"}
     },
     loc_vars = function(self, info_queue, card)
         return {}
@@ -123,32 +123,6 @@ SMODS.Joker {
 }
 
 SMODS.Joker {
-    key = "squid",
-    name = "Squid",
-    atlas = 'kcvanillajokeratlas',
-    pos = {
-        x = 0,
-        y = getJokerAtlasIndex('squid')
-    },
-    rarity = 1,
-    cost = 4,
-    unlocked = true,
-    discovered = true,
-    eternal_compat = true,
-    perishable_compat = true,
-    config = {},
-    loc_txt = {
-        name = "Squid",
-        text = {"+5 hand size on", "final hand of round"}
-    },
-    loc_vars = function(self, info_queue, card)
-        return {}
-    end,
-    calculate = function(card, context)
-    end
-}
-
-SMODS.Joker {
     key = "swiss",
     name = "Swiss Joker",
     atlas = 'kcvanillajokeratlas',
@@ -203,6 +177,32 @@ SMODS.Joker {
 }
 
 SMODS.Joker {
+    key = "squid",
+    name = "Squid",
+    atlas = 'kcvanillajokeratlas',
+    pos = {
+        x = 0,
+        y = getJokerAtlasIndex('squid')
+    },
+    rarity = 2,
+    cost = 4,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    config = {},
+    loc_txt = {
+        name = "Squid",
+        text = {"+5 hand size on", "final 2 hands of round"}
+    },
+    loc_vars = function(self, info_queue, card)
+        return {}
+    end,
+    calculate = function(card, context)
+    end
+}
+
+SMODS.Joker {
     key = "guard",
     name = "Royal Guard",
     atlas = 'kcvanillajokeratlas',
@@ -245,7 +245,7 @@ SMODS.Joker {
     config = {},
     loc_txt = {
         name = "Red Envelope",
-        text = {'At end of round, earn', '$8 if 0 hands remain'}
+        text = {'At end of round, earn $8', 'if fewer than 2 hands remain'}
     },
     loc_vars = function(self, info_queue, card)
         return {}

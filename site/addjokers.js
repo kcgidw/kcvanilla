@@ -1,7 +1,7 @@
 let jokers = [
 	{
 		name: 'Composition',
-		text: ['+4 Mult for each Joker to the left, +50 Chips for each Joker to the right'],
+		text: ['+4 Mult for each Joker to the left, +30 Chips for each Joker to the right'],
 		image_url: 'assets/originals/mondrian.png',
 		rarity: 'Common',
 	},
@@ -9,12 +9,6 @@ let jokers = [
 		name: 'Fortune Cookie',
 		text: ['+150 Chips, -50 Chips when Tarot card is used'],
 		image_url: 'assets/originals/fortunecookie.png',
-		rarity: 'Common',
-	},
-	{
-		name: 'Squid',
-		text: ['+5 hand size on final hand of round'],
-		image_url: 'assets/originals/squid.png',
 		rarity: 'Common',
 	},
 	{
@@ -30,6 +24,12 @@ let jokers = [
 		rarity: 'Uncommon',
 	},
 	{
+		name: 'Squid',
+		text: ['+5 hand size on final 2 hands of round'],
+		image_url: 'assets/originals/squid.png',
+		rarity: 'Uncommon',
+	},
+	{
 		name: 'Royal Guard',
 		text: ['After 13 Kings or Queens score, sell this to make a random Joker Negative'],
 		image_url: 'assets/originals/guard.png',
@@ -37,7 +37,7 @@ let jokers = [
 	},
 	{
 		name: 'Red Envelope',
-		text: ['At end of round, earn $8 if 0 hands remain'],
+		text: ['At end of round, earn $8 if fewer than 2 hands remain'],
 		image_url: 'assets/originals/redenvelope.png',
 		rarity: 'Uncommon',
 	},
