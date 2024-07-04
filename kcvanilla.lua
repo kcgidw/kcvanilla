@@ -38,45 +38,45 @@ function kcv_dump(o)
     end
 end
 
-function kcv_plus_chips(amt, card)
-    if (amt == 0) then
-        return
-    end
-    hand_chips = mod_chips(hand_chips + amt)
-    update_hand_text({
-        delay = 0
-    }, {
-        chips = hand_chips
-    })
-    card_eval_status_text(card, 'extra', nil, nil, nil, {
-        message = localize {
-            type = 'variable',
-            key = 'a_chips',
-            vars = {amt}
-        },
-        colour = G.C.CHIPS
-    });
-end
+-- function kcv_plus_chips(amt, card)
+--     if (amt == 0) then
+--         return
+--     end
+--     hand_chips = mod_chips(hand_chips + amt)
+--     update_hand_text({
+--         delay = 0
+--     }, {
+--         chips = hand_chips
+--     })
+--     card_eval_status_text(card, 'chips', nil, nil, nil, {
+--         message = localize {
+--             type = 'variable',
+--             key = 'a_chips',
+--             vars = {amt}
+--         },
+--         colour = G.C.CHIPS
+--     });
+-- end
 
-function kcv_plus_mult(amt, card)
-    if (amt == 0) then
-        return
-    end
-    mult = mod_mult(mult + amt)
-    update_hand_text({
-        delay = 0
-    }, {
-        mult = mult
-    })
-    card_eval_status_text(card, 'extra', nil, nil, nil, {
-        message = localize {
-            type = 'variable',
-            key = 'a_mult',
-            vars = {amt}
-        },
-        colour = G.C.MULT
-    });
-end
+-- function kcv_plus_mult(amt, card)
+--     if (amt == 0) then
+--         return
+--     end
+--     mult = mod_mult(mult + amt)
+--     update_hand_text({
+--         delay = 0
+--     }, {
+--         mult = mult
+--     })
+--     card_eval_status_text(card, 'mult', nil, nil, nil, {
+--         message = localize {
+--             type = 'variable',
+--             key = 'a_mult',
+--             vars = {amt}
+--         },
+--         colour = G.C.MULT
+--     });
+-- end
 
 function kcv_composition_calc_effect(card)
     local my_pos = nil
@@ -137,8 +137,8 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.joker_main then
             local effect = kcv_composition_calc_effect(card)
-            kcv_plus_chips(effect.chips, card)
-            kcv_plus_mult(effect.mult, card)
+            aChips(effect.chips, card)
+            aMult(effect.mult, card)
         end
     end
 }
@@ -209,15 +209,7 @@ SMODS.Joker {
             end
         end
         if context.joker_main then
-            return {
-                message = localize {
-                    type = 'variable',
-                    key = 'a_chips',
-                    vars = {card.ability.extra.chips}
-                },
-                chip_mod = card.ability.extra.chips,
-                colour = G.C.CHIPS
-            }
+            aChips(card.ability.extra.chips, card)
         end
     end
 }
