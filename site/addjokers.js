@@ -56,7 +56,7 @@ let jokers = [
 	{
 		name: 'Cosmic Collapse',
 		text: [
-			'At end of round, held Planet cards have 1 in 3 chance to transform into a Black Hole',
+			'At end of round, held Planet cards each have 1 in 3 chance to transform into a Black Hole',
 		],
 		image_url: 'assets/originals/collapse.png',
 		rarity: 'Uncommon',
