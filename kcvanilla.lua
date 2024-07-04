@@ -11,16 +11,96 @@ SMODS.Atlas {
     py = 95
 }
 
-jokerAtlasOrder = {'5day', 'chan', 'swiss', 'collapse', 'energy', 'fortunecookie', 'guard', 'irish', 'composition',
-                   'powergrid', 'redenvelope', 'robo', 'handy', 'squid'}
+kcv_jokerAtlasOrder = {'5day', 'chan', 'swiss', 'collapse', 'energy', 'fortunecookie', 'guard', 'irish', 'composition',
+                       'powergrid', 'redenvelope', 'robo', 'handy', 'squid'}
 
-function getJokerAtlasIndex(jokerKey)
-    for i, v in ipairs(jokerAtlasOrder) do
+function kcv_getJokerAtlasIndex(jokerKey)
+    for i, v in ipairs(kcv_jokerAtlasOrder) do
         if v == jokerKey then
             return i - 1
         end
     end
     return 0
+end
+
+function kcv_dump(o)
+    if type(o) == 'table' then
+        local s = '{ '
+        for k, v in pairs(o) do
+            if type(k) ~= 'number' then
+                k = '"' .. k .. '"'
+            end
+            s = s .. '[' .. k .. '] = ' .. kcv_dump(v) .. ','
+        end
+        return s .. '} '
+    else
+        return tostring(o)
+    end
+end
+
+function kcv_plus_chips(amt, card)
+    if (amt == 0) then
+        return
+    end
+    hand_chips = mod_chips(hand_chips + amt)
+    update_hand_text({
+        delay = 0
+    }, {
+        chips = hand_chips
+    })
+    card_eval_status_text(card, 'extra', nil, nil, nil, {
+        message = localize {
+            type = 'variable',
+            key = 'a_chips',
+            vars = {amt}
+        },
+        colour = G.C.CHIPS
+    });
+end
+
+function kcv_plus_mult(amt, card)
+    if (amt == 0) then
+        return
+    end
+    mult = mod_mult(mult + amt)
+    update_hand_text({
+        delay = 0
+    }, {
+        mult = mult
+    })
+    card_eval_status_text(card, 'extra', nil, nil, nil, {
+        message = localize {
+            type = 'variable',
+            key = 'a_mult',
+            vars = {amt}
+        },
+        colour = G.C.MULT
+    });
+end
+
+function kcv_composition_calc_effect(card)
+    local my_pos = nil
+    local cards_to_left = 0
+    local cards_to_right = 0
+    for i = 1, #G.jokers.cards do
+        if G.jokers.cards[i] == card then
+            my_pos = i
+        elseif my_pos == nil then
+            cards_to_left = cards_to_left + 1
+        else
+            cards_to_right = cards_to_right + 1
+        end
+    end
+    local chips = cards_to_right * 30
+    local mult = cards_to_left * 4
+    if my_pos == nil then
+        chips = 0
+        mult = 0
+    end
+    return {
+        chips = chips,
+        mult = mult
+    }
 end
 
 SMODS.Joker {
@@ -29,7 +109,7 @@ SMODS.Joker {
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
-        y = getJokerAtlasIndex('composition')
+        y = kcv_getJokerAtlasIndex('composition')
     },
     rarity = 1,
     cost = 4,
@@ -37,15 +117,29 @@ SMODS.Joker {
     discovered = true,
     eternal_compat = true,
     perishable_compat = true,
-    config = {},
+    config = {
+        extra = {
+            chips = 0,
+            mult = 0
+        }
+    },
     loc_txt = {
         name = "Composition",
-        text = {"+4 Mult for each", "Joker to the left,", "+30 Chips for each", "Joker to the right"}
+        text = {"+4 Mult for each Joker to the left,", "+30 Chips for each Joker to the right",
+                "(Currently +#1# Mult and +#2# Chips)"}
     },
     loc_vars = function(self, info_queue, card)
-        return {}
+        local effect = kcv_composition_calc_effect(card)
+        return {
+            vars = {effect.mult, effect.chips}
+        }
     end,
-    calculate = function(card, context)
+    calculate = function(self, card, context)
+        if context.joker_main then
+            local effect = kcv_composition_calc_effect(card)
+            kcv_plus_chips(effect.chips, card)
+            kcv_plus_mult(effect.mult, card)
+        end
     end
 }
 
@@ -55,7 +149,7 @@ SMODS.Joker {
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
-        y = getJokerAtlasIndex('fortunecookie')
+        y = kcv_getJokerAtlasIndex('fortunecookie')
     },
     rarity = 1,
     cost = 3,
@@ -78,46 +172,52 @@ SMODS.Joker {
             vars = {card.ability.extra.chips, card.ability.extra.chip_mod}
         }
     end,
-    calculate = function(card, context)
+    calculate = function(self, card, context)
         if context.using_consumeable and (context.consumeable.ability.set == "Tarot") and not context.blueprint then
-            new_chip_val = self.ability.extra.chips - self.ability.extra.chip_mod
+            local new_chip_val = card.ability.extra.chips - card.ability.extra.chip_mod
             if (new_chip_val > 0) then
-                self.ability.extra.chips = new_chip_val
-                return {
+                card.ability.extra.chips = new_chip_val
+                card_eval_status_text(card, 'extra', nil, nil, nil, {
                     message = localize {
                         type = 'variable',
                         key = 'a_chips_minus',
-                        vars = {self.ability.extra.chip_mod}
+                        vars = {card.ability.extra.chip_mod}
                     },
                     colour = G.C.CHIPS
-                }
+                });
             else
+                play_sound('tarot1')
+                card.T.r = -0.2
+                card:juice_up(0.3, 0.4)
+                card.states.drag.is = true
+                card.children.center.pinch.x = true
                 G.E_MANAGER:add_event(Event({
+                    trigger = 'after',
+                    delay = 0.3,
+                    blockable = false,
                     func = function()
-                        play_sound('tarot1')
-                        self.T.r = -0.2
-                        self:juice_up(0.3, 0.4)
-                        self.states.drag.is = true
-                        self.children.center.pinch.x = true
-                        G.E_MANAGER:add_event(Event({
-                            trigger = 'after',
-                            delay = 0.3,
-                            blockable = false,
-                            func = function()
-                                G.jokers:remove_card(self)
-                                self:remove()
-                                self = nil
-                                return true;
-                            end
-                        }))
-                        return true
+                        G.jokers:remove_card(card)
+                        card:remove()
+                        card = nil
+                        return true;
                     end
                 }))
                 return {
                     message = localize('k_eaten_ex'),
-                    colour = G.C.RED
+                    colour = G.C.FILTER
                 }
             end
+        end
+        if context.joker_main then
+            return {
+                message = localize {
+                    type = 'variable',
+                    key = 'a_chips',
+                    vars = {card.ability.extra.chips}
+                },
+                chip_mod = card.ability.extra.chips,
+                colour = G.C.CHIPS
+            }
         end
     end
 }
@@ -128,7 +228,7 @@ SMODS.Joker {
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
-        y = getJokerAtlasIndex('swiss')
+        y = kcv_getJokerAtlasIndex('swiss')
     },
     rarity = 2,
     cost = 4,
@@ -146,7 +246,7 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {card.ability.mult}
     end,
-    calculate = function(card, context)
+    calculate = function(self, card, context)
     end
 }
 
@@ -156,7 +256,7 @@ SMODS.Joker {
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
-        y = getJokerAtlasIndex('robo')
+        y = kcv_getJokerAtlasIndex('robo')
     },
     rarity = 1,
     cost = 4,
@@ -172,7 +272,7 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {}
     end,
-    calculate = function(card, context)
+    calculate = function(self, card, context)
     end
 }
 
@@ -182,7 +282,7 @@ SMODS.Joker {
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
-        y = getJokerAtlasIndex('squid')
+        y = kcv_getJokerAtlasIndex('squid')
     },
     rarity = 2,
     cost = 4,
@@ -198,7 +298,7 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {}
     end,
-    calculate = function(card, context)
+    calculate = function(self, card, context)
     end
 }
 
@@ -208,7 +308,7 @@ SMODS.Joker {
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
-        y = getJokerAtlasIndex('guard')
+        y = kcv_getJokerAtlasIndex('guard')
     },
     rarity = 2,
     cost = 4,
@@ -224,7 +324,7 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {}
     end,
-    calculate = function(card, context)
+    calculate = function(self, card, context)
     end
 }
 
@@ -234,7 +334,7 @@ SMODS.Joker {
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
-        y = getJokerAtlasIndex('redenvelope')
+        y = kcv_getJokerAtlasIndex('redenvelope')
     },
     rarity = 2,
     cost = 4,
@@ -250,7 +350,7 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {}
     end,
-    calculate = function(card, context)
+    calculate = function(self, card, context)
     end
 }
 
@@ -260,7 +360,7 @@ SMODS.Joker {
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
-        y = getJokerAtlasIndex('chan')
+        y = kcv_getJokerAtlasIndex('chan')
     },
     rarity = 2,
     cost = 4,
@@ -276,7 +376,7 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {}
     end,
-    calculate = function(card, context)
+    calculate = function(self, card, context)
     end
 }
 
@@ -286,7 +386,7 @@ SMODS.Joker {
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
-        y = getJokerAtlasIndex('handy')
+        y = kcv_getJokerAtlasIndex('handy')
     },
     rarity = 2,
     cost = 4,
@@ -302,7 +402,7 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {}
     end,
-    calculate = function(card, context)
+    calculate = function(self, card, context)
     end
 }
 
@@ -312,7 +412,7 @@ SMODS.Joker {
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
-        y = getJokerAtlasIndex('collapse')
+        y = kcv_getJokerAtlasIndex('collapse')
     },
     rarity = 2,
     cost = 4,
@@ -328,7 +428,7 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {}
     end,
-    calculate = function(card, context)
+    calculate = function(self, card, context)
     end
 }
 
@@ -338,7 +438,7 @@ SMODS.Joker {
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
-        y = getJokerAtlasIndex('5day')
+        y = kcv_getJokerAtlasIndex('5day')
     },
     rarity = 2,
     cost = 4,
@@ -354,7 +454,7 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {}
     end,
-    calculate = function(card, context)
+    calculate = function(self, card, context)
     end
 }
 
@@ -364,7 +464,7 @@ SMODS.Joker {
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
-        y = getJokerAtlasIndex('powergrid')
+        y = kcv_getJokerAtlasIndex('powergrid')
     },
     rarity = 3,
     cost = 4,
@@ -380,7 +480,7 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {}
     end,
-    calculate = function(card, context)
+    calculate = function(self, card, context)
     end
 }
 
@@ -390,7 +490,7 @@ SMODS.Joker {
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
-        y = getJokerAtlasIndex('irish')
+        y = kcv_getJokerAtlasIndex('irish')
     },
     rarity = 3,
     cost = 4,
@@ -406,7 +506,7 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {}
     end,
-    calculate = function(card, context)
+    calculate = function(self, card, context)
     end
 }
 
@@ -416,7 +516,7 @@ SMODS.Joker {
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
-        y = getJokerAtlasIndex('energy')
+        y = kcv_getJokerAtlasIndex('energy')
     },
     rarity = 3,
     cost = 4,
@@ -433,6 +533,6 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         return {}
     end,
-    calculate = function(card, context)
+    calculate = function(self, card, context)
     end
 }
