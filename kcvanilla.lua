@@ -11,6 +11,10 @@ SMODS.Atlas {
     py = 95
 }
 
+function kcv_log(str)
+    sendInfoMessage(str, "KCVanilla")
+end
+
 kcv_jokerAtlasOrder = {'5day', 'chan', 'swiss', 'collapse', 'energy', 'fortunecookie', 'guard', 'irish', 'composition',
                        'powergrid', 'redenvelope', 'robo', 'handy', 'squid'}
 
@@ -23,14 +27,18 @@ function kcv_getJokerAtlasIndex(jokerKey)
     return 0
 end
 
-function kcv_dump(o)
+function kcv_dump(o, depth)
+    depth = depth or 0
+    if depth > 3 then
+        return '...'
+    end
     if type(o) == 'table' then
         local s = '{ '
         for k, v in pairs(o) do
             if type(k) ~= 'number' then
                 k = '"' .. k .. '"'
             end
-            s = s .. '[' .. k .. '] = ' .. kcv_dump(v) .. ','
+            s = s .. '[' .. k .. '] = ' .. kcv_dump(v, depth + 1) .. ','
         end
         return s .. '} '
     else
@@ -279,7 +287,7 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         return {
-            var = {}
+            vars = {}
         }
     end,
     calculate = function(self, card, context)
@@ -387,7 +395,7 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         return {
-            var = {}
+            vars = {}
         }
     end,
     calculate = function(self, card, context)
@@ -415,7 +423,7 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         return {
-            var = {}
+            vars = {}
         }
     end,
     calculate = function(self, card, context)
@@ -443,7 +451,7 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         return {
-            var = {}
+            vars = {}
         }
     end,
     calculate = function(self, card, context)
@@ -471,7 +479,7 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         return {
-            var = {}
+            vars = {}
         }
     end,
     calculate = function(self, card, context)
@@ -495,16 +503,64 @@ SMODS.Joker {
     config = {},
     loc_txt = {
         name = "Cosmic Collapse",
-        text = {'At end of round, held Planet cards each have 1 in 3 chance to transform into a Black Hole'}
+        text = {'At end of round, held Planet cards', 'each have 1 in 3 chance to', 'transform into a Black Hole'}
     },
     loc_vars = function(self, info_queue, card)
         return {
-            var = {}
+            vars = {}
         }
     end,
     calculate = function(self, card, context)
+        if context.end_of_round then
+            local success_planets = {}
+            for i, consumable in ipairs(G.consumeables.cards) do
+                if (consumable.ability.set == 'Planet' and pseudorandom('cosmiccollapse') < G.GAME.probabilities.normal /
+                    3) then
+                    table.insert(success_planets, consumable)
+                end
+            end
+            kcv_log('success planets ' .. #success_planets)
+
+            for i, planet in ipairs(success_planets) do
+                -- need this bc OG doesn't accomodate for transforming planets
+                planet.config.card = {}
+                play_sound('card1')
+                planet:flip()
+                planet:set_ability(G.P_CENTERS.c_black_hole)
+                planet:flip()
+                -- G.E_MANAGER:add_event(Event({
+                --     trigger = 'after',
+                --     delay = 1,
+                --     func = function()
+                --         play_sound('card1')
+                --         planet:flip()
+                --     end
+                -- }))
+                -- delay(1)
+                -- G.E_MANAGER:add_event(Event({
+                --     trigger = 'after',
+                --     delay = 1,
+                --     func = function()
+                --         planet:set_ability(G.P_CENTERS.c_black_hole)
+                --         play_sound('card3')
+                --         planet:flip()
+                --     end
+                -- }))
+                -- delay(1)
+            end
+        end
     end
 }
+-- G.E_MANAGER:add_event(Event({
+--     trigger = 'before',
+--     delay = 0.3,
+--     func = function()
+--         consumable.config.card = {}
+--         consumable:set_ability(G.P_CENTERS.c_black_hole)
+--         consumable:juice_up()
+--         play_sound('tarot1')
+--     end
+-- }))
 
 SMODS.Joker {
     key = "5day",
@@ -527,7 +583,7 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         return {
-            var = {}
+            vars = {}
         }
     end,
     calculate = function(self, card, context)
@@ -555,7 +611,7 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         return {
-            var = {}
+            vars = {}
         }
     end,
     calculate = function(self, card, context)
@@ -583,7 +639,7 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         return {
-            var = {}
+            vars = {}
         }
     end,
     calculate = function(self, card, context)
@@ -612,7 +668,7 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         return {
-            var = {}
+            vars = {}
         }
     end,
     calculate = function(self, card, context)
