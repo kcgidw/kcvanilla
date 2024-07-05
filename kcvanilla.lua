@@ -236,9 +236,25 @@ SMODS.Joker {
         text = {'+5 Mult for each', 'unscored card played', 'in previous hand', '(Currently +#1# Mult)'}
     },
     loc_vars = function(self, info_queue, card)
-        return {card.ability.mult}
+        return {
+            vars = {card.ability.mult}
+        }
     end,
     calculate = function(self, card, context)
+        if context.after then
+            card.ability.mult = 5 * (#context.full_hand - #context.scoring_hand)
+            card_eval_status_text(card, 'extra', nil, nil, nil, {
+                message = localize {
+                    type = 'variable',
+                    key = 'a_mult',
+                    vars = {card.ability.mult}
+                },
+                colour = G.C.MULT
+            });
+        end
+        if context.joker_main then
+            aMult(card.ability.mult, card)
+        end
     end
 }
 
@@ -265,6 +281,13 @@ SMODS.Joker {
         return {}
     end,
     calculate = function(self, card, context)
+        if context.individual and context.cardarea == G.play and context.other_card.ability.name == 'Steel Card' then
+            return {
+                x_mult = 1.5,
+                colour = G.C.RED,
+                card = card
+            }
+        end
     end
 }
 
