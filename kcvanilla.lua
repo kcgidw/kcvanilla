@@ -278,7 +278,9 @@ SMODS.Joker {
         text = {'Steel cards give', 'X1.5 Mult when scored'}
     },
     loc_vars = function(self, info_queue, card)
-        return {}
+        return {
+            var = {}
+        }
     end,
     calculate = function(self, card, context)
         if context.individual and context.cardarea == G.play and context.other_card.ability.name == 'Steel Card' then
@@ -305,15 +307,62 @@ SMODS.Joker {
     discovered = true,
     eternal_compat = true,
     perishable_compat = true,
-    config = {},
+    config = {
+        h_size = 0,
+        h_mod = 5
+    },
     loc_txt = {
         name = "Squid",
-        text = {"+5 hand size on", "final 2 hands of round"}
+        text = {"+#1# hand size on", "final 2 hands of round", "#2#"}
     },
     loc_vars = function(self, info_queue, card)
-        return {}
+        return {
+            vars = {card.ability.h_mod, card.ability.h_size > 0 and "(Active)" or "(Inactive)"}
+        }
     end,
     calculate = function(self, card, context)
+        -- if context.end_of_round and card.ability.h_size > 0 then
+        --     card.ability.h_size = 0
+        --     G.hand:change_size(-card.ability.h_mod)
+        --     card_eval_status_text(card, 'extra', nil, nil, nil, {
+        --         message = localize {
+        --             type = 'variable',
+        --             key = 'a_handsize_minus',
+        --             vars = {card.ability.h_mod}
+        --         },
+        --         colour = G.C.FILTER
+        --     });
+        if context.after and G.GAME.current_round.hands_left <= 2 then
+            if card.ability.h_size == 0 then
+                card.ability.h_size = card.ability.h_mod
+                G.hand:change_size(card.ability.h_size)
+                card_eval_status_text(card, 'extra', nil, nil, nil, {
+                    message = localize {
+                        type = 'variable',
+                        key = 'a_handsize',
+                        vars = {card.ability.h_mod}
+                    },
+                    colour = G.C.FILTER
+                });
+            end
+        end
+        if context.end_of_round and card.ability.h_size > 0 then
+            card.ability.h_size = 0
+            G.hand:change_size(-card.ability.h_mod)
+            card_eval_status_text(card, 'extra', nil, nil, nil, {
+                message = localize {
+                    type = 'variable',
+                    key = 'a_handsize_minus',
+                    vars = {card.ability.h_mod}
+                },
+                colour = G.C.FILTER
+            });
+        end
+    end,
+    add_to_deck = function(self, card, from_debuff)
+        if G.GAME.current_round.hands_left <= 2 then
+            card.ability.h_size = 5
+        end
     end
 }
 
@@ -337,7 +386,9 @@ SMODS.Joker {
         text = {'Steel cards give', 'X1.5 Mult when scored'}
     },
     loc_vars = function(self, info_queue, card)
-        return {}
+        return {
+            var = {}
+        }
     end,
     calculate = function(self, card, context)
     end
@@ -363,7 +414,9 @@ SMODS.Joker {
         text = {'At end of round, earn $8', 'if fewer than 2 hands remain'}
     },
     loc_vars = function(self, info_queue, card)
-        return {}
+        return {
+            var = {}
+        }
     end,
     calculate = function(self, card, context)
     end
@@ -389,7 +442,9 @@ SMODS.Joker {
         text = {"Retrigger Common Jokers"}
     },
     loc_vars = function(self, info_queue, card)
-        return {}
+        return {
+            var = {}
+        }
     end,
     calculate = function(self, card, context)
     end
@@ -415,7 +470,9 @@ SMODS.Joker {
         text = {'If first hand of round has exactly 1 card, X3 Mult for rest of round'}
     },
     loc_vars = function(self, info_queue, card)
-        return {}
+        return {
+            var = {}
+        }
     end,
     calculate = function(self, card, context)
     end
@@ -441,7 +498,9 @@ SMODS.Joker {
         text = {'At end of round, held Planet cards each have 1 in 3 chance to transform into a Black Hole'}
     },
     loc_vars = function(self, info_queue, card)
-        return {}
+        return {
+            var = {}
+        }
     end,
     calculate = function(self, card, context)
     end
@@ -467,7 +526,9 @@ SMODS.Joker {
         text = {"If played hand contains a Straight, increase played cards' ranks by 1 (ignores Aces)"}
     },
     loc_vars = function(self, info_queue, card)
-        return {}
+        return {
+            var = {}
+        }
     end,
     calculate = function(self, card, context)
     end
@@ -493,7 +554,9 @@ SMODS.Joker {
         text = {"Mult and Steel cards count as both"}
     },
     loc_vars = function(self, info_queue, card)
-        return {}
+        return {
+            var = {}
+        }
     end,
     calculate = function(self, card, context)
     end
@@ -519,7 +582,9 @@ SMODS.Joker {
         text = {"Lucky Clubs are 4X more likely to succeed"}
     },
     loc_vars = function(self, info_queue, card)
-        return {}
+        return {
+            var = {}
+        }
     end,
     calculate = function(self, card, context)
     end
@@ -546,7 +611,9 @@ SMODS.Joker {
                 "resets if hand contains a Flush"}
     },
     loc_vars = function(self, info_queue, card)
-        return {}
+        return {
+            var = {}
+        }
     end,
     calculate = function(self, card, context)
     end
