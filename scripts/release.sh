@@ -3,5 +3,6 @@ rm -rf dist \
 && cp -r assets/1x dist/assets \
 && cp -r assets/2x dist/assets \
 && cp  kcvanilla.lua dist/kcvanilla.lua \
+&& cp  lovely.toml dist/lovely.toml \
 && rm -rf ~/AppData/Roaming/Balatro/Mods/kcvanilla \
 && cp -r dist ~/AppData/Roaming/Balatro/Mods/kcvanilla

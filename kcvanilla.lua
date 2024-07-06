@@ -511,56 +511,39 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.end_of_round then
+        if context.kcv_cosmic_collapse_calculate then
             local success_planets = {}
             for i, consumable in ipairs(G.consumeables.cards) do
-                if (consumable.ability.set == 'Planet' and pseudorandom('cosmiccollapse') < G.GAME.probabilities.normal /
-                    3) then
-                    table.insert(success_planets, consumable)
+                if consumable.ability.set == 'Planet' then
+                    local success = pseudorandom('cosmiccollapse') < G.GAME.probabilities.normal / 3
+                    -- kcv_log('success? ' .. tostring(success))
+                    if success then
+                        table.insert(success_planets, consumable)
+                    end
                 end
             end
-            kcv_log('success planets ' .. #success_planets)
+            -- kcv_log('success planets ' .. #success_planets)
+
+            card_eval_status_text(card, 'extra', nil, nil, nil, {
+                message = "Collapse!"
+            });
 
             for i, planet in ipairs(success_planets) do
                 -- need this bc OG doesn't accomodate for transforming planets
                 planet.config.card = {}
-                play_sound('card1')
-                planet:flip()
-                planet:set_ability(G.P_CENTERS.c_black_hole)
-                planet:flip()
-                -- G.E_MANAGER:add_event(Event({
-                --     trigger = 'after',
-                --     delay = 1,
-                --     func = function()
-                --         play_sound('card1')
-                --         planet:flip()
-                --     end
-                -- }))
-                -- delay(1)
-                -- G.E_MANAGER:add_event(Event({
-                --     trigger = 'after',
-                --     delay = 1,
-                --     func = function()
-                --         planet:set_ability(G.P_CENTERS.c_black_hole)
-                --         play_sound('card3')
-                --         planet:flip()
-                --     end
-                -- }))
-                -- delay(1)
+                G.E_MANAGER:add_event(Event({
+                    func = function()
+                        play_sound('tarot2', 1.1, 0.6)
+                        planet:set_ability(G.P_CENTERS.c_black_hole)
+                        planet:juice_up(1, 0.5)
+                        return true
+                    end
+                }))
+                delay(0.4)
             end
         end
     end
 }
--- G.E_MANAGER:add_event(Event({
---     trigger = 'before',
---     delay = 0.3,
---     func = function()
---         consumable.config.card = {}
---         consumable:set_ability(G.P_CENTERS.c_black_hole)
---         consumable:juice_up()
---         play_sound('tarot1')
---     end
--- }))
 
 SMODS.Joker {
     key = "5day",

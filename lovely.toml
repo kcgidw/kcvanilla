@@ -1,0 +1,20 @@
+[manifest]
+version = "1.0.0"
+dump_lua = true
+priority = 0
+
+# cosmic collapse
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = "G.FUNCS.draw_from_hand_to_discard()"
+position = 'before'
+match_indent = true
+payload = '''
+
+for i, joker_card in ipairs(G.jokers.cards) do
+    joker_card:calculate_joker({kcv_cosmic_collapse_calculate=true})
+end
+delay(0.3)
+
+'''
