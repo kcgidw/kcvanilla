@@ -329,17 +329,6 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        -- if context.end_of_round and card.ability.h_size > 0 then
-        --     card.ability.h_size = 0
-        --     G.hand:change_size(-card.ability.h_mod)
-        --     card_eval_status_text(card, 'extra', nil, nil, nil, {
-        --         message = localize {
-        --             type = 'variable',
-        --             key = 'a_handsize_minus',
-        --             vars = {card.ability.h_mod}
-        --         },
-        --         colour = G.C.FILTER
-        --     });
         if context.after and G.GAME.current_round.hands_left <= 2 then
             if card.ability.h_size == 0 then
                 card.ability.h_size = card.ability.h_mod
@@ -388,17 +377,53 @@ SMODS.Joker {
     discovered = true,
     eternal_compat = true,
     perishable_compat = true,
-    config = {},
+    config = {
+        progress = 0,
+        required_progress = 13
+    },
     loc_txt = {
         name = "Royal Guard",
-        text = {'Steel cards give', 'X1.5 Mult when scored'}
+        text = {"After #2# Kings or Queens score,", "sell this to make a random Joker Negative", "(Progress: #1#/#2#)"}
     },
     loc_vars = function(self, info_queue, card)
         return {
-            vars = {}
+            vars = {card.ability.progress, card.ability.required_progress}
         }
     end,
     calculate = function(self, card, context)
+        if context.individual and context.cardarea == G.play then
+            local other_id = context.other_card:get_id()
+            if other_id == 12 or other_id == 13 then
+                if card.ability.progress < card.ability.required_progress then
+                    card.ability.progress = card.ability.progress + 1
+                    local sell_ready = card.ability.progress >= card.ability.required_progress
+                    return {
+                        extra = {
+                            focus = card,
+                            message = sell_ready and localize('k_active_ex') or
+                                (card.ability.progress .. "/" .. card.ability.required_progress)
+                        },
+                        card = card,
+                        colour = G.C.FILTER,
+                        kcv_juice_card_until = sell_ready
+                    }
+                end
+            end
+        end
+        if context.selling_self and card.ability.progress >= card.ability.required_progress then
+            local candidates = {}
+            for i, joker in ipairs(G.jokers.cards) do
+                if joker ~= card then
+                    table.insert(candidates, joker)
+                end
+            end
+            if #candidates > 0 then
+                local target = pseudorandom_element(candidates, pseudoseed('royalguard'))
+                target:set_edition({
+                    negative = true
+                })
+            end
+        end
     end
 }
 
@@ -475,7 +500,7 @@ SMODS.Joker {
     config = {},
     loc_txt = {
         name = "Handy Joker",
-        text = {'If first hand of round has exactly 1 card, X3 Mult for rest of round'}
+        text = {'If first hand of round is a High Card, X3 Mult for rest of round'}
     },
     loc_vars = function(self, info_queue, card)
         return {

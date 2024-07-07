@@ -18,3 +18,27 @@ end
 delay(0.3)
 
 '''
+
+# run event on play_area
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = "if effects[ii].extra then"
+position = 'before'
+match_indent = true
+payload = '''
+
+if effects[ii].kcv_juice_card_until then
+    G.E_MANAGER:add_event(Event({
+        trigger = 'immediate',
+        func = function()
+            local eval = function(card)
+                return true
+            end
+            juice_card_until(effects[ii].card, eval, true)
+            return true
+        end
+    }))
+end
+
+'''
