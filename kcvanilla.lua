@@ -160,7 +160,7 @@ SMODS.Joker {
         y = kcv_getJokerAtlasIndex('fortunecookie')
     },
     rarity = 1,
-    cost = 3,
+    cost = 5,
     unlocked = true,
     discovered = true,
     eternal_compat = false,
@@ -230,7 +230,7 @@ SMODS.Joker {
         x = 0,
         y = kcv_getJokerAtlasIndex('swiss')
     },
-    rarity = 2,
+    rarity = 1,
     cost = 4,
     unlocked = true,
     discovered = true,
@@ -274,8 +274,8 @@ SMODS.Joker {
         x = 0,
         y = kcv_getJokerAtlasIndex('robo')
     },
-    rarity = 1,
-    cost = 4,
+    rarity = 2,
+    cost = 6,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -372,7 +372,7 @@ SMODS.Joker {
         y = kcv_getJokerAtlasIndex('guard')
     },
     rarity = 2,
-    cost = 4,
+    cost = 6,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -520,7 +520,7 @@ SMODS.Joker {
         y = kcv_getJokerAtlasIndex('collapse')
     },
     rarity = 2,
-    cost = 4,
+    cost = 6,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
