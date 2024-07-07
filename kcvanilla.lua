@@ -427,89 +427,89 @@ SMODS.Joker {
     end
 }
 
-SMODS.Joker {
-    key = "redenvelope",
-    name = "Red Envelope",
-    atlas = 'kcvanillajokeratlas',
-    pos = {
-        x = 0,
-        y = kcv_getJokerAtlasIndex('redenvelope')
-    },
-    rarity = 2,
-    cost = 4,
-    unlocked = true,
-    discovered = true,
-    eternal_compat = true,
-    perishable_compat = true,
-    config = {},
-    loc_txt = {
-        name = "Red Envelope",
-        text = {'At end of round, earn $8', 'if fewer than 2 hands remain'}
-    },
-    loc_vars = function(self, info_queue, card)
-        return {
-            vars = {}
-        }
-    end,
-    calculate = function(self, card, context)
-    end
-}
+-- SMODS.Joker {
+--     key = "redenvelope",
+--     name = "Red Envelope",
+--     atlas = 'kcvanillajokeratlas',
+--     pos = {
+--         x = 0,
+--         y = kcv_getJokerAtlasIndex('redenvelope')
+--     },
+--     rarity = 2,
+--     cost = 4,
+--     unlocked = true,
+--     discovered = true,
+--     eternal_compat = true,
+--     perishable_compat = true,
+--     config = {},
+--     loc_txt = {
+--         name = "Red Envelope",
+--         text = {'At end of round, earn $8', 'if fewer than 2 hands remain'}
+--     },
+--     loc_vars = function(self, info_queue, card)
+--         return {
+--             vars = {}
+--         }
+--     end,
+--     calculate = function(self, card, context)
+--     end
+-- }
 
-SMODS.Joker {
-    key = "chan",
-    name = "Joker-chan",
-    atlas = 'kcvanillajokeratlas',
-    pos = {
-        x = 0,
-        y = kcv_getJokerAtlasIndex('chan')
-    },
-    rarity = 2,
-    cost = 4,
-    unlocked = true,
-    discovered = true,
-    eternal_compat = true,
-    perishable_compat = true,
-    config = {},
-    loc_txt = {
-        name = "Joker-chan",
-        text = {"Retrigger Common Jokers"}
-    },
-    loc_vars = function(self, info_queue, card)
-        return {
-            vars = {}
-        }
-    end,
-    calculate = function(self, card, context)
-    end
-}
+-- SMODS.Joker {
+--     key = "chan",
+--     name = "Joker-chan",
+--     atlas = 'kcvanillajokeratlas',
+--     pos = {
+--         x = 0,
+--         y = kcv_getJokerAtlasIndex('chan')
+--     },
+--     rarity = 2,
+--     cost = 4,
+--     unlocked = true,
+--     discovered = true,
+--     eternal_compat = true,
+--     perishable_compat = true,
+--     config = {},
+--     loc_txt = {
+--         name = "Joker-chan",
+--         text = {"Retrigger Common Jokers"}
+--     },
+--     loc_vars = function(self, info_queue, card)
+--         return {
+--             vars = {}
+--         }
+--     end,
+--     calculate = function(self, card, context)
+--     end
+-- }
 
-SMODS.Joker {
-    key = "handy",
-    name = "Handy Joker",
-    atlas = 'kcvanillajokeratlas',
-    pos = {
-        x = 0,
-        y = kcv_getJokerAtlasIndex('handy')
-    },
-    rarity = 2,
-    cost = 4,
-    unlocked = true,
-    discovered = true,
-    eternal_compat = true,
-    perishable_compat = true,
-    config = {},
-    loc_txt = {
-        name = "Handy Joker",
-        text = {'If first hand of round is a High Card, X3 Mult for rest of round'}
-    },
-    loc_vars = function(self, info_queue, card)
-        return {
-            vars = {}
-        }
-    end,
-    calculate = function(self, card, context)
-    end
-}
+-- SMODS.Joker {
+--     key = "handy",
+--     name = "Handy Joker",
+--     atlas = 'kcvanillajokeratlas',
+--     pos = {
+--         x = 0,
+--         y = kcv_getJokerAtlasIndex('handy')
+--     },
+--     rarity = 2,
+--     cost = 4,
+--     unlocked = true,
+--     discovered = true,
+--     eternal_compat = true,
+--     perishable_compat = true,
+--     config = {},
+--     loc_txt = {
+--         name = "Handy Joker",
+--         text = {'If first hand of round is a High Card, X3 Mult for rest of round'}
+--     },
+--     loc_vars = function(self, info_queue, card)
+--         return {
+--             vars = {}
+--         }
+--     end,
+--     calculate = function(self, card, context)
+--     end
+-- }
 
 SMODS.Joker {
     key = "collapse",
@@ -570,115 +570,115 @@ SMODS.Joker {
     end
 }
 
-SMODS.Joker {
-    key = "5day",
-    name = "Five-Day Forecast",
-    atlas = 'kcvanillajokeratlas',
-    pos = {
-        x = 0,
-        y = kcv_getJokerAtlasIndex('5day')
-    },
-    rarity = 2,
-    cost = 4,
-    unlocked = true,
-    discovered = true,
-    eternal_compat = true,
-    perishable_compat = true,
-    config = {},
-    loc_txt = {
-        name = "Five-Day Forecast",
-        text = {"If played hand contains a Straight, increase played cards' ranks by 1 (ignores Aces)"}
-    },
-    loc_vars = function(self, info_queue, card)
-        return {
-            vars = {}
-        }
-    end,
-    calculate = function(self, card, context)
-    end
-}
+-- SMODS.Joker {
+--     key = "5day",
+--     name = "Five-Day Forecast",
+--     atlas = 'kcvanillajokeratlas',
+--     pos = {
+--         x = 0,
+--         y = kcv_getJokerAtlasIndex('5day')
+--     },
+--     rarity = 2,
+--     cost = 4,
+--     unlocked = true,
+--     discovered = true,
+--     eternal_compat = true,
+--     perishable_compat = true,
+--     config = {},
+--     loc_txt = {
+--         name = "Five-Day Forecast",
+--         text = {"If played hand contains a Straight, increase played cards' ranks by 1 (ignores Aces)"}
+--     },
+--     loc_vars = function(self, info_queue, card)
+--         return {
+--             vars = {}
+--         }
+--     end,
+--     calculate = function(self, card, context)
+--     end
+-- }
 
-SMODS.Joker {
-    key = "powergrid",
-    name = "Power Grid",
-    atlas = 'kcvanillajokeratlas',
-    pos = {
-        x = 0,
-        y = kcv_getJokerAtlasIndex('powergrid')
-    },
-    rarity = 3,
-    cost = 4,
-    unlocked = true,
-    discovered = true,
-    eternal_compat = true,
-    perishable_compat = true,
-    config = {},
-    loc_txt = {
-        name = "Power Grid",
-        text = {"Mult and Steel cards count as both"}
-    },
-    loc_vars = function(self, info_queue, card)
-        return {
-            vars = {}
-        }
-    end,
-    calculate = function(self, card, context)
-    end
-}
+-- SMODS.Joker {
+--     key = "powergrid",
+--     name = "Power Grid",
+--     atlas = 'kcvanillajokeratlas',
+--     pos = {
+--         x = 0,
+--         y = kcv_getJokerAtlasIndex('powergrid')
+--     },
+--     rarity = 3,
+--     cost = 4,
+--     unlocked = true,
+--     discovered = true,
+--     eternal_compat = true,
+--     perishable_compat = true,
+--     config = {},
+--     loc_txt = {
+--         name = "Power Grid",
+--         text = {"Mult and Steel cards count as both"}
+--     },
+--     loc_vars = function(self, info_queue, card)
+--         return {
+--             vars = {}
+--         }
+--     end,
+--     calculate = function(self, card, context)
+--     end
+-- }
 
-SMODS.Joker {
-    key = "irish",
-    name = "Luck of the Irish",
-    atlas = 'kcvanillajokeratlas',
-    pos = {
-        x = 0,
-        y = kcv_getJokerAtlasIndex('irish')
-    },
-    rarity = 3,
-    cost = 4,
-    unlocked = true,
-    discovered = true,
-    eternal_compat = true,
-    perishable_compat = true,
-    config = {},
-    loc_txt = {
-        name = "Luck of the Irish",
-        text = {"Lucky Clubs are 4X more likely to succeed"}
-    },
-    loc_vars = function(self, info_queue, card)
-        return {
-            vars = {}
-        }
-    end,
-    calculate = function(self, card, context)
-    end
-}
+-- SMODS.Joker {
+--     key = "irish",
+--     name = "Luck of the Irish",
+--     atlas = 'kcvanillajokeratlas',
+--     pos = {
+--         x = 0,
+--         y = kcv_getJokerAtlasIndex('irish')
+--     },
+--     rarity = 3,
+--     cost = 4,
+--     unlocked = true,
+--     discovered = true,
+--     eternal_compat = true,
+--     perishable_compat = true,
+--     config = {},
+--     loc_txt = {
+--         name = "Luck of the Irish",
+--         text = {"Lucky Clubs are 4X more likely to succeed"}
+--     },
+--     loc_vars = function(self, info_queue, card)
+--         return {
+--             vars = {}
+--         }
+--     end,
+--     calculate = function(self, card, context)
+--     end
+-- }
 
-SMODS.Joker {
-    key = "energy",
-    name = "Joker Energy",
-    atlas = 'kcvanillajokeratlas',
-    pos = {
-        x = 0,
-        y = kcv_getJokerAtlasIndex('energy')
-    },
-    rarity = 3,
-    cost = 4,
-    unlocked = true,
-    discovered = true,
-    eternal_compat = true,
-    perishable_compat = true,
-    config = {},
-    loc_txt = {
-        name = "Joker Energy",
-        text = {"Gains X0.25 Mult when a", "Wild card scores in a", "5-card poker hand,",
-                "resets if hand contains a Flush"}
-    },
-    loc_vars = function(self, info_queue, card)
-        return {
-            vars = {}
-        }
-    end,
-    calculate = function(self, card, context)
-    end
-}
+-- SMODS.Joker {
+--     key = "energy",
+--     name = "Joker Energy",
+--     atlas = 'kcvanillajokeratlas',
+--     pos = {
+--         x = 0,
+--         y = kcv_getJokerAtlasIndex('energy')
+--     },
+--     rarity = 3,
+--     cost = 4,
+--     unlocked = true,
+--     discovered = true,
+--     eternal_compat = true,
+--     perishable_compat = true,
+--     config = {},
+--     loc_txt = {
+--         name = "Joker Energy",
+--         text = {"Gains X0.25 Mult when a", "Wild card scores in a", "5-card poker hand,",
+--                 "resets if hand contains a Flush"}
+--     },
+--     loc_vars = function(self, info_queue, card)
+--         return {
+--             vars = {}
+--         }
+--     end,
+--     calculate = function(self, card, context)
+--     end
+-- }
