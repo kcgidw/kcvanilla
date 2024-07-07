@@ -1,0 +1,8 @@
+-   [ ] joker basic functionality (7/15)
+-   [ ] .zip releases
+-   [ ] better installation steps
+-   [ ] formatted descriptions
+-   [ ] add info queues
+-   [ ] test blueprint
+-   [ ] test debuffed joker
+-   [ ] test debuffed playing card
