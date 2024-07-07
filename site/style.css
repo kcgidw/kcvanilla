@@ -23,6 +23,10 @@ main {
 	width: min(60rem, 100%);
 	margin: 1rem auto;
 	font-size: 1.25rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	align-items: center;
 }
 
 h1 {
@@ -33,6 +37,14 @@ h3,
 h4 {
 	margin: 0;
 	font-weight: normal;
+}
+
+.intro .desc {
+	border: 2px solid white;
+	border-radius: 1rem;
+	background-color: #374244;
+	width: fit-content;
+	padding: 0 1rem;
 }
 
 .cards {
@@ -50,7 +62,6 @@ h4 {
 	border: 2px solid white;
 	border-radius: 1rem;
 	width: 15rem;
-
 	background-color: #374244;
 }
 .joker img {

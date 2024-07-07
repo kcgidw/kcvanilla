@@ -1,6 +1,8 @@
 # KCVanilla
 
-A vanilla Jocker pack mod for Balatro
+A vanilla Joker pack mod for Balatro
+
+In development, feedback welcome
 
 # Installation
 

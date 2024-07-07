@@ -18,6 +18,12 @@ let jokers = [
 		rarity: 'Common',
 	},
 	{
+		name: 'Ten-Pin',
+		text: [`X2 Mult if a 10 was scored in the previous 2 hands played`],
+		image_url: '',
+		rarity: 'Common',
+	},
+	{
 		name: 'Robo-Joker',
 		text: ['Steel cards give X1.5 Mult when scored'],
 		image_url: 'assets/originals/robo.png',
@@ -37,7 +43,7 @@ let jokers = [
 	},
 	{
 		name: 'Red Envelope',
-		text: ['At end of round, earn $8 if fewer than 2 hands remain'],
+		text: ['At end of round, earn $8 if blind was defeated within final 2 hands'],
 		image_url: 'assets/originals/redenvelope.png',
 		rarity: 'Uncommon',
 	},
@@ -49,7 +55,9 @@ let jokers = [
 	},
 	{
 		name: 'Handy Joker',
-		text: ['If first hand of round has exactly 1 card, X3 Mult for rest of round'],
+		text: [
+			'If first hand of round is a High Card, gain X1 Mult, resets when Boss Blind is defeated',
+		],
 		image_url: 'assets/originals/sock.png',
 		rarity: 'Uncommon',
 	},
