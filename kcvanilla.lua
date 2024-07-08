@@ -87,6 +87,13 @@ end
 -- end
 
 function kcv_composition_calc_effect(card)
+    if not G.jokers then
+        -- viewing card outside a run
+        return {
+            chips = 0,
+            mult = 0
+        }
+    end
     local my_pos = nil
     local cards_to_left = 0
     local cards_to_right = 0
