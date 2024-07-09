@@ -18,7 +18,7 @@ end
 local kcv_jokerAtlasOrder = {'5day', 'chan', 'swiss', 'collapse', 'energy', 'fortunecookie', 'guard', 'irish',
                              'composition', 'powergrid', 'redenvelope', 'robo', 'handy', 'squid'}
 
-function kcv_getJokerAtlasIndex(jokerKey)
+local function kcv_getJokerAtlasIndex(jokerKey)
     for i, v in ipairs(kcv_jokerAtlasOrder) do
         if v == jokerKey then
             return i - 1
@@ -697,33 +697,34 @@ SMODS.Joker {
 --     end
 -- }
 
--- SMODS.Joker {
---     key = "irish",
---     name = "Luck of the Irish",
---     atlas = 'kcvanillajokeratlas',
---     pos = {
---         x = 0,
---         y = kcv_getJokerAtlasIndex('irish')
---     },
---     rarity = 3,
---     cost = 4,
---     unlocked = true,
---     discovered = true,
---     eternal_compat = true,
---     perishable_compat = true,
---     config = {},
---     loc_txt = {
---         name = "Luck of the Irish",
---         text = {"Lucky Clubs are 4X more likely to succeed"}
---     },
---     loc_vars = function(self, info_queue, card)
---         return {
---             vars = {}
---         }
---     end,
---     calculate = function(self, card, context)
---     end
--- }
+SMODS.Joker {
+    key = "irish",
+    name = "Luck of the Irish",
+    atlas = 'kcvanillajokeratlas',
+    pos = {
+        x = 0,
+        y = kcv_getJokerAtlasIndex('irish')
+    },
+    rarity = 3,
+    cost = 8,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    blueprint_compat = true,
+    config = {},
+    loc_txt = {
+        name = "Luck of the Irish",
+        text = {"Lucky Clubs are 4X more likely to succeed"}
+    },
+    loc_vars = function(self, info_queue, card)
+        return {
+            vars = {}
+        }
+    end,
+    calculate = function(self, card, context)
+    end
+}
 
 -- SMODS.Joker {
 --     key = "energy",

@@ -1,4 +1,4 @@
--   [ ] joker basic functionality (8/15)
+-   [ ] joker basic functionality (9/15)
 -   [ ] confirm rarities and prices
 -   [ ] test blueprint
 -   [ ] test debuffed joker

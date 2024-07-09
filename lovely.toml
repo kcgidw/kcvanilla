@@ -3,7 +3,9 @@ version = "1.0.0"
 dump_lua = true
 priority = 0
 
-# cosmic collapse
+# for cosmic collapse:
+# Add `kcv_cosmic_collapse_calculate` field to context,
+# as context.after is too broad as the sole flag and can cause excessive triggers.
 [[patches]]
 [patches.pattern]
 target = 'functions/state_events.lua'
@@ -19,7 +21,8 @@ delay(0.3)
 
 '''
 
-# run event on play_area
+# add `kcv_juice_card_until` field to context.individual return object
+# Provides an appropriate timeslot to call juice_card_until during  context.individual
 [[patches]]
 [patches.pattern]
 target = 'functions/state_events.lua'
@@ -40,5 +43,47 @@ if effects[ii].kcv_juice_card_until then
         end
     }))
 end
+
+'''
+
+# Luck of the Irish (mult effect)
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = "if pseudorandom('lucky_mult') < G.GAME.probabilities.normal/5 then"
+position = 'at'
+match_indent = true
+payload = '''
+
+local irish_factor = 1
+if self:is_suit("Clubs") then
+    for i, joker in ipairs(G.jokers.cards) do
+        if joker.ability.name == 'Luck of the Irish' then
+            irish_factor = irish_factor * 5
+        end
+    end
+end
+if pseudorandom('lucky_mult') < (G.GAME.probabilities.normal * irish_factor)/5 then
+
+'''
+
+# Luck of the Irish (money effect)
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = "if pseudorandom('lucky_money') < G.GAME.probabilities.normal/15 then"
+position = 'at'
+match_indent = true
+payload = '''
+
+local irish_factor = 1
+if self:is_suit("Clubs") then
+    for i, joker in ipairs(G.jokers.cards) do
+        if joker.ability.name == 'Luck of the Irish' then
+            irish_factor = irish_factor * 4
+        end
+    end
+end
+if pseudorandom('lucky_money') < (G.GAME.probabilities.normal * irish_factor)/15 then
 
 '''
