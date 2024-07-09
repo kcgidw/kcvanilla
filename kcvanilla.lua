@@ -15,8 +15,8 @@ function kcv_log(str)
     sendInfoMessage(str, "KCVanilla")
 end
 
-kcv_jokerAtlasOrder = {'5day', 'chan', 'swiss', 'collapse', 'energy', 'fortunecookie', 'guard', 'irish', 'composition',
-                       'powergrid', 'redenvelope', 'robo', 'handy', 'squid'}
+local kcv_jokerAtlasOrder = {'5day', 'chan', 'swiss', 'collapse', 'energy', 'fortunecookie', 'guard', 'irish',
+                             'composition', 'powergrid', 'redenvelope', 'robo', 'handy', 'squid'}
 
 function kcv_getJokerAtlasIndex(jokerKey)
     for i, v in ipairs(kcv_jokerAtlasOrder) do
@@ -86,7 +86,7 @@ end
 --     });
 -- end
 
-function kcv_composition_calc_effect(card)
+local function kcv_composition_calc_effect(card)
     if not G.jokers then
         -- viewing card outside a run
         return {
@@ -172,6 +172,7 @@ SMODS.Joker {
     discovered = true,
     eternal_compat = false,
     perishable_compat = true,
+    blueprint_compat = true,
     config = {
         extra = {
             chips = 150,
@@ -243,6 +244,7 @@ SMODS.Joker {
     discovered = true,
     eternal_compat = true,
     perishable_compat = true,
+    blueprint_compat = true,
     config = {
         mult = 0
     },
@@ -287,6 +289,7 @@ SMODS.Joker {
     discovered = true,
     eternal_compat = true,
     perishable_compat = true,
+    blueprint_compat = true,
     config = {},
     loc_txt = {
         name = "Robo-Joker",
@@ -322,6 +325,7 @@ SMODS.Joker {
     discovered = true,
     eternal_compat = true,
     perishable_compat = true,
+    blueprint_compat = true,
     config = {
         h_size = 0,
         h_mod = 5
@@ -384,6 +388,7 @@ SMODS.Joker {
     discovered = true,
     eternal_compat = true,
     perishable_compat = true,
+    blueprint_compat = false,
     config = {
         progress = 0,
         required_progress = 13
@@ -526,12 +531,13 @@ SMODS.Joker {
         x = 0,
         y = kcv_getJokerAtlasIndex('collapse')
     },
-    rarity = 2,
-    cost = 6,
+    rarity = 3,
+    cost = 7,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
     perishable_compat = true,
+    blueprint_compat = true,
     config = {},
     loc_txt = {
         name = "Cosmic Collapse",
@@ -556,9 +562,11 @@ SMODS.Joker {
             end
             -- kcv_log('success planets ' .. #success_planets)
 
-            card_eval_status_text(card, 'extra', nil, nil, nil, {
-                message = "Collapse!"
-            });
+            if #success_planets > 0 then
+                card_eval_status_text(card, 'extra', nil, nil, nil, {
+                    message = "Collapse!"
+                });
+            end
 
             for i, planet in ipairs(success_planets) do
                 -- need this bc OG doesn't accomodate for transforming planets
@@ -577,33 +585,82 @@ SMODS.Joker {
     end
 }
 
--- SMODS.Joker {
---     key = "5day",
---     name = "Five-Day Forecast",
---     atlas = 'kcvanillajokeratlas',
---     pos = {
---         x = 0,
---         y = kcv_getJokerAtlasIndex('5day')
---     },
---     rarity = 2,
---     cost = 4,
---     unlocked = true,
---     discovered = true,
---     eternal_compat = true,
---     perishable_compat = true,
---     config = {},
---     loc_txt = {
---         name = "Five-Day Forecast",
---         text = {"If played hand contains a Straight, increase played cards' ranks by 1 (ignores Aces)"}
---     },
---     loc_vars = function(self, info_queue, card)
---         return {
---             vars = {}
---         }
---     end,
---     calculate = function(self, card, context)
---     end
--- }
+local function rank_up(card)
+    local suit_prefix = string.sub(card.base.suit, 1, 1) .. '_'
+    local rank_suffix = card.base.id == 14 and 2 or math.min(card.base.id + 1, 14)
+    if rank_suffix < 10 then
+        rank_suffix = tostring(rank_suffix)
+    elseif rank_suffix == 10 then
+        rank_suffix = 'T'
+    elseif rank_suffix == 11 then
+        rank_suffix = 'J'
+    elseif rank_suffix == 12 then
+        rank_suffix = 'Q'
+    elseif rank_suffix == 13 then
+        rank_suffix = 'K'
+    elseif rank_suffix == 14 then
+        rank_suffix = 'A'
+    end
+    card:set_base(G.P_CARDS[suit_prefix .. rank_suffix])
+end
+
+SMODS.Joker {
+    key = "5day",
+    name = "Five-Day Forecast",
+    atlas = 'kcvanillajokeratlas',
+    pos = {
+        x = 0,
+        y = kcv_getJokerAtlasIndex('5day')
+    },
+    rarity = 3,
+    cost = 8,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = false,
+    perishable_compat = true,
+    blueprint_compat = true,
+    config = {},
+    loc_txt = {
+        name = "Five-Day Forecast",
+        text = {"If played hand contains a Straight,", "increase played cards' ranks by 1", "(Excludes Aces)"}
+    },
+    loc_vars = function(self, info_queue, card)
+        return {
+            vars = {}
+        }
+    end,
+    calculate = function(self, card, context)
+        if context.before then
+            if next(context.poker_hands["Straight"]) then
+                for i, other_c in ipairs(context.scoring_hand) do
+                    if other_c:get_id() ~= 14 then
+                        G.E_MANAGER:add_event(Event({
+                            func = function()
+                                other_c:flip()
+                                return true
+                            end
+                        }))
+                        delay(0.15)
+                    end
+                end
+                delay(0.2)
+                for i, other_c_2 in ipairs(context.scoring_hand) do
+                    if other_c_2:get_id() ~= 14 then
+                        G.E_MANAGER:add_event(Event({
+                            func = function()
+                                rank_up(other_c_2)
+                                other_c_2:flip()
+                                return true
+                            end
+                        }))
+                        delay(0.15)
+                    end
+                end
+                delay(0.2)
+            end
+        end
+    end
+}
 
 -- SMODS.Joker {
 --     key = "powergrid",

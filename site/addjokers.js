@@ -67,15 +67,15 @@ let jokers = [
 			'At end of round, held Planet cards each have 1 in 3 chance to transform into a Black Hole',
 		],
 		image_url: 'assets/originals/collapse.png',
-		rarity: 'Uncommon',
+		rarity: 'Rare',
 	},
 	{
 		name: 'Five-Day Forecast',
 		text: [
-			`If played hand contains a Straight, increase played cards' ranks by 1 (ignores Aces)`,
+			`If played hand contains a Straight, increase played cards' ranks by 1 (Excludes Aces)`,
 		],
 		image_url: 'assets/originals/5day.png',
-		rarity: 'Uncommon',
+		rarity: 'Rare',
 	},
 	{
 		name: 'Power Grid',
