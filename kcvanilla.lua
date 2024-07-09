@@ -632,29 +632,36 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.before then
             if next(context.poker_hands["Straight"]) then
+                local targets = {}
                 for i, other_c in ipairs(context.scoring_hand) do
                     if other_c:get_id() ~= 14 then
-                        G.E_MANAGER:add_event(Event({
-                            func = function()
-                                other_c:flip()
-                                return true
-                            end
-                        }))
-                        delay(0.15)
+                        table.insert(targets, other_c)
                     end
                 end
+
+                for i_2, other_c_2 in ipairs(targets) do
+                    local percent = 1.15 - (i_2 - 0.999) / (#G.hand.cards - 0.998) * 0.3
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            play_sound('card1', percent)
+                            other_c_2:flip()
+                            return true
+                        end
+                    }))
+                    delay(0.15)
+                end
                 delay(0.2)
-                for i, other_c_2 in ipairs(context.scoring_hand) do
-                    if other_c_2:get_id() ~= 14 then
-                        G.E_MANAGER:add_event(Event({
-                            func = function()
-                                rank_up(other_c_2)
-                                other_c_2:flip()
-                                return true
-                            end
-                        }))
-                        delay(0.15)
-                    end
+                for i_3, other_c_3 in ipairs(targets) do
+                    local percent = 0.85 + (i_3 - 0.999) / (#G.hand.cards - 0.998) * 0.3
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            rank_up(other_c_3)
+                            play_sound('tarot2', percent, 0.6)
+                            other_c_3:flip()
+                            return true
+                        end
+                    }))
+                    delay(0.15)
                 end
                 delay(0.2)
             end
