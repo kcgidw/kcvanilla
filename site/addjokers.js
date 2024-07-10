@@ -62,12 +62,12 @@ let jokers = [
 		rarity: 'Uncommon',
 	},
 	{
-		name: 'Cosmic Collapse',
+		name: 'Joker Energy',
 		text: [
-			'At end of round, held Planet cards each have 1 in 3 chance to transform into a Black Hole',
+			'Gains X0.5 Mult when a Wild card scores in a 5-card poker hand, resets if hand contains a Flush',
 		],
-		image_url: 'assets/originals/collapse.png',
-		rarity: 'Rare',
+		image_url: 'assets/originals/energy.png',
+		rarity: 'Uncommon',
 	},
 	{
 		name: 'Five-Day Forecast',
@@ -75,6 +75,14 @@ let jokers = [
 			`If played hand contains a Straight, increase played cards' ranks by 1 (Excludes Aces)`,
 		],
 		image_url: 'assets/originals/5day.png',
+		rarity: 'Uncommon',
+	},
+	{
+		name: 'Cosmic Collapse',
+		text: [
+			'At end of round, held Planet cards each have 1 in 3 chance to transform into a Black Hole',
+		],
+		image_url: 'assets/originals/collapse.png',
 		rarity: 'Rare',
 	},
 	{
@@ -87,14 +95,6 @@ let jokers = [
 		name: 'Luck of the Irish',
 		text: ['Lucky Clubs are 4X more likely to succeed'],
 		image_url: 'assets/originals/irish.png',
-		rarity: 'Rare',
-	},
-	{
-		name: 'Joker Energy',
-		text: [
-			'Gains X0.25 Mult when a Wild card scores in a 5-card poker hand, resets if hand contains a Flush',
-		],
-		image_url: 'assets/originals/energy.png',
 		rarity: 'Rare',
 	},
 ];

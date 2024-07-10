@@ -640,6 +640,11 @@ SMODS.Joker {
                     end
                 end
 
+                card_eval_status_text(card, 'extra', nil, nil, nil, {
+                    message = localize('k_active_ex'),
+                    colour = G.C.FILTER
+                });
+
                 for i_2, other_c_2 in ipairs(targets) do
                     local percent = 1.15 - (i_2 - 0.999) / (#G.hand.cards - 0.998) * 0.3
                     G.E_MANAGER:add_event(Event({
@@ -649,7 +654,7 @@ SMODS.Joker {
                             return true
                         end
                     }))
-                    delay(0.15)
+                    delay(0.1)
                 end
                 delay(0.2)
                 for i_3, other_c_3 in ipairs(targets) do
@@ -662,7 +667,7 @@ SMODS.Joker {
                             return true
                         end
                     }))
-                    delay(0.15)
+                    delay(0.1)
                 end
                 delay(0.2)
             end
@@ -727,31 +732,62 @@ SMODS.Joker {
     end
 }
 
--- SMODS.Joker {
---     key = "energy",
---     name = "Joker Energy",
---     atlas = 'kcvanillajokeratlas',
---     pos = {
---         x = 0,
---         y = kcv_getJokerAtlasIndex('energy')
---     },
---     rarity = 3,
---     cost = 4,
---     unlocked = true,
---     discovered = true,
---     eternal_compat = true,
---     perishable_compat = true,
---     config = {},
---     loc_txt = {
---         name = "Joker Energy",
---         text = {"Gains X0.25 Mult when a", "Wild card scores in a", "5-card poker hand,",
---                 "resets if hand contains a Flush"}
---     },
---     loc_vars = function(self, info_queue, card)
---         return {
---             vars = {}
---         }
---     end,
---     calculate = function(self, card, context)
---     end
--- }
+SMODS.Joker {
+    key = "energy",
+    name = "Joker Energy",
+    atlas = 'kcvanillajokeratlas',
+    pos = {
+        x = 0,
+        y = kcv_getJokerAtlasIndex('energy')
+    },
+    rarity = 3,
+    cost = 4,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    config = {
+        extra = 0.5,
+        x_mult = 1
+    },
+    loc_txt = {
+        name = "Joker Energy",
+        text = {"Gains X#1# Mult when a", "Wild card scores in a", "5-card poker hand, resets",
+                "if hand contains a Flush", "(Currently X#2# Mult)"}
+    },
+    loc_vars = function(self, info_queue, card)
+        return {
+            vars = {card.ability.extra, card.ability.x_mult}
+        }
+    end,
+    calculate = function(self, card, context)
+        if context.joker_main then
+            -- xMult(card.ability.x_mult, card, context)
+        end
+        if context.before then
+            if next(context.poker_hands["Flush"]) then
+                card.ability.x_mult = 1
+                return {
+                    message = localize('k_reset')
+                }
+            end
+        end
+        if context.individual and context.cardarea == G.play then
+            if #context.scoring_hand == 5 then
+                local other = context.other_card
+                kcv_dump(other.ability.name)
+                if other.ability.name == 'Wild Card' then
+                    card.ability.x_mult = card.ability.x_mult + card.ability.extra
+                    return {
+                        extra = {
+                            focus = card,
+                            message = localize('k_upgrade_ex'),
+                            colour = G.C.MULT
+                        },
+                        card = card
+                    }
+                end
+            end
+        end
+    end
+}
