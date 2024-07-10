@@ -395,7 +395,8 @@ SMODS.Joker {
     },
     loc_txt = {
         name = "Royal Guard",
-        text = {"After #2# Kings or Queens score,", "sell this to make a random Joker Negative", "(Progress: #1#/#2#)"}
+        text = {"After #2# Kings or Queens", "score, sell this to make a", "random Joker Negative",
+                "(Progress: #1#/#2#)"}
     },
     loc_vars = function(self, info_queue, card)
         return {
@@ -541,7 +542,7 @@ SMODS.Joker {
     config = {},
     loc_txt = {
         name = "Cosmic Collapse",
-        text = {'At end of round, held Planet cards', 'each have 1 in 3 chance to', 'transform into a Black Hole'}
+        text = {'At end of round, held Planet', 'cards each have 1 in 3 chance', 'to transform into a Black Hole'}
     },
     loc_vars = function(self, info_queue, card)
         return {
@@ -715,7 +716,7 @@ SMODS.Joker {
     config = {},
     loc_txt = {
         name = "Luck of the Irish",
-        text = {"Lucky Clubs are 4X more likely to succeed"}
+        text = {"Lucky Clubs are 4X more", "likely to succeed"}
     },
     loc_vars = function(self, info_queue, card)
         return {

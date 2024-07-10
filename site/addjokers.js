@@ -19,7 +19,7 @@ let jokers = [
 	},
 	{
 		name: 'Ten-Pin',
-		text: [`X2 Mult if a 10 was scored in the previous 2 hands played`],
+		text: [`If played hand contains a scoring 10, X2 Mult for next 2 hands`],
 		image_url: '',
 		rarity: 'Common',
 	},
