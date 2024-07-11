@@ -20,7 +20,7 @@ let jokers = [
 	{
 		name: 'Ten-Pin',
 		text: [`If played hand contains a scoring 10, X2 Mult for next 2 hands`],
-		image_url: '',
+		image_url: 'assets/originals/tenpin.png',
 		rarity: 'Common',
 	},
 	{
@@ -49,7 +49,7 @@ let jokers = [
 	},
 	{
 		name: 'Joker-chan',
-		text: ['Retrigger Common Jokers'],
+		text: ['Copies the abilities of Common Jokers'],
 		image_url: 'assets/originals/chan.png',
 		rarity: 'Uncommon',
 	},
