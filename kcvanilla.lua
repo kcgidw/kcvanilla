@@ -239,7 +239,7 @@ SMODS.Joker {
         y = kcv_getJokerAtlasIndex('tenpin')
     },
     rarity = 1,
-    cost = 4,
+    cost = 5,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -308,7 +308,7 @@ SMODS.Joker {
         y = kcv_getJokerAtlasIndex('robo')
     },
     rarity = 1,
-    cost = 6,
+    cost = 5,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -345,7 +345,7 @@ SMODS.Joker {
         y = kcv_getJokerAtlasIndex('swiss')
     },
     rarity = 2,
-    cost = 4,
+    cost = 5,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -390,7 +390,7 @@ SMODS.Joker {
         y = kcv_getJokerAtlasIndex('squid')
     },
     rarity = 2,
-    cost = 4,
+    cost = 5,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -826,7 +826,7 @@ SMODS.Joker {
         y = kcv_getJokerAtlasIndex('energy')
     },
     rarity = 3,
-    cost = 4,
+    cost = 6,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
