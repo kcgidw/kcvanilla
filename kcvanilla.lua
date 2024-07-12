@@ -231,51 +231,6 @@ SMODS.Joker {
 }
 
 SMODS.Joker {
-    key = "swiss",
-    name = "Swiss Joker",
-    atlas = 'kcvanillajokeratlas',
-    pos = {
-        x = 0,
-        y = kcv_getJokerAtlasIndex('swiss')
-    },
-    rarity = 2,
-    cost = 4,
-    unlocked = true,
-    discovered = true,
-    eternal_compat = true,
-    perishable_compat = true,
-    blueprint_compat = true,
-    config = {
-        mult = 0
-    },
-    loc_txt = {
-        name = "Swiss Joker",
-        text = {'+8 Mult for each', 'unscored card played', 'in previous hand', '(Currently +#1# Mult)'}
-    },
-    loc_vars = function(self, info_queue, card)
-        return {
-            vars = {card.ability.mult}
-        }
-    end,
-    calculate = function(self, card, context)
-        if context.after then
-            card.ability.mult = 8 * (#context.full_hand - #context.scoring_hand)
-            card_eval_status_text(card, 'extra', nil, nil, nil, {
-                message = localize {
-                    type = 'variable',
-                    key = 'a_mult',
-                    vars = {card.ability.mult}
-                },
-                colour = G.C.MULT
-            });
-        end
-        if context.joker_main then
-            aMult(card.ability.mult, card)
-        end
-    end
-}
-
-SMODS.Joker {
     key = "tenpin",
     name = "Ten-Pin",
     atlas = 'kcvanillajokeratlas',
@@ -352,13 +307,14 @@ SMODS.Joker {
         x = 0,
         y = kcv_getJokerAtlasIndex('robo')
     },
-    rarity = 2,
+    rarity = 1,
     cost = 6,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = true,
+    enhancement_gate = 'm_steel',
     config = {},
     loc_txt = {
         name = "Robo-Joker",
@@ -376,6 +332,51 @@ SMODS.Joker {
                 colour = G.C.RED,
                 card = card
             }
+        end
+    end
+}
+
+SMODS.Joker {
+    key = "swiss",
+    name = "Swiss Joker",
+    atlas = 'kcvanillajokeratlas',
+    pos = {
+        x = 0,
+        y = kcv_getJokerAtlasIndex('swiss')
+    },
+    rarity = 2,
+    cost = 4,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    blueprint_compat = true,
+    config = {
+        mult = 0
+    },
+    loc_txt = {
+        name = "Swiss Joker",
+        text = {'+8 Mult for each', 'unscored card played', 'in previous hand', '(Currently +#1# Mult)'}
+    },
+    loc_vars = function(self, info_queue, card)
+        return {
+            vars = {card.ability.mult}
+        }
+    end,
+    calculate = function(self, card, context)
+        if context.after then
+            card.ability.mult = 8 * (#context.full_hand - #context.scoring_hand)
+            card_eval_status_text(card, 'extra', nil, nil, nil, {
+                message = localize {
+                    type = 'variable',
+                    key = 'a_mult',
+                    vars = {card.ability.mult}
+                },
+                colour = G.C.MULT
+            });
+        end
+        if context.joker_main then
+            aMult(card.ability.mult, card)
         end
     end
 }

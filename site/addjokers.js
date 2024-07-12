@@ -12,12 +12,6 @@ let jokers = [
 		rarity: 'Common',
 	},
 	{
-		name: 'Swiss Joker',
-		text: ['+8 Mult for each unscored card played in previous hand'],
-		image_url: 'assets/originals/cheese.png',
-		rarity: 'Uncommon',
-	},
-	{
 		name: 'Ten-Pin',
 		text: [`If played hand contains a scoring 10, X2 Mult for next 2 hands`],
 		image_url: 'assets/originals/tenpin.png',
@@ -27,6 +21,12 @@ let jokers = [
 		name: 'Robo-Joker',
 		text: ['Steel cards give X1.5 Mult when scored'],
 		image_url: 'assets/originals/robo.png',
+		rarity: 'Common',
+	},
+	{
+		name: 'Swiss Joker',
+		text: ['+8 Mult for each unscored card played in previous hand'],
+		image_url: 'assets/originals/cheese.png',
 		rarity: 'Uncommon',
 	},
 	{
