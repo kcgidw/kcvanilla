@@ -1,8 +1,9 @@
--   [ ] joker basic functionality (9/15)
+-   [ ] joker basic functionality (11/15)
 -   [ ] confirm rarities and prices
 -   [ ] test blueprint
 -   [ ] test debuffed joker
 -   [ ] test debuffed playing card
+-   [ ] confirm enhancement gates
 -   [ ] formatted descriptions
 -   [ ] .zip releases
 -   [ ] better installation steps
