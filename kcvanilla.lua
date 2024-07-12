@@ -16,7 +16,7 @@ function kcv_log(str)
 end
 
 local kcv_jokerAtlasOrder = {'5day', 'chan', 'swiss', 'collapse', 'energy', 'fortunecookie', 'guard', 'irish',
-                             'composition', 'powergrid', 'redenvelope', 'robo', 'handy', 'squid'}
+                             'composition', 'powergrid', 'redenvelope', 'robo', 'handy', 'squid', 'tenpin'}
 
 local function kcv_getJokerAtlasIndex(jokerKey)
     for i, v in ipairs(kcv_jokerAtlasOrder) do
@@ -238,7 +238,7 @@ SMODS.Joker {
         x = 0,
         y = kcv_getJokerAtlasIndex('swiss')
     },
-    rarity = 1,
+    rarity = 2,
     cost = 4,
     unlocked = true,
     discovered = true,
@@ -250,7 +250,7 @@ SMODS.Joker {
     },
     loc_txt = {
         name = "Swiss Joker",
-        text = {'+5 Mult for each', 'unscored card played', 'in previous hand', '(Currently +#1# Mult)'}
+        text = {'+8 Mult for each', 'unscored card played', 'in previous hand', '(Currently +#1# Mult)'}
     },
     loc_vars = function(self, info_queue, card)
         return {
@@ -259,7 +259,7 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.after then
-            card.ability.mult = 5 * (#context.full_hand - #context.scoring_hand)
+            card.ability.mult = 8 * (#context.full_hand - #context.scoring_hand)
             card_eval_status_text(card, 'extra', nil, nil, nil, {
                 message = localize {
                     type = 'variable',
@@ -271,6 +271,75 @@ SMODS.Joker {
         end
         if context.joker_main then
             aMult(card.ability.mult, card)
+        end
+    end
+}
+
+SMODS.Joker {
+    key = "tenpin",
+    name = "Ten-Pin",
+    atlas = 'kcvanillajokeratlas',
+    pos = {
+        x = 0,
+        y = kcv_getJokerAtlasIndex('tenpin')
+    },
+    rarity = 1,
+    cost = 4,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    blueprint_compat = true,
+    config = {
+        x_mult = 1,
+        hands_remaining = 0
+    },
+    loc_txt = {
+        name = "Ten-Pin",
+        text = {'If played hand contains a scoring 10,', 'X2 Mult for next 2 hands', '#1#'}
+    },
+    loc_vars = function(self, info_queue, card)
+        local remaining_txt
+        if card.ability.hands_remaining > 1 then
+            remaining_txt = '(Active for ' .. card.ability.hands_remaining .. ' more hands)'
+        elseif card.ability.hands_remaining == 1 then
+            remaining_txt = '(Active for 1 more hand)'
+        else
+            remaining_txt = '(Inactive)'
+        end
+        return {
+            vars = {remaining_txt}
+        }
+    end,
+    calculate = function(self, card, context)
+        if context.after then
+            local has_10
+            for i, other_card in ipairs(context.scoring_hand) do
+                if other_card:get_id() == 10 then
+                    has_10 = true
+                    break
+                end
+            end
+            if has_10 then
+                card.ability.hands_remaining = 2
+                card.ability.x_mult = 2
+                card_eval_status_text(card, 'extra', nil, nil, nil, {
+                    message = localize('k_active_ex')
+                });
+            else
+                card.ability.hands_remaining = card.ability.hands_remaining - 1
+                if card.ability.hands_remaining > 0 then
+                    card_eval_status_text(card, 'extra', nil, nil, nil, {
+                        message = card.ability.hands_remaining .. ' remaining'
+                    });
+                elseif card.ability.x_mult == 2 then
+                    card.ability.x_mult = 1
+                    card_eval_status_text(card, 'extra', nil, nil, nil, {
+                        message = localize('k_reset')
+                    });
+
+                end
+            end
         end
     end
 }
@@ -482,10 +551,11 @@ SMODS.Joker {
 --     discovered = true,
 --     eternal_compat = true,
 --     perishable_compat = true,
+--     blueprint_compat = true,
 --     config = {},
 --     loc_txt = {
 --         name = "Joker-chan",
---         text = {"Retrigger Common Jokers"}
+--         text = {"Copies the abilities of Common Jokers"}
 --     },
 --     loc_vars = function(self, info_queue, card)
 --         return {
@@ -493,6 +563,20 @@ SMODS.Joker {
 --         }
 --     end,
 --     calculate = function(self, card, context)
+--         for i, other_joker in ipairs(G.jokers.cards) do
+--             if other_joker ~= card and other_joker.config.center.rarity == 1 then
+--                 context.blueprint = (context.blueprint and (context.blueprint + 1)) or 1
+--                 context.blueprint_card = context.blueprint_card or card
+--                 if context.blueprint > #G.jokers.cards + 1 then
+--                     return
+--                 end
+--                 local other_joker_ret = other_joker:calculate_joker(context)
+--                 if other_joker_ret then
+--                     other_joker_ret.card = context.blueprint_card or card
+--                     return other_joker_ret
+--                 end
+--             end
+--         end
 --     end
 -- }
 
