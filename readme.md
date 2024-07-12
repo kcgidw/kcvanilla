@@ -8,8 +8,8 @@ In development, feedback welcome
 
 Requires:
 
--   [Steamodded 1.0](https://github.com/Steamopollys/Steamodded) mod loader
--   [Easier Scoring](https://github.com/cerloCasa/Easier-Scoring) mod
+-   Mod loader: [Steamodded 1.0](https://github.com/Steamopollys/Steamodded)
+-   Mod: [Easier Scoring 1.3](https://github.com/cerloCasa/Easier-Scoring)
 
 # Credits
 

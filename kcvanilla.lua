@@ -152,8 +152,8 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.joker_main then
             local effect = kcv_composition_calc_effect(card)
-            aChips(effect.chips, card)
-            aMult(effect.mult, card)
+            aChips(effect.chips, card, context)
+            aMult(effect.mult, card, context)
         end
     end
 }
@@ -225,7 +225,15 @@ SMODS.Joker {
             end
         end
         if context.joker_main then
-            aChips(card.ability.extra.chips, card)
+            return {
+                message = localize {
+                    type = 'variable',
+                    key = 'a_chips',
+                    vars = {card.ability.extra.chips}
+                },
+                chip_mod = card.ability.extra.chips,
+                colour = G.C.CHIPS
+            }
         end
     end
 }
@@ -376,7 +384,14 @@ SMODS.Joker {
             });
         end
         if context.joker_main then
-            aMult(card.ability.mult, card)
+            return {
+                message = localize {
+                    type = 'variable',
+                    key = 'a_mult',
+                    vars = {card.ability.mult}
+                },
+                mult_mod = card.ability.mult
+            }
         end
     end
 }
@@ -846,9 +861,6 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.joker_main then
-            -- xMult(card.ability.x_mult, card, context)
-        end
         if context.before then
             if next(context.poker_hands["Flush"]) then
                 card.ability.x_mult = 1
