@@ -817,7 +817,7 @@ SMODS.Joker {
     discovered = true,
     eternal_compat = true,
     perishable_compat = true,
-    blueprint_compat = true,
+    blueprint_compat = false,
     config = {},
     loc_txt = {
         name = "Luck of the Irish",
