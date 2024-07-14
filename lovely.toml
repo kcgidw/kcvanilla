@@ -55,15 +55,15 @@ position = 'at'
 match_indent = true
 payload = '''
 
-local irish_factor = 1
+local kcv_irish_factor = 1
 if self:is_suit("Clubs") then
     for i, joker in ipairs(G.jokers.cards) do
         if joker.ability.name == 'Luck of the Irish' then
-            irish_factor = irish_factor * 4
+            kcv_irish_factor = kcv_irish_factor * 4
         end
     end
 end
-if pseudorandom('lucky_mult') < (G.GAME.probabilities.normal * irish_factor)/5 then
+if pseudorandom('lucky_mult') < (G.GAME.probabilities.normal * kcv_irish_factor)/5 then
 
 '''
 
@@ -76,14 +76,14 @@ position = 'at'
 match_indent = true
 payload = '''
 
-local irish_factor = 1
+local kcv_irish_factor = 1
 if self:is_suit("Clubs") then
     for i, joker in ipairs(G.jokers.cards) do
         if joker.ability.name == 'Luck of the Irish' then
-            irish_factor = irish_factor * 4
+            kcv_irish_factor = kcv_irish_factor * 4
         end
     end
 end
-if pseudorandom('lucky_money') < (G.GAME.probabilities.normal * irish_factor)/15 then
+if pseudorandom('lucky_money') < (G.GAME.probabilities.normal * kcv_irish_factor)/15 then
 
 '''
