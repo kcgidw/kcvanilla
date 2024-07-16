@@ -1,8 +1,8 @@
 # KCVanilla
 
-A vanilla Joker pack mod for Balatro
+A small Joker pack mod for Balatro, featuring plausible, vanilla-style powers and a faithful art style
 
-In development, feedback welcome
+In development
 
 # Installation
 

@@ -6,5 +6,6 @@
 -   [ ] confirm enhancement gates
 -   [ ] formatted descriptions
 -   [ ] .zip releases
+-   [ ] Fix Royal Guard scoring bug
 -   [ ] better installation steps
 -   [ ] add info queues
