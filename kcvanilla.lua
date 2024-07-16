@@ -579,6 +579,7 @@ SMODS.Joker {
 --         }
 --     end,
 --     calculate = function(self, card, context)
+-- 1
 --         for i, other_joker in ipairs(G.jokers.cards) do
 --             if other_joker ~= card and other_joker.config.center.rarity == 1 then
 --                 context.blueprint = (context.blueprint and (context.blueprint + 1)) or 1
@@ -591,6 +592,17 @@ SMODS.Joker {
 --                     other_joker_ret.card = context.blueprint_card or card
 --                     return other_joker_ret
 --                 end
+-- 2
+--         if context.kcv_jokerchan_target and context.kcv_jokerchan_target.config.center.rarity == 1 then
+--             context.blueprint = (context.blueprint and (context.blueprint + 1)) or 1
+--             context.blueprint_card = context.blueprint_card or card
+--             if context.blueprint > #G.jokers.cards + 1 then
+--                 return
+--             end
+--             local other_joker_ret = kcv_jokerchan_target:calculate_joker(context)
+--             if other_joker_ret then
+--                 other_joker_ret.card = card
+--                 return other_joker_ret
 --             end
 --         end
 --     end
@@ -769,7 +781,6 @@ SMODS.Joker {
                     }))
                     delay(0.1)
                 end
-                delay(0.2)
             end
         end
     end
