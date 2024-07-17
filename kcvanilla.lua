@@ -714,7 +714,7 @@ local function rank_up(card)
     elseif rank_suffix == 14 then
         rank_suffix = 'A'
     end
-    card:set_base(G.P_CARDS[suit_prefix .. rank_suffix])
+    card:set_base(G.P_CARDS[suit_prefix .. rank_suffix], nil, true)
 end
 
 SMODS.Joker {
@@ -743,11 +743,20 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
+        if context.kcv_forecast_event then
+            if next(context.poker_hands["Straight"]) then
+                for i, other_c in ipairs(context.scoring_hand) do
+                    if other_c:get_id() ~= 14 then
+                        rank_up(other_c)
+                    end
+                end
+            end
+        end
         if context.before then
             if next(context.poker_hands["Straight"]) then
                 local targets = {}
                 for i, other_c in ipairs(context.scoring_hand) do
-                    if other_c:get_id() ~= 14 then
+                    if other_c.kcv_fake_id then
                         table.insert(targets, other_c)
                     end
                 end
@@ -773,7 +782,8 @@ SMODS.Joker {
                     local percent = 0.85 + (i_3 - 0.999) / (#G.hand.cards - 0.998) * 0.3
                     G.E_MANAGER:add_event(Event({
                         func = function()
-                            rank_up(other_c_3)
+                            -- update sprites that were postponed by kcv_dont_update_sprites
+                            other_c_3:set_sprites(other_c_3.config.center, other_c_3)
                             play_sound('tarot2', percent, 0.6)
                             other_c_3:flip()
                             return true

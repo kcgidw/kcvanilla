@@ -87,3 +87,46 @@ end
 if pseudorandom('lucky_money') < (G.GAME.probabilities.normal * kcv_irish_factor)/15 then
 
 '''
+
+# Five-Day Forecast must rank-up cards *before* context.before runs so other jokers can get updated ranks
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = "local hand_text_set = false"
+position = 'after'
+match_indent = true
+payload = '''
+
+    for kcv_i, kcv_joker in ipairs(G.jokers.cards) do
+        kcv_joker:calculate_joker({scoring_hand = scoring_hand, poker_hands = poker_hands, kcv_forecast_event = true})
+    end
+
+'''
+
+# Five-Day Forecast: add kcv_dont_update_sprites
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = "function Card:set_base(card, initial)"
+position = 'at'
+match_indent = true
+payload = '''
+
+function Card:set_base(card, initial, kcv_dont_update_sprites)
+
+'''
+
+# Five-Day Forecast: use kcv_dont_update_sprites
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = "if next(card) then"
+position = 'at'
+match_indent = true
+payload = '''
+
+if next(card) and not kcv_dont_update_sprites then
+
+'''
+
+
