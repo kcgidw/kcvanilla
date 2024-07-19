@@ -364,7 +364,7 @@ SMODS.Joker {
     },
     loc_txt = {
         name = "Swiss Joker",
-        text = {'+8 Mult for each', 'unscored card played', 'in previous hand', '(Currently +#1# Mult)'}
+        text = {'+10 Mult for each', 'unscored card played', 'in previous hand', '(Currently +#1# Mult)'}
     },
     loc_vars = function(self, info_queue, card)
         return {
@@ -373,7 +373,7 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.after then
-            card.ability.mult = 8 * (#context.full_hand - #context.scoring_hand)
+            card.ability.mult = 10 * (#context.full_hand - #context.scoring_hand)
             card_eval_status_text(card, 'extra', nil, nil, nil, {
                 message = localize {
                     type = 'variable',

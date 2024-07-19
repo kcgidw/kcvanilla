@@ -25,7 +25,7 @@ let jokers = [
 	},
 	{
 		name: 'Swiss Joker',
-		text: ['+8 Mult for each unscored card played in previous hand'],
+		text: ['+10 Mult for each unscored card played in previous hand'],
 		image_url: 'assets/originals/cheese.png',
 		rarity: 'Uncommon',
 	},
