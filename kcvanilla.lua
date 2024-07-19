@@ -140,8 +140,8 @@ SMODS.Joker {
     },
     loc_txt = {
         name = "Composition",
-        text = {"+4 Mult for each Joker to the left,", "+30 Chips for each Joker to the right",
-                "(Currently +#1# Mult and +#2# Chips)"}
+        text = {"{C:mult}+4{} Mult for each Joker to the left,", "{C:chips}+30{} Chips for each Joker to the right",
+                "{C:inactive}(Currently +#1# Mult and +#2# Chips){}"}
     },
     loc_vars = function(self, info_queue, card)
         local effect = kcv_composition_calc_effect(card)
@@ -181,7 +181,7 @@ SMODS.Joker {
     },
     loc_txt = {
         name = "Fortune Cookie",
-        text = {"+#1# Chips,", "-#2# Chips when", "Tarot card is used"}
+        text = {"{C:chips}+#1#{} Chips,", "{C:chips}-#2#{} Chips when", "{C:tarot}Tarot{} card is used"}
     },
     loc_vars = function(self, info_queue, card)
         return {
@@ -259,7 +259,8 @@ SMODS.Joker {
     },
     loc_txt = {
         name = "Ten-Pin",
-        text = {'If played hand contains a scoring 10,', 'X2 Mult for next 2 hands', '#1#'}
+        text = {'If played hand contains a scoring {C:attention}10{},', '{X:mult,C:white} X2 {} Mult for next 2 hands',
+                '{C:inactive}#1#{}'}
     },
     loc_vars = function(self, info_queue, card)
         local remaining_txt
@@ -364,7 +365,8 @@ SMODS.Joker {
     },
     loc_txt = {
         name = "Swiss Joker",
-        text = {'+10 Mult for each', 'unscored card played', 'in previous hand', '(Currently +#1# Mult)'}
+        text = {'{C:mult}+10{} Mult for each', 'unscored card played', 'in previous hand',
+                '{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)'}
     },
     loc_vars = function(self, info_queue, card)
         return {
@@ -417,7 +419,7 @@ SMODS.Joker {
     },
     loc_txt = {
         name = "Squid",
-        text = {"+#1# hand size on", "final 2 hands of round", "#2#"}
+        text = {"{C:attention}+#1#{} hand size on", "final 2 hands of round", "{C:inactive}#2#"}
     },
     loc_vars = function(self, info_queue, card)
         return {
@@ -480,8 +482,8 @@ SMODS.Joker {
     },
     loc_txt = {
         name = "Royal Guard",
-        text = {"After #2# Kings or Queens", "score, sell this to make a", "random Joker Negative",
-                "(Progress: #1#/#2#)"}
+        text = {"After {C:attention}#2#{} {C:attention}Kings{} or {C:attention}Queens{}", "score, sell this to make a",
+                "random Joker {C:dark_edition}Negative{}", "{C:inactive}(Progress: #1#/#2#){}"}
     },
     loc_vars = function(self, info_queue, card)
         return {
@@ -654,7 +656,8 @@ SMODS.Joker {
     config = {},
     loc_txt = {
         name = "Cosmic Collapse",
-        text = {'At end of round, held Planet', 'cards each have 1 in 3 chance', 'to transform into a Black Hole'}
+        text = {'At end of round, held {C:planet}Planet{}', 'cards each have {C:green}1 in 3{} chance',
+                'to transform into a {C:spectral}Black Hole{}'}
     },
     loc_vars = function(self, info_queue, card)
         return {
@@ -735,7 +738,9 @@ SMODS.Joker {
     config = {},
     loc_txt = {
         name = "Five-Day Forecast",
-        text = {"If played hand contains a Straight,", "increase played cards' ranks by 1", "(Excludes Aces)"}
+        text = {"If played hand contains a {C:attention}Straight{},",
+                "increase played cards' ranks by {C:attention}1{}",
+                "{C:inactive}(Excludes {C:attention}Aces{C:inactive})"}
     },
     loc_vars = function(self, info_queue, card)
         return {
@@ -842,7 +847,7 @@ SMODS.Joker {
     config = {},
     loc_txt = {
         name = "Luck of the Irish",
-        text = {"Lucky Clubs are 4X more", "likely to succeed"}
+        text = {"{C:attention}Lucky{} {C:clubs}Clubs{} are {C:green}4X{} more", "likely to succeed"}
     },
     loc_vars = function(self, info_queue, card)
         return {
@@ -873,8 +878,7 @@ SMODS.Joker {
     },
     loc_txt = {
         name = "Joker Energy",
-        text = {"Gains X#1# Mult when a", "Wild card scores in a", "5-card poker hand, resets",
-                "if hand contains a Flush", "(Currently X#2# Mult)"}
+        text = {}
     },
     loc_vars = function(self, info_queue, card)
         return {
