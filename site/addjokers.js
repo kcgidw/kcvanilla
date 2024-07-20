@@ -43,7 +43,7 @@ let jokers = [
 	},
 	{
 		name: 'Red Envelope',
-		text: ['At end of round, earn $8 if blind was defeated within final 2 hands'],
+		text: ['Earn $8 at end of round if 1 or fewer hands remain'],
 		image_url: 'assets/originals/redenvelope.png',
 		rarity: 'Uncommon',
 	},
@@ -56,7 +56,7 @@ let jokers = [
 	{
 		name: 'Handy Joker',
 		text: [
-			'If first hand of round is a High Card, gain X1 Mult, resets when Boss Blind is defeated',
+			'If discard of round is a single enhanced card, gain X1 Mult, resets when Boss Blind is defeated',
 		],
 		image_url: 'assets/originals/sock.png',
 		rarity: 'Uncommon',
@@ -64,7 +64,7 @@ let jokers = [
 	{
 		name: 'Joker Energy',
 		text: [
-			'Gains X0.5 Mult when a Wild card scores in a 5-card poker hand, resets if hand contains a Flush',
+			'Played Wild cards give one of the following when scored: +8 Mult, +80 Chips, X1.5 Mult, $5',
 		],
 		image_url: 'assets/originals/energy.png',
 		rarity: 'Uncommon',
@@ -87,7 +87,7 @@ let jokers = [
 	},
 	{
 		name: 'Power Grid',
-		text: ['Mult and Steel cards count as both'],
+		text: ['Retrigger Mult cards'],
 		image_url: 'assets/originals/powergrid.png',
 		rarity: 'Rare',
 	},

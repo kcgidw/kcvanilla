@@ -527,33 +527,37 @@ SMODS.Joker {
     end
 }
 
--- SMODS.Joker {
---     key = "redenvelope",
---     name = "Red Envelope",
---     atlas = 'kcvanillajokeratlas',
---     pos = {
---         x = 0,
---         y = kcv_getJokerAtlasIndex('redenvelope')
---     },
---     rarity = 2,
---     cost = 4,
---     unlocked = true,
---     discovered = true,
---     eternal_compat = true,
---     perishable_compat = true,
---     config = {},
---     loc_txt = {
---         name = "Red Envelope",
---         text = {'At end of round, earn $8', 'if fewer than 2 hands remain'}
---     },
---     loc_vars = function(self, info_queue, card)
---         return {
---             vars = {}
---         }
---     end,
---     calculate = function(self, card, context)
---     end
--- }
+SMODS.Joker {
+    key = "redenvelope",
+    name = "Red Envelope",
+    atlas = 'kcvanillajokeratlas',
+    pos = {
+        x = 0,
+        y = kcv_getJokerAtlasIndex('redenvelope')
+    },
+    rarity = 2,
+    cost = 4,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    config = {},
+    loc_txt = {
+        name = "Red Envelope",
+        text = {'Earn {C:money}$8{} at end of round', 'if {C:attention}1{} or fewer hands remain'}
+    },
+    loc_vars = function(self, info_queue, card)
+        return {
+            vars = {}
+        }
+    end,
+    calc_dollar_bonus = function(self, card)
+        kcv_log(G.GAME.current_round.hands_left)
+        if G.GAME.current_round.hands_left <= 1 then
+            return 8
+        end
+    end
+}
 
 -- SMODS.Joker {
 --     key = "chan",
@@ -873,39 +877,46 @@ SMODS.Joker {
     eternal_compat = true,
     perishable_compat = true,
     config = {
-        extra = 0.5,
-        x_mult = 1
+        kcv = {
+            chips = 80,
+            mult = 8,
+            Xmult = 1.5,
+            money = 5
+        }
     },
     loc_txt = {
         name = "Joker Energy",
-        text = {}
+        text = {'Played {C:attention}Wild{} cards give one', 'of the following when scored:', '{C:mult}+#1#{} Mult,',
+                '{C:chips}+#2#{} Chips,', '{X:mult,C:white} X#3# {} Mult,', '{C:money}$#4#{}'}
     },
     loc_vars = function(self, info_queue, card)
         return {
-            vars = {card.ability.extra, card.ability.x_mult}
+            vars = {card.ability.kcv.mult, card.ability.kcv.chips, card.ability.kcv.Xmult, card.ability.kcv.money}
         }
     end,
     calculate = function(self, card, context)
-        if context.before then
-            if next(context.poker_hands["Flush"]) then
-                card.ability.x_mult = 1
-                return {
-                    message = localize('k_reset')
-                }
-            end
-        end
         if context.individual and context.cardarea == G.play then
-            if #context.scoring_hand == 5 then
-                local other = context.other_card
-                kcv_dump(other.ability.name)
-                if other.ability.name == 'Wild Card' then
-                    card.ability.x_mult = card.ability.x_mult + card.ability.extra
+            local other = context.other_card
+            if other.ability.name == 'Wild Card' then
+                local roll = pseudorandom_element({'amult', 'chips', 'xmult', 'money'})
+                if roll == 'amult' then
                     return {
-                        extra = {
-                            focus = card,
-                            message = localize('k_upgrade_ex'),
-                            colour = G.C.MULT
-                        },
+                        mult = card.ability.kcv.mult,
+                        card = card
+                    }
+                elseif roll == 'chips' then
+                    return {
+                        chips = card.ability.kcv.chips,
+                        card = card
+                    }
+                elseif roll == 'xmult' then
+                    return {
+                        x_mult = card.ability.kcv.Xmult,
+                        card = card
+                    }
+                elseif roll == 'money' then
+                    return {
+                        dollars = card.ability.kcv.money,
                         card = card
                     }
                 end
