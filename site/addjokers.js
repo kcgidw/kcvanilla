@@ -36,12 +36,6 @@ let jokers = [
 		rarity: 'Uncommon',
 	},
 	{
-		name: 'Royal Guard',
-		text: ['After 13 Kings or Queens score, sell this to make a random Joker Negative'],
-		image_url: 'assets/originals/guard.png',
-		rarity: 'Uncommon',
-	},
-	{
 		name: 'Red Envelope',
 		text: ['Earn $8 at end of round if 1 or fewer hands remain'],
 		image_url: 'assets/originals/redenvelope.png',
@@ -82,6 +76,12 @@ let jokers = [
 		text: ['If a Steel card is held in hand, retrigger played Mult cards'],
 		image_url: 'assets/originals/powergrid.png',
 		rarity: 'Uncommon',
+	},
+	{
+		name: 'Royal Guard',
+		text: ['After 13 Kings or Queens score, sell this to make a random Joker Negative'],
+		image_url: 'assets/originals/guard.png',
+		rarity: 'Rare',
 	},
 	{
 		name: 'Cosmic Collapse',
