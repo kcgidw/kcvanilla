@@ -56,7 +56,7 @@ let jokers = [
 	{
 		name: 'Handy Joker',
 		text: [
-			'If discard of round is a single enhanced card, gain X1 Mult, resets when Boss Blind is defeated',
+			'If first discard of round is a single enhanced card, gain X1 Mult, resets when Boss Blind is defeated',
 		],
 		image_url: 'assets/originals/sock.png',
 		rarity: 'Uncommon',
@@ -78,17 +78,17 @@ let jokers = [
 		rarity: 'Uncommon',
 	},
 	{
+		name: 'Power Grid',
+		text: ['If a Steel card is held in hand, retrigger played Mult cards'],
+		image_url: 'assets/originals/powergrid.png',
+		rarity: 'Uncommon',
+	},
+	{
 		name: 'Cosmic Collapse',
 		text: [
 			'At end of round, held Planet cards each have 1 in 3 chance to transform into a Black Hole',
 		],
 		image_url: 'assets/originals/collapse.png',
-		rarity: 'Rare',
-	},
-	{
-		name: 'Power Grid',
-		text: ['Retrigger Mult cards'],
-		image_url: 'assets/originals/powergrid.png',
 		rarity: 'Rare',
 	},
 	{

@@ -614,33 +614,64 @@ SMODS.Joker {
 --     end
 -- }
 
--- SMODS.Joker {
---     key = "handy",
---     name = "Handy Joker",
---     atlas = 'kcvanillajokeratlas',
---     pos = {
---         x = 0,
---         y = kcv_getJokerAtlasIndex('handy')
---     },
---     rarity = 2,
---     cost = 4,
---     unlocked = true,
---     discovered = true,
---     eternal_compat = true,
---     perishable_compat = true,
---     config = {},
---     loc_txt = {
---         name = "Handy Joker",
---         text = {'If first hand of round is a High Card, X3 Mult for rest of round'}
---     },
---     loc_vars = function(self, info_queue, card)
---         return {
---             vars = {}
---         }
---     end,
---     calculate = function(self, card, context)
---     end
--- }
+SMODS.Joker {
+    key = "handy",
+    name = "Handy Joker",
+    atlas = 'kcvanillajokeratlas',
+    pos = {
+        x = 0,
+        y = kcv_getJokerAtlasIndex('handy')
+    },
+    rarity = 2,
+    cost = 6,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    blueprint_compat = true,
+    config = {
+        x_mult = 1
+    },
+    loc_txt = {
+        name = "Handy Joker",
+        text = {'If first discard of round', 'is a single enhanced card,',
+                'gain {X:mult,C:white} X1 {} Mult, resets when', 'Boss Blind is defeated',
+                '{C:inactive}(Currently {X:mult,C:white} X#1# {C:inactive} Mult)'}
+    },
+    loc_vars = function(self, info_queue, card)
+        return {
+            vars = {card.ability.x_mult}
+        }
+    end,
+    calculate = function(self, card, context)
+        if context.first_hand_drawn and not context.blueprint then
+            local eval = function()
+                return G.GAME.current_round.discards_used == 0 and not G.RESET_JIGGLES
+            end
+            juice_card_until(card, eval, true)
+        end
+        if context.discard and not context.blueprint then
+            if context.other_card.config.center ~= G.P_CENTERS.c_base then
+                card.ability.x_mult = card.ability.x_mult + 1
+                card_eval_status_text(card, 'extra', nil, nil, nil, {
+                    message = localize {
+                        type = 'variable',
+                        key = 'a_xmult',
+                        vars = {card.ability.x_mult}
+                    },
+                    colour = G.C.RED,
+                    card = self
+                })
+            end
+        end
+        if context.end_of_round and G.GAME.blind.boss and not context.blueprint and card.ability.x_mult ~= 1 then
+            card.ability.x_mult = 1
+            card_eval_status_text(card, 'extra', nil, nil, nil, {
+                message = localize('k_reset')
+            });
+        end
+    end
+}
 
 SMODS.Joker {
     key = "collapse",
@@ -805,33 +836,60 @@ SMODS.Joker {
     end
 }
 
--- SMODS.Joker {
---     key = "powergrid",
---     name = "Power Grid",
---     atlas = 'kcvanillajokeratlas',
---     pos = {
---         x = 0,
---         y = kcv_getJokerAtlasIndex('powergrid')
---     },
---     rarity = 3,
---     cost = 4,
---     unlocked = true,
---     discovered = true,
---     eternal_compat = true,
---     perishable_compat = true,
---     config = {},
---     loc_txt = {
---         name = "Power Grid",
---         text = {"Mult and Steel cards count as both"}
---     },
---     loc_vars = function(self, info_queue, card)
---         return {
---             vars = {}
---         }
---     end,
---     calculate = function(self, card, context)
---     end
--- }
+SMODS.Joker {
+    key = "powergrid",
+    name = "Power Grid",
+    atlas = 'kcvanillajokeratlas',
+    pos = {
+        x = 0,
+        y = kcv_getJokerAtlasIndex('powergrid')
+    },
+    rarity = 2,
+    cost = 6,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    enhancement_gate = 'm_steel',
+    config = {
+        held_steel = false
+    },
+    loc_txt = {
+        name = "Power Grid",
+        text = {'If a {C:attention}Steel{} card is held in hand,', 'retrigger played {C:attention}Mult{} cards'}
+    },
+    loc_vars = function(self, info_queue, card)
+        return {
+            vars = {}
+        }
+    end,
+    calculate = function(self, card, context)
+        if context.before then
+            card.ability.held_steel = false
+            for i, v in ipairs(G.hand.cards) do
+                if v.config.center == G.P_CENTERS.m_steel then
+                    card.ability.held_steel = true
+                    card_eval_status_text(card, 'extra', nil, nil, nil, {
+                        message = localize('k_active_ex')
+                    });
+                    break
+                end
+            end
+        end
+        if context.after then
+            card.ability.held_steel = false
+        end
+        if context.repetition and context.cardarea == G.play then
+            if card.ability.held_steel and context.other_card.ability.name == 'Mult' then
+                return {
+                    message = localize('k_again_ex'),
+                    repetitions = 1,
+                    card = card
+                }
+            end
+        end
+    end
+}
 
 SMODS.Joker {
     key = "irish",
