@@ -651,7 +651,7 @@ SMODS.Joker {
             juice_card_until(card, eval, true)
         end
         if context.discard and not context.blueprint then
-            if context.other_card.config.center ~= G.P_CENTERS.c_base then
+            if #context.full_hand == 1 and context.other_card.config.center ~= G.P_CENTERS.c_base then
                 card.ability.x_mult = card.ability.x_mult + 1
                 card_eval_status_text(card, 'extra', nil, nil, nil, {
                     message = localize {
