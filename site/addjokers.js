@@ -24,15 +24,15 @@ let jokers = [
 		rarity: 'Common',
 	},
 	{
-		name: 'Swiss Joker',
-		text: ['+10 Mult for each unscored card played in previous hand'],
-		image_url: 'assets/originals/cheese.png',
-		rarity: 'Uncommon',
-	},
-	{
 		name: 'Squid',
 		text: ['+5 hand size on final 2 hands of round'],
 		image_url: 'assets/originals/squid.png',
+		rarity: 'Common',
+	},
+	{
+		name: 'Swiss Joker',
+		text: ['+10 Mult for each unscored card played in previous hand'],
+		image_url: 'assets/originals/cheese.png',
 		rarity: 'Uncommon',
 	},
 	{

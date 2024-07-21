@@ -406,7 +406,7 @@ SMODS.Joker {
         x = 0,
         y = kcv_getJokerAtlasIndex('squid')
     },
-    rarity = 2,
+    rarity = 1,
     cost = 5,
     unlocked = true,
     discovered = true,
@@ -763,7 +763,7 @@ SMODS.Joker {
         x = 0,
         y = kcv_getJokerAtlasIndex('5day')
     },
-    rarity = 3,
+    rarity = 2,
     cost = 8,
     unlocked = true,
     discovered = true,
