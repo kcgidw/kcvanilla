@@ -935,6 +935,7 @@ SMODS.Joker {
     discovered = true,
     eternal_compat = true,
     perishable_compat = true,
+    enhancement_gate = 'm_wild',
     config = {
         kcv = {
             chips = 80,
