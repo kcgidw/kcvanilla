@@ -129,4 +129,25 @@ if next(card) and not kcv_dont_update_sprites then
 
 '''
 
+# Composition: allow scoring both mult and chips at once
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = "if effects.jokers then"
+position = 'at'
+match_indent = true
+payload = '''
 
+if effects.jokers and effects.jokers.kcv_composition then
+    hand_chips = mod_chips(hand_chips + effects.jokers.kcv_composition.kcv_chips)
+    update_hand_text({delay = 0}, {chips = hand_chips})
+    card_eval_status_text(effects.jokers.kcv_composition.kcv_card, 'chips', effects.jokers.kcv_composition.kcv_chips, percent)
+
+    mult = mod_mult(mult + effects.jokers.kcv_composition.kcv_mult)
+    update_hand_text({delay = 0}, {mult = mult})
+    card_eval_status_text(effects.jokers.kcv_composition.kcv_card, 'h_mult', effects.jokers.kcv_composition.kcv_mult, percent)
+end
+
+if effects.jokers and not effects.jokers.kcv_composition then
+
+'''

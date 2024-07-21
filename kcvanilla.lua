@@ -46,46 +46,6 @@ function kcv_dump(o, depth)
     end
 end
 
--- function kcv_plus_chips(amt, card)
---     if (amt == 0) then
---         return
---     end
---     hand_chips = mod_chips(hand_chips + amt)
---     update_hand_text({
---         delay = 0
---     }, {
---         chips = hand_chips
---     })
---     card_eval_status_text(card, 'chips', nil, nil, nil, {
---         message = localize {
---             type = 'variable',
---             key = 'a_chips',
---             vars = {amt}
---         },
---         colour = G.C.CHIPS
---     });
--- end
-
--- function kcv_plus_mult(amt, card)
---     if (amt == 0) then
---         return
---     end
---     mult = mod_mult(mult + amt)
---     update_hand_text({
---         delay = 0
---     }, {
---         mult = mult
---     })
---     card_eval_status_text(card, 'mult', nil, nil, nil, {
---         message = localize {
---             type = 'variable',
---             key = 'a_mult',
---             vars = {amt}
---         },
---         colour = G.C.MULT
---     });
--- end
-
 local function kcv_composition_calc_effect(card)
     if not G.jokers then
         -- viewing card outside a run
@@ -152,8 +112,15 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.joker_main then
             local effect = kcv_composition_calc_effect(card)
-            aChips(effect.chips, card, context)
-            aMult(effect.mult, card, context)
+            return {
+                kcv_composition = {
+                    kcv_chips = effect.chips,
+                    kcv_mult = effect.mult,
+                    kcv_card = card
+                }
+            }
+            -- aChips(effect.chips, card, context)
+            -- aMult(effect.mult, card, context)
         end
     end
 }
