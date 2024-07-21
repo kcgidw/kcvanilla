@@ -906,6 +906,7 @@ SMODS.Joker {
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = false,
+    enhacement_gate = 'm_lucky',
     config = {},
     loc_txt = {
         name = "Luck of the Irish",
