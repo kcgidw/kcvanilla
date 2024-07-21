@@ -419,7 +419,7 @@ SMODS.Joker {
     },
     loc_txt = {
         name = "Squid",
-        text = {"{C:attention}+#1#{} hand size on", "final 2 hands of round", "{C:inactive}#2#"}
+        text = {"{C:attention}+#1#{} hand size on final", "2 hands of round", "{C:inactive}#2#"}
     },
     loc_vars = function(self, info_queue, card)
         return {
@@ -929,7 +929,7 @@ SMODS.Joker {
         x = 0,
         y = kcv_getJokerAtlasIndex('energy')
     },
-    rarity = 3,
+    rarity = 2,
     cost = 6,
     unlocked = true,
     discovered = true,
