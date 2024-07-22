@@ -58,7 +58,7 @@ payload = '''
 local kcv_irish_factor = 1
 if self:is_suit("Clubs") then
     for i, joker in ipairs(G.jokers.cards) do
-        if joker.ability.name == 'Luck of the Irish' then
+        if joker.ability.name == 'Luck of the Irish' and not joker.debuff then
             kcv_irish_factor = kcv_irish_factor * 4
         end
     end
@@ -79,7 +79,7 @@ payload = '''
 local kcv_irish_factor = 1
 if self:is_suit("Clubs") then
     for i, joker in ipairs(G.jokers.cards) do
-        if joker.ability.name == 'Luck of the Irish' then
+        if joker.ability.name == 'Luck of the Irish' and not joker.debuff then
             kcv_irish_factor = kcv_irish_factor * 4
         end
     end
