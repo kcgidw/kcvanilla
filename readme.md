@@ -6,9 +6,9 @@ In development
 
 # Installation
 
-Requires:
+Requires [Steamodded 1.0](https://github.com/Steamopollys/Steamodded)
 
--   Mod loader: [Steamodded 1.0](https://github.com/Steamopollys/Steamodded)
+No official releases yet; download the repo into your Mods/ folder.
 
 # Credits
 
