@@ -494,6 +494,19 @@ SMODS.Joker {
     end
 }
 
+local function common_joker_count()
+    if not G.jokers or not G.jokers.cards then
+        return 0
+    end
+    local count = 0
+    for i, jok in ipairs(G.jokers.cards) do
+        if jok.config.center.rarity == 1 then
+            count = count + 1
+        end
+    end
+    return count
+end
+
 SMODS.Joker {
     key = "redenvelope",
     name = "Red Envelope",
@@ -502,8 +515,8 @@ SMODS.Joker {
         x = 0,
         y = kcv_getJokerAtlasIndex('redenvelope')
     },
-    rarity = 2,
-    cost = 4,
+    rarity = 1,
+    cost = 6,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -511,17 +524,17 @@ SMODS.Joker {
     config = {},
     loc_txt = {
         name = "Red Envelope",
-        text = {'Earn {C:money}$8{} at end of round', 'if {C:attention}1{} or fewer hands remain'}
+        text = {'When Boss Blind is defeated,', 'earn {C:money}$8{} for each {C:blue}Common{} Joker',
+                '{C:inactive}(Currently {C:money}$#1#{C:inactive})'}
     },
     loc_vars = function(self, info_queue, card)
         return {
-            vars = {}
+            vars = {8 * common_joker_count()}
         }
     end,
     calc_dollar_bonus = function(self, card)
-        kcv_log(G.GAME.current_round.hands_left)
-        if G.GAME.current_round.hands_left <= 1 then
-            return 8
+        if G.GAME.blind.boss then
+            return 8 * common_joker_count()
         end
     end
 }
@@ -719,7 +732,9 @@ local function rank_up(card)
     elseif rank_suffix == 14 then
         rank_suffix = 'A'
     end
-    card:set_base(G.P_CARDS[suit_prefix .. rank_suffix], nil, true)
+    card.kcv_ignore_debuff_check = true
+    card.kcv_dont_update_sprites = true
+    card:set_base(G.P_CARDS[suit_prefix .. rank_suffix])
 end
 
 SMODS.Joker {
@@ -782,21 +797,23 @@ SMODS.Joker {
                             return true
                         end
                     }))
-                    delay(0.1)
+                    delay(0.15)
                 end
-                delay(0.2)
+                delay(0.3)
                 for i_3, other_c_3 in ipairs(targets) do
                     local percent = 0.85 + (i_3 - 0.999) / (#G.hand.cards - 0.998) * 0.3
                     G.E_MANAGER:add_event(Event({
                         func = function()
                             -- update sprites that were postponed by kcv_dont_update_sprites
                             other_c_3:set_sprites(other_c_3.config.center, other_c_3)
+                            other_c_3.kcv_dont_update_sprites = nil
+                            other_c_3.kcv_ignore_debuff_check = nil
                             play_sound('tarot2', percent, 0.6)
                             other_c_3:flip()
                             return true
                         end
                     }))
-                    delay(0.1)
+                    delay(0.15)
                 end
             end
         end

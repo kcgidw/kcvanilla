@@ -1,9 +1,9 @@
--   [ ] joker basic functionality (13/15)
--   [ ] confirm rarities and prices
--   [ ] test blueprint
--   [ ] test debuffed joker
--   [ ] test debuffed playing card
--   [ ] confirm enhancement gates
--   [ ] .zip releases
--   [ ] better installation steps
--   [ ] add info queues
+-   joker basic design/functionality (Remaining: Power Grid, Joker-chan, Robo-joker)
+-   confirm rarities and prices
+-   test blueprint
+-   test debuffed joker
+-   test debuffed playing card
+-   confirm enhancement gates
+-   .zip releases
+-   better installation steps
+-   add info queues

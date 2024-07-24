@@ -30,15 +30,15 @@ let jokers = [
 		rarity: 'Common',
 	},
 	{
+		name: 'Red Envelope',
+		text: ['When Boss Blind is defeated, earn $8 for each Common Joker'],
+		image_url: 'assets/originals/redenvelope.png',
+		rarity: 'Common',
+	},
+	{
 		name: 'Swiss Joker',
 		text: ['+10 Mult for each unscored card played in previous hand'],
 		image_url: 'assets/originals/cheese.png',
-		rarity: 'Uncommon',
-	},
-	{
-		name: 'Red Envelope',
-		text: ['Earn $8 at end of round if 1 or fewer hands remain'],
-		image_url: 'assets/originals/redenvelope.png',
 		rarity: 'Uncommon',
 	},
 	{

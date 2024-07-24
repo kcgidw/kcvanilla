@@ -103,19 +103,6 @@ payload = '''
 
 '''
 
-# Five-Day Forecast: add kcv_dont_update_sprites
-[[patches]]
-[patches.pattern]
-target = 'card.lua'
-pattern = "function Card:set_base(card, initial)"
-position = 'at'
-match_indent = true
-payload = '''
-
-function Card:set_base(card, initial, kcv_dont_update_sprites)
-
-'''
-
 # Five-Day Forecast: use kcv_dont_update_sprites
 [[patches]]
 [patches.pattern]
@@ -125,7 +112,20 @@ position = 'at'
 match_indent = true
 payload = '''
 
-if next(card) and not kcv_dont_update_sprites then
+if next(card) and not self.kcv_dont_update_sprites then
+
+'''
+
+# 5-day forecast: set_base() will re-evaluate debuffs, causing just-played cards to debuff during The Pillar
+[[patches]]
+[patches.pattern]
+target = 'card.lua'
+pattern = "if not initial then G.GAME.blind:debuff_card(self) end"
+position = 'at'
+match_indent = true
+payload = '''
+
+if not initial and not self.kcv_ignore_debuff_check then G.GAME.blind:debuff_card(self) end
 
 '''
 
