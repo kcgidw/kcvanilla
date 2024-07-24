@@ -15,3 +15,7 @@ No official releases yet; download the repo into your Mods/ folder.
 Art, design, and programming by krackocloud
 
 Site template from https://github.com/notmario/balatrowebsitetemplate with modifications
+
+# License
+
+GNU GPLv3
