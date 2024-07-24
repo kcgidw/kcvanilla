@@ -294,7 +294,7 @@ SMODS.Joker {
     config = {},
     loc_txt = {
         name = "Robo-Joker",
-        text = {'Steel cards give', 'X1.5 Mult when scored'}
+        text = {'{C:attention}Steel{} cards give', '{X:mult,C:white}X1.75{} Mult when scored'}
     },
     loc_vars = function(self, info_queue, card)
         return {
@@ -304,7 +304,7 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.individual and context.cardarea == G.play and context.other_card.ability.name == 'Steel Card' then
             return {
-                x_mult = 1.5,
+                x_mult = 1.75,
                 colour = G.C.RED,
                 card = card
             }

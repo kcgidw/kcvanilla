@@ -19,7 +19,7 @@ let jokers = [
 	},
 	{
 		name: 'Robo-Joker',
-		text: ['Steel cards give X1.5 Mult when scored'],
+		text: ['Steel cards give X1.75 Mult when scored'],
 		image_url: 'assets/originals/robo.png',
 		rarity: 'Common',
 	},
