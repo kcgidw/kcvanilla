@@ -763,7 +763,7 @@ SMODS.Joker {
             if next(context.poker_hands["Straight"]) then
                 local targets = {}
                 for i, other_c in ipairs(context.scoring_hand) do
-                    if other_c.kcv_fake_id then
+                    if other_c:get_id() ~= 14 then
                         table.insert(targets, other_c)
                     end
                 end
