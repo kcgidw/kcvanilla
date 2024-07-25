@@ -102,7 +102,7 @@ SMODS.Joker {
     loc_txt = {
         name = "Composition",
         text = {"{C:mult}+4{} Mult for each Joker to the left,", "{C:chips}+30{} Chips for each Joker to the right",
-                "{C:inactive}(Currently +#1# Mult and +#2# Chips){}"}
+                "{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult and {C:chips}+#2#{C:inactive} Chips){}"}
     },
     loc_vars = function(self, info_queue, card)
         local effect = kcv_composition_calc_effect(card)

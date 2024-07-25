@@ -5,7 +5,7 @@ priority = 0
 
 # for cosmic collapse:
 # Add `kcv_cosmic_collapse_calculate` field to context,
-# as context.after is too broad as the sole flag and can cause excessive triggers.
+# as context.end_of_round fires once per combination of held card + joker
 [[patches]]
 [patches.pattern]
 target = 'functions/state_events.lua'
