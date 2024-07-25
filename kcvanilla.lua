@@ -681,18 +681,19 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.kcv_cosmic_collapse_calculate then
+        if context.end_of_round and not context.repetition and not context.individual then
             local success_planets = {}
             for i, consumable in ipairs(G.consumeables.cards) do
-                if consumable.ability.set == 'Planet' then
+                if consumable.ability.set == 'Planet' and not consumable.kcv_collapse then
                     local success = pseudorandom('cosmiccollapse') < G.GAME.probabilities.normal / 3
                     -- kcv_log('success? ' .. tostring(success))
                     if success then
                         table.insert(success_planets, consumable)
+                        -- ensure dupe jokers don't try to collapse the same card
+                        consumable.kcv_collapse = true
                     end
                 end
             end
-            -- kcv_log('success planets ' .. #success_planets)
 
             if #success_planets > 0 then
                 card_eval_status_text(card, 'extra', nil, nil, nil, {
@@ -705,9 +706,12 @@ SMODS.Joker {
                 planet.config.card = {}
                 G.E_MANAGER:add_event(Event({
                     func = function()
-                        play_sound('tarot2', 1.1, 0.6)
-                        planet:set_ability(G.P_CENTERS.c_black_hole)
-                        planet:juice_up(1, 0.5)
+                        if planet.kcv_collapse == true then -- may have been collapsed by other joker
+                            planet.kcv_collapse = nil
+                            play_sound('tarot2', 1.1, 0.6)
+                            planet:set_ability(G.P_CENTERS.c_black_hole)
+                            planet:juice_up(1, 0.5)
+                        end
                         return true
                     end
                 }))

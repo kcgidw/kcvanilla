@@ -3,24 +3,6 @@ version = "1.0.0"
 dump_lua = true
 priority = 0
 
-# for cosmic collapse:
-# Add `kcv_cosmic_collapse_calculate` field to context,
-# as context.end_of_round fires once per combination of held card + joker
-[[patches]]
-[patches.pattern]
-target = 'functions/state_events.lua'
-pattern = "G.FUNCS.draw_from_hand_to_discard()"
-position = 'before'
-match_indent = true
-payload = '''
-
-for i, joker_card in ipairs(G.jokers.cards) do
-    joker_card:calculate_joker({kcv_cosmic_collapse_calculate=true})
-end
-delay(0.3)
-
-'''
-
 # add `kcv_juice_card_until` field to context.individual return object
 # Provides an appropriate timeslot to call juice_card_until during  context.individual
 [[patches]]
