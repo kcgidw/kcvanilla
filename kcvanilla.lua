@@ -4,7 +4,7 @@
 --- MOD_DESCRIPTION: KCVanilla
 --- MOD_AUTHOR: [krackocloud]
 --- LOADER_VERSION_GEQ: 1.0.0
---- VERSION: 0.1.0
+--- VERSION: 0.1.1
 SMODS.Atlas {
     key = 'kcvanillajokeratlas',
     path = "jokeratlas.png",
@@ -244,7 +244,7 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.after then
+        if context.after and not context.blueprint then
             local has_10
             for i, other_card in ipairs(context.scoring_hand) do
                 if other_card:get_id() == 10 then
