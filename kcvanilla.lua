@@ -342,7 +342,7 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.after then
+        if context.after and not context.blueprint then
             card.ability.mult = 10 * (#context.full_hand - #context.scoring_hand)
             card_eval_status_text(card, 'extra', nil, nil, nil, {
                 message = localize {
@@ -459,7 +459,7 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.individual and context.cardarea == G.play then
+        if context.individual and context.cardarea == G.play and not context.blueprint then
             local other_id = context.other_card:get_id()
             if other_id == 12 or other_id == 13 then
                 if card.ability.progress < card.ability.required_progress then
@@ -478,7 +478,7 @@ SMODS.Joker {
                 end
             end
         end
-        if context.selling_self and card.ability.progress >= card.ability.required_progress then
+        if context.selling_self and card.ability.progress >= card.ability.required_progress and not context.blueprint then
             local candidates = {}
             for i, joker in ipairs(G.jokers.cards) do
                 if joker ~= card then
@@ -924,6 +924,7 @@ SMODS.Joker {
     discovered = true,
     eternal_compat = true,
     perishable_compat = true,
+    blueprint_compat = true,
     enhancement_gate = 'm_wild',
     config = {
         kcv = {
