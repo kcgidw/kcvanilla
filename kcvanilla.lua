@@ -4,7 +4,7 @@
 --- MOD_DESCRIPTION: KCVanilla
 --- MOD_AUTHOR: [krackocloud]
 --- LOADER_VERSION_GEQ: 1.0.0
---- VERSION: 0.1.1
+--- VERSION: 0.1.2
 SMODS.Atlas {
     key = 'kcvanillajokeratlas',
     path = "jokeratlas.png",
