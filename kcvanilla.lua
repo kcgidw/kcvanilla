@@ -244,7 +244,7 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.after and not context.blueprint then
+        if context.after and context.scoring_hand and not context.blueprint then
             local has_10
             for i, other_card in ipairs(context.scoring_hand) do
                 if other_card:get_id() == 10 then
