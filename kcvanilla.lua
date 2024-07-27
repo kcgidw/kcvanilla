@@ -841,11 +841,12 @@ SMODS.Joker {
     perishable_compat = true,
     enhancement_gate = 'm_steel',
     config = {
-        held_steel = false
+        held_steel_count = 0
     },
     loc_txt = {
         name = "Power Grid",
-        text = {'If a {C:attention}Steel{} card is held in hand,', 'retrigger played {C:attention}Mult{} cards'}
+        text = {'Retrigger played {C:attention}Bonus{} and {C:attention}Mult{} cards',
+                'for each {C:attention}Steel{} card held in hand'}
     },
     loc_vars = function(self, info_queue, card)
         return {
@@ -854,25 +855,23 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.before then
-            card.ability.held_steel = false
+            card.ability.held_steel_count = 0
             for i, v in ipairs(G.hand.cards) do
-                if v.config.center == G.P_CENTERS.m_steel then
-                    card.ability.held_steel = true
-                    card_eval_status_text(card, 'extra', nil, nil, nil, {
-                        message = localize('k_active_ex')
-                    });
-                    break
+                if v.config.center == G.P_CENTERS.m_steel and not v.debuff then
+                    card.ability.held_steel_count = card.ability.held_steel_count + 1
                 end
             end
         end
         if context.after then
-            card.ability.held_steel = false
+            card.ability.held_steel_count = 0
         end
         if context.repetition and context.cardarea == G.play then
-            if card.ability.held_steel and context.other_card.ability.name == 'Mult' then
+            local can_retrigger = context.other_card.ability.name == 'Mult' or context.other_card.ability.name ==
+                                      'Bonus'
+            if card.ability.held_steel_count > 0 and can_retrigger then
                 return {
                     message = localize('k_again_ex'),
-                    repetitions = 1,
+                    repetitions = card.ability.held_steel_count,
                     card = card
                 }
             end

@@ -73,7 +73,7 @@ let jokers = [
 	},
 	{
 		name: 'Power Grid',
-		text: ['If a Steel card is held in hand, retrigger played Mult cards'],
+		text: ['Retrigger played Bonus and Mult cards for each Steel card held in hand'],
 		image_url: 'assets/originals/powergrid.png',
 		rarity: 'Uncommon',
 	},
