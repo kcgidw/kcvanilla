@@ -2,6 +2,8 @@
 
 A small Joker pack mod for Balatro, featuring plausible, vanilla-style powers and a faithful art style
 
+[Joker list](https://kcgidw.github.io/kcvanilla/)
+
 In development
 
 # Installation
