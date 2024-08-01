@@ -19,9 +19,9 @@ let jokers = [
 	},
 	{
 		name: 'Robo-Joker',
-		text: ['Steel cards give X1.75 Mult when scored'],
+		text: ['Gains the Chip value of the first scored card ranked 2-10 each round'],
 		image_url: 'assets/originals/robo.png',
-		rarity: 'Common',
+		rarity: 'Uncommon',
 	},
 	{
 		name: 'Squid',
