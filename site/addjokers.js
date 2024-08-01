@@ -12,12 +12,6 @@ let jokers = [
 		rarity: 'Common',
 	},
 	{
-		name: 'Ten-Pin',
-		text: [`If played hand contains a scoring 10, X2 Mult for next 2 hands`],
-		image_url: 'assets/originals/tenpin.png',
-		rarity: 'Common',
-	},
-	{
 		name: 'Robo-Joker',
 		text: ['Gains the Chip value of the first scored card ranked 2-10 each round'],
 		image_url: 'assets/originals/robo.png',
@@ -27,6 +21,12 @@ let jokers = [
 		name: 'Squid',
 		text: ['+5 hand size on final 2 hands of round'],
 		image_url: 'assets/originals/squid.png',
+		rarity: 'Common',
+	},
+	{
+		name: 'Ten-Pin',
+		text: [`If played hand contains a scoring 10, X2 Mult for next 2 hands`],
+		image_url: 'assets/originals/tenpin.png',
 		rarity: 'Common',
 	},
 	{
@@ -48,6 +48,14 @@ let jokers = [
 		rarity: 'Uncommon',
 	},
 	{
+		name: 'Five-Day Forecast',
+		text: [
+			`If played hand contains a Straight, increase played cards' ranks by 1 (Excludes Aces)`,
+		],
+		image_url: 'assets/originals/5day.png',
+		rarity: 'Uncommon',
+	},
+	{
 		name: 'Handy Joker',
 		text: [
 			'If first discard of round is a single enhanced card, gain X1 Mult, resets when Boss Blind is defeated',
@@ -61,14 +69,6 @@ let jokers = [
 			'Played Wild cards give one of the following when scored: +10 Mult, +100 Chips, X2 Mult, $5',
 		],
 		image_url: 'assets/originals/energy.png',
-		rarity: 'Uncommon',
-	},
-	{
-		name: 'Five-Day Forecast',
-		text: [
-			`If played hand contains a Straight, increase played cards' ranks by 1 (Excludes Aces)`,
-		],
-		image_url: 'assets/originals/5day.png',
 		rarity: 'Uncommon',
 	},
 	{
