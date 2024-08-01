@@ -524,7 +524,7 @@ SMODS.Joker {
     end
 }
 
-local function common_joker_count()
+local function kcv_common_joker_count()
     if not G.jokers or not G.jokers.cards then
         return 0
     end
@@ -559,12 +559,12 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         return {
-            vars = {8 * common_joker_count()}
+            vars = {8 * kcv_common_joker_count()}
         }
     end,
     calc_dollar_bonus = function(self, card)
         if G.GAME.blind.boss then
-            return 8 * common_joker_count()
+            return 8 * kcv_common_joker_count()
         end
     end
 }
@@ -600,12 +600,7 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.end_of_round and not context.repetition and not context.individual and not context.blueprint then
-            local upgrade_amt = 0
-            for i, other_joker in ipairs(G.jokers.cards) do
-                if other_joker.config.center.rarity == 1 then
-                    upgrade_amt = upgrade_amt + card.ability.extra
-                end
-            end
+            local upgrade_amt = kcv_kcv_common_joker_count() * 2
             if upgrade_amt > 0 then
                 card.ability.mult = card.ability.mult + upgrade_amt
                 card_eval_status_text(card, 'extra', nil, nil, nil, {
