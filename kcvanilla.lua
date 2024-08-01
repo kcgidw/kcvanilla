@@ -540,60 +540,70 @@ SMODS.Joker {
     end
 }
 
--- SMODS.Joker {
---     key = "chan",
---     name = "Joker-chan",
---     atlas = 'kcvanillajokeratlas',
---     pos = {
---         x = 0,
---         y = kcv_getJokerAtlasIndex('chan')
---     },
---     rarity = 2,
---     cost = 4,
---     unlocked = true,
---     discovered = true,
---     eternal_compat = true,
---     perishable_compat = true,
---     blueprint_compat = true,
---     config = {},
---     loc_txt = {
---         name = "Joker-chan",
---         text = {"Copies the abilities of Common Jokers"}
---     },
---     loc_vars = function(self, info_queue, card)
---         return {
---             vars = {}
---         }
---     end,
---     calculate = function(self, card, context)
--- 1
---         for i, other_joker in ipairs(G.jokers.cards) do
---             if other_joker ~= card and other_joker.config.center.rarity == 1 then
---                 context.blueprint = (context.blueprint and (context.blueprint + 1)) or 1
---                 context.blueprint_card = context.blueprint_card or card
---                 if context.blueprint > #G.jokers.cards + 1 then
---                     return
---                 end
---                 local other_joker_ret = other_joker:calculate_joker(context)
---                 if other_joker_ret then
---                     other_joker_ret.card = context.blueprint_card or card
---                     return other_joker_ret
---                 end
--- 2
---         if context.kcv_jokerchan_target and context.kcv_jokerchan_target.config.center.rarity == 1 then
---             context.blueprint = (context.blueprint and (context.blueprint + 1)) or 1
---             context.blueprint_card = context.blueprint_card or card
---             if context.blueprint > #G.jokers.cards + 1 then
---                 return
---             end
---             local other_joker_ret = kcv_jokerchan_target:calculate_joker(context)
---             if other_joker_ret then
---                 other_joker_ret.card = card
---                 return other_joker_ret
---             end
---         end
---     end
--- }
+SMODS.Joker {
+    key = "chan",
+    name = "Joker-chan",
+    atlas = 'kcvanillajokeratlas',
+    pos = {
+        x = 0,
+        y = kcv_getJokerAtlasIndex('chan')
+    },
+    rarity = 2,
+    cost = 5,
+    unlocked = true,
+    discovered = true,
+    eternal_compat = true,
+    perishable_compat = true,
+    blueprint_compat = true,
+    config = {
+        mult = 0,
+        extra = 2
+    },
+    loc_txt = {
+        name = "Joker-chan",
+        text = {"At end of round, gains {C:mult}+#1#{} Mult", "for each Common Joker",
+                "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult){}"}
+    },
+    loc_vars = function(self, info_queue, card)
+        return {
+            vars = {card.ability.extra, card.ability.mult}
+        }
+    end,
+    calculate = function(self, card, context)
+        if context.end_of_round and not context.repetition and not context.individual and not context.blueprint then
+            local upgrade_amt = 0
+            for i, other_joker in ipairs(G.jokers.cards) do
+                if other_joker.config.center.rarity == 1 then
+                    upgrade_amt = upgrade_amt + card.ability.extra
+                end
+            end
+            if upgrade_amt > 0 then
+                card.ability.mult = card.ability.mult + upgrade_amt
+                card_eval_status_text(card, 'extra', nil, nil, nil, {
+                    message = localize {
+                        type = 'variable',
+                        key = 'a_mult',
+                        vars = {upgrade_amt}
+                    },
+                    colour = G.C.RED,
+                    card = card
+                })
+            end
+        end
+        if context.joker_main then
+            if card.ability.mult > 0 then
+                return {
+                    message = localize {
+                        type = 'variable',
+                        key = 'a_mult',
+                        vars = {card.ability.mult}
+                    },
+                    mult_mod = card.ability.mult
+                }
+            end
+        end
+    end
+}
 
 SMODS.Joker {
     key = "handy",

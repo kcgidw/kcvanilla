@@ -43,7 +43,7 @@ let jokers = [
 	},
 	{
 		name: 'Joker-chan',
-		text: ['Copies the abilities of Common Jokers'],
+		text: ['At end of round, gains +2 Mult for each Common Joker'],
 		image_url: 'assets/originals/chan.png',
 		rarity: 'Uncommon',
 	},
