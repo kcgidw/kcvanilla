@@ -58,7 +58,7 @@ let jokers = [
 	{
 		name: 'Joker Energy',
 		text: [
-			'Played Wild cards give one of the following when scored: +8 Mult, +80 Chips, X1.5 Mult, $5',
+			'Played Wild cards give one of the following when scored: +10 Mult, +100 Chips, X2 Mult, $5',
 		],
 		image_url: 'assets/originals/energy.png',
 		rarity: 'Uncommon',

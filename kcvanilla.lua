@@ -966,16 +966,16 @@ SMODS.Joker {
     enhancement_gate = 'm_wild',
     config = {
         kcv = {
-            chips = 80,
-            mult = 8,
-            Xmult = 1.5,
+            chips = 100,
+            mult = 10,
+            Xmult = 2,
             money = 5
         }
     },
     loc_txt = {
         name = "Joker Energy",
-        text = {'Played {C:attention}Wild{} cards give one', 'of the following when scored:', '{C:mult}+#1#{} Mult,',
-                '{C:chips}+#2#{} Chips,', '{X:mult,C:white} X#3# {} Mult,', '{C:money}$#4#{}'}
+        text = {'Played {C:attention}Wild{} cards give one', 'of the following when scored:',
+                '{C:mult}+#1#{} Mult, {C:chips}+#2#{} Chips, {X:mult,C:white} X#3# {} Mult, {C:money}$#4#{}'}
     },
     loc_vars = function(self, info_queue, card)
         return {
