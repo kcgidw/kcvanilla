@@ -600,7 +600,7 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.end_of_round and not context.repetition and not context.individual and not context.blueprint then
-            local upgrade_amt = kcv_kcv_common_joker_count() * 2
+            local upgrade_amt = kcv_common_joker_count() * 2
             if upgrade_amt > 0 then
                 card.ability.mult = card.ability.mult + upgrade_amt
                 card_eval_status_text(card, 'extra', nil, nil, nil, {
