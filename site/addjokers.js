@@ -21,7 +21,7 @@ let jokers = [
 		name: 'Robo-Joker',
 		text: ['Gains the Chip value of the first scored card ranked 2-10 each round'],
 		image_url: 'assets/originals/robo.png',
-		rarity: 'Uncommon',
+		rarity: 'Common',
 	},
 	{
 		name: 'Squid',
