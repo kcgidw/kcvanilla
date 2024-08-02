@@ -1,4 +1,3 @@
--   joker basic design/functionality (Remaining: Power Grid, Joker-chan, Robo-joker)
 -   confirm rarities and prices
 -   test blueprint
 -   test debuffed joker
