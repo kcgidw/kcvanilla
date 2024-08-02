@@ -13,7 +13,6 @@ SMODS.Joker {
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = true,
-    enhancement_gate = 'm_steel',
     config = {
         chips = 0,
         extra = 0
