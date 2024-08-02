@@ -873,42 +873,39 @@ SMODS.Joker {
     discovered = true,
     eternal_compat = true,
     perishable_compat = true,
-    enhancement_gate = 'm_steel',
+    blueprint_compat = true,
+    enhancement_gate = 'm_mult',
     config = {
-        held_steel_count = 0
+        cur_xmult = 1,
+        extra = 0.2
     },
     loc_txt = {
         name = "Power Grid",
-        text = {'Retrigger played {C:attention}Bonus{} and {C:attention}Mult{} cards',
-                'for each {C:attention}Steel{} card held in hand'}
+        text = {'Scoring {C:attention}Mult{} cards gives {X:mult,C:white} X#1# {} Mult',
+                'for every scored {C:attention}Mult{}card this round',
+                "{C:inactive}(Currently {X:mult,C:white} X#2# {C:inactive} Mult"}
     },
     loc_vars = function(self, info_queue, card)
         return {
-            vars = {}
+            vars = {card.ability.extra, card.ability.cur_xmult}
         }
     end,
     calculate = function(self, card, context)
-        if context.before then
-            card.ability.held_steel_count = 0
-            for i, v in ipairs(G.hand.cards) do
-                if v.config.center == G.P_CENTERS.m_steel and not v.debuff then
-                    card.ability.held_steel_count = card.ability.held_steel_count + 1
-                end
+
+        if context.individual and context.cardarea == G.play then
+            kcv_log(1)
+            local other = context.other_card
+            kcv_log(other.ability.name)
+            if other.ability.name == 'Mult' then
+                card.ability.cur_xmult = card.ability.cur_xmult + card.ability.extra
+                return {
+                    x_mult = card.ability.cur_xmult,
+                    card = other
+                }
             end
         end
         if context.after then
-            card.ability.held_steel_count = 0
-        end
-        if context.repetition and context.cardarea == G.play then
-            local can_retrigger = context.other_card.ability.name == 'Mult' or context.other_card.ability.name ==
-                                      'Bonus'
-            if card.ability.held_steel_count > 0 and can_retrigger then
-                return {
-                    message = localize('k_again_ex'),
-                    repetitions = card.ability.held_steel_count,
-                    card = card
-                }
-            end
+            card.ability.cur_xmult = 1
         end
     end
 }

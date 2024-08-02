@@ -73,7 +73,7 @@ let jokers = [
 	},
 	{
 		name: 'Power Grid',
-		text: ['Retrigger played Bonus and Mult cards for each Steel card held in hand'],
+		text: ['Scoring Mult cards gives X0.2 Mult for every scored Mult card this round'],
 		image_url: 'assets/originals/powergrid.png',
 		rarity: 'Uncommon',
 	},
