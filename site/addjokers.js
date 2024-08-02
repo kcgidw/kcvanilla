@@ -73,7 +73,7 @@ let jokers = [
 	},
 	{
 		name: 'Power Grid',
-		text: ['Scoring Mult cards gives X0.2 Mult for every scored Mult card this round'],
+		text: ['Scoring Mult cards gives X0.2 Mult for every Mult card scored this round'],
 		image_url: 'assets/originals/powergrid.png',
 		rarity: 'Uncommon',
 	},

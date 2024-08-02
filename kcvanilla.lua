@@ -882,7 +882,7 @@ SMODS.Joker {
     loc_txt = {
         name = "Power Grid",
         text = {'Scoring {C:attention}Mult{} cards gives {X:mult,C:white} X#1# {} Mult',
-                'for every scored {C:attention}Mult{}card this round',
+                'for every {C:attention}Mult{} card scored this round',
                 "{C:inactive}(Currently {X:mult,C:white} X#2# {C:inactive} Mult"}
     },
     loc_vars = function(self, info_queue, card)
