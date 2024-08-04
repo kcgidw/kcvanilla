@@ -50,7 +50,7 @@ SMODS.Joker {
         if context.selling_self and card.ability.progress >= card.ability.required_progress and not context.blueprint then
             local candidates = {}
             for i, joker in ipairs(G.jokers.cards) do
-                if joker ~= card then
+                if joker ~= card and not joker.edition then
                     table.insert(candidates, joker)
                 end
             end
