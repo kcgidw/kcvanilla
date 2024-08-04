@@ -1,6 +1,6 @@
 SMODS.Joker {
     key = "robo",
-    name = "Robo-Joker",
+    name = "Jimbot",
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
@@ -18,7 +18,7 @@ SMODS.Joker {
         extra = 0
     },
     loc_txt = {
-        name = "Robo-Joker",
+        name = "Jimbot",
         text = {"Gains the {C:chips}Chip{} value of the first", "scored card ranked {C:attention}2-10{} each round",
                 "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"}
     },
