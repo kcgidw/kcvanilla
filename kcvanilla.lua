@@ -28,25 +28,6 @@ function kcv_getJokerAtlasIndex(jokerKey)
     return 0
 end
 
-function kcv_dump(o, depth)
-    depth = depth or 0
-    if depth > 3 then
-        return '...'
-    end
-    if type(o) == 'table' then
-        local s = '{ '
-        for k, v in pairs(o) do
-            if type(k) ~= 'number' then
-                k = '"' .. k .. '"'
-            end
-            s = s .. '[' .. k .. '] = ' .. kcv_dump(v, depth + 1) .. ','
-        end
-        return s .. '} '
-    else
-        return tostring(o)
-    end
-end
-
 function kcv_common_joker_count()
     if not G.jokers or not G.jokers.cards then
         return 0
