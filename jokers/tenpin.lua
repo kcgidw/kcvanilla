@@ -7,7 +7,7 @@ SMODS.Joker {
         y = kcv_getJokerAtlasIndex('tenpin')
     },
     rarity = 1,
-    cost = 5,
+    cost = 6,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
