@@ -18,7 +18,7 @@ SMODS.Joker {
     },
     loc_txt = {
         name = "Swiss Joker",
-        text = {'{C:mult}+10{} Mult for each', 'unscored card played', 'in previous hand',
+        text = {'{C:mult}+10{} Mult for each', 'card played in previous hand', 'that did not score',
                 '{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)'}
     },
     loc_vars = function(self, info_queue, card)
@@ -28,7 +28,14 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.after and not context.blueprint then
-            card.ability.mult = 10 * (#context.full_hand - #context.scoring_hand)
+            local nonscoring_count = 0
+            for i, v in ipairs(context.scoring_hand) do
+                if v.debuff then
+                    nonscoring_count = nonscoring_count + 1
+                end
+            end
+            nonscoring_count = nonscoring_count + (#context.full_hand - #context.scoring_hand)
+            card.ability.mult = 10 * nonscoring_count
             card_eval_status_text(card, 'extra', nil, nil, nil, {
                 message = localize {
                     type = 'variable',
