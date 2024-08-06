@@ -44,6 +44,7 @@ SMODS.Joker {
     discovered = true,
     eternal_compat = true,
     perishable_compat = true,
+    blueprint_compat = true,
     config = {
         extra = {
             chips = 0,
@@ -63,16 +64,14 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.joker_main then
-            local effect = kcv_composition_calc_effect(card)
+            local effect = kcv_composition_calc_effect(context.blueprint_card or card)
             return {
                 kcv_composition = {
                     kcv_chips = effect.chips,
                     kcv_mult = effect.mult,
-                    kcv_card = card
+                    kcv_card = context.blueprint_card or card
                 }
             }
-            -- aChips(effect.chips, card, context)
-            -- aMult(effect.mult, card, context)
         end
     end
 }

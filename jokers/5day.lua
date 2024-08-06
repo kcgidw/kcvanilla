@@ -65,9 +65,10 @@ SMODS.Joker {
                     end
                 end
 
-                card_eval_status_text(card, 'extra', nil, nil, nil, {
+                card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil, {
                     message = localize('k_active_ex'),
-                    colour = G.C.FILTER
+                    colour = G.C.FILTER,
+                    card = context.blueprint_card or card
                 });
 
                 for i_2, other_c_2 in ipairs(targets) do

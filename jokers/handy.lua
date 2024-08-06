@@ -44,7 +44,7 @@ SMODS.Joker {
                         vars = {card.ability.x_mult}
                     },
                     colour = G.C.RED,
-                    card = self
+                    card = card
                 })
             end
         end
