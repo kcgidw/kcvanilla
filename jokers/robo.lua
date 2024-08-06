@@ -31,7 +31,7 @@ SMODS.Joker {
         if context.individual and context.cardarea == G.play then
             if card.ability.extra == 0 then
                 local id = context.other_card:get_id()
-                if id >= 2 and id <= 10 then
+                if not context.other_card.debuff and id >= 2 and id <= 10 then
                     local chip_val = context.other_card:get_chip_bonus()
                     card.ability.extra = chip_val
                     card.ability.chips = card.ability.chips + card.ability.extra

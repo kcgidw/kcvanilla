@@ -35,7 +35,7 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.individual and context.cardarea == G.play then
             local other = context.other_card
-            if other.ability.name == 'Wild Card' then
+            if other.ability.name == 'Wild Card' and not other.debuff then
                 local roll = pseudorandom_element({'amult', 'chips', 'xmult', 'money'})
                 if roll == 'amult' then
                     return {

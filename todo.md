@@ -1,6 +1,5 @@
 -   test blueprint
 -   test debuffed joker
--   test debuffed playing card
 -   .zip releases
 -   better installation steps
 -   add info queues

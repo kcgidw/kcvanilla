@@ -33,7 +33,7 @@ SMODS.Joker {
 
         if context.individual and context.cardarea == G.play then
             local other = context.other_card
-            if other.ability.name == 'Mult' then
+            if other.ability.name == 'Mult' and not other.debuff then
                 card.ability.cur_xmult = card.ability.cur_xmult + card.ability.extra
                 return {
                     x_mult = card.ability.cur_xmult,
