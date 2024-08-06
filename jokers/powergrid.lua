@@ -32,9 +32,7 @@ SMODS.Joker {
     calculate = function(self, card, context)
 
         if context.individual and context.cardarea == G.play then
-            kcv_log(1)
             local other = context.other_card
-            kcv_log(other.ability.name)
             if other.ability.name == 'Mult' then
                 card.ability.cur_xmult = card.ability.cur_xmult + card.ability.extra
                 return {
