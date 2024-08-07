@@ -40,8 +40,9 @@ SMODS.Joker {
             end
 
             if #success_planets > 0 then
-                card_eval_status_text(card, 'extra', nil, nil, nil, {
-                    message = "Collapse!"
+                card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil, {
+                    message = "Collapse!",
+                    card = context.blueprint_card or card
                 });
             end
 
