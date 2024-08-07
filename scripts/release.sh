@@ -6,4 +6,5 @@ rm -rf dist \
 && cp -r  jokers/ dist/jokers \
 && cp  lovely.toml dist/lovely.toml \
 && rm -rf ~/AppData/Roaming/Balatro/Mods/kcvanilla \
-&& cp -r dist ~/AppData/Roaming/Balatro/Mods/kcvanilla
+&& cp -r dist ~/AppData/Roaming/Balatro/Mods/kcvanilla \
+&& 7z a kcvanilla-dist.zip dist

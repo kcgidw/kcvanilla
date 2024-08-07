@@ -1,5 +1,3 @@
--   test blueprint
 -   test debuffed joker
--   .zip releases
 -   better installation steps
 -   add info queues
