@@ -10,7 +10,7 @@ In development
 
 Requires [Steamodded 1.0](https://github.com/Steamopollys/Steamodded)
 
-No official releases yet; download the repo into your Mods/ folder.
+Unzip the latest release (or pull the repo) into your Mods/ folder.
 
 # Credits
 
