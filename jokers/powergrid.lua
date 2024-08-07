@@ -21,8 +21,8 @@ SMODS.Joker {
     loc_txt = {
         name = "Power Grid",
         text = {'Scoring {C:attention}Mult{} cards gives {X:mult,C:white} X#1# {} Mult',
-                'for every {C:attention}Mult{} card scored this round',
-                "{C:inactive}(Currently {X:mult,C:white} X#2# {C:inactive} Mult"}
+                'for each {C:attention}Mult{} card scored this round',
+                "{C:inactive}(Currently {X:mult,C:white} X#2# {C:inactive} Mult)"}
     },
     loc_vars = function(self, info_queue, card)
         return {
@@ -37,11 +37,12 @@ SMODS.Joker {
                 card.ability.cur_xmult = card.ability.cur_xmult + card.ability.extra
                 return {
                     x_mult = card.ability.cur_xmult,
-                    card = other
+                    card = context.blueprint_card or card
                 }
             end
         end
-        if context.after then
+
+        if context.end_of_round then
             card.ability.cur_xmult = 1
         end
     end
