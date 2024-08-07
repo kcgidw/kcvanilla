@@ -16,12 +16,12 @@ SMODS.Joker {
     config = {},
     loc_txt = {
         name = "Cosmic Collapse",
-        text = {'At end of round, held {C:planet}Planet{}', 'cards each have {C:green}1 in 3{} chance',
+        text = {'At end of round, held {C:planet}Planet{}', 'cards each have {C:green}#1# in 3{} chance',
                 'to transform into a {C:spectral}Black Hole{}'}
     },
     loc_vars = function(self, info_queue, card)
         return {
-            vars = {}
+            vars = {'' .. (G.GAME and G.GAME.probabilities.normal or 1)}
         }
     end,
     calculate = function(self, card, context)
