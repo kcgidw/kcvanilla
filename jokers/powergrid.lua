@@ -19,7 +19,7 @@ SMODS.Joker {
     },
     loc_txt = {
         name = "Power Grid",
-        text = {'Scoring {C:attention}Mult{} cards gives {X:mult,C:white} X#1# {} Mult',
+        text = {'Scored {C:attention}Mult{} cards give {X:mult,C:white} X#1# {} Mult',
                 'for each {C:attention}Mult{} card scored this round',
                 "{C:inactive}(Currently {X:mult,C:white} X#2# {C:inactive} Mult)"}
     },
