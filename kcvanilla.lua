@@ -4,13 +4,19 @@
 --- MOD_DESCRIPTION: KCVanilla
 --- MOD_AUTHOR: [krackocloud]
 --- LOADER_VERSION_GEQ: 1.0.0
---- VERSION: 0.4.8
+--- VERSION: 0.4.9
 SMODS.Atlas {
     key = 'kcvanillajokeratlas',
     path = "jokeratlas.png",
     px = 71,
     py = 95
 }
+-- SMODS.Atlas {
+--     key = 'kcvanilladeckatlas',
+--     path = "jokerdeckatlas.png",
+--     px = 71,
+--     py = 95
+-- }
 
 function kcv_log(str)
     sendInfoMessage(str, "KCVanilla")

@@ -133,3 +133,42 @@ end
 if effects.jokers and not effects.jokers.kcv_composition then
 
 '''
+
+# Powergrid: init count
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = "G.GAME.current_round.used_packs = {}"
+position = 'after'
+match_indent = true
+payload = '''
+    G.GAME.current_round.kcv_mults_scored = 0
+    kcv_log(G.GAME.current_round.kcv_mults_scored)
+
+'''
+
+# Powergrid: increment count when mult card scored
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = "if effects[ii].mult then"
+position = 'after'
+match_indent = true
+payload = '''
+    G.GAME.current_round.kcv_mults_scored = (G.GAME.current_round.kcv_mults_scored or 0) + 1
+    kcv_log(G.GAME.current_round.kcv_mults_scored)
+
+'''
+
+# Powergrid: reset count at end of round, to be safe
+[[patches]]
+[patches.pattern]
+target = 'functions/state_events.lua'
+pattern = "if G.GAME.round_resets.ante == G.GAME.win_ante and G.GAME.blind:get_type() == 'Boss' then"
+position = 'after'
+match_indent = true
+payload = '''
+    G.GAME.current_round.kcv_mults_scored = 0
+    kcv_log(G.GAME.current_round.kcv_mults_scored)
+
+'''

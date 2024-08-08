@@ -15,7 +15,6 @@ SMODS.Joker {
     blueprint_compat = true,
     enhancement_gate = 'm_mult',
     config = {
-        cur_xmult = 1,
         extra = 0.2
     },
     loc_txt = {
@@ -25,32 +24,21 @@ SMODS.Joker {
                 "{C:inactive}(Currently {X:mult,C:white} X#2# {C:inactive} Mult)"}
     },
     loc_vars = function(self, info_queue, card)
+        local xmult = 1.2 + ((G.GAME.current_round.kcv_mults_scored or 0) * 0.2)
         return {
-            vars = {card.ability.extra, (G.GAME.current_round.kcv_powergrid_xmult or 1)}
+            vars = {card.ability.extra, xmult}
         }
     end,
     calculate = function(self, card, context)
-        if context.start_of_round then
-            G.GAME.current_round.kcv_powergrid_xmult = 1
-        end
-
-        -- technically this isn't per-score,
-        -- two powergrids will compound on each other.
-        -- But the code is simpler and the numbers are more fun this way
         if context.individual and context.cardarea == G.play then
             local other = context.other_card
             if other.ability.name == 'Mult' and not other.debuff then
-                G.GAME.current_round.kcv_powergrid_xmult = (G.GAME.current_round.kcv_powergrid_xmult or 1) +
-                                                               card.ability.extra
+                local xmult = 1.2 + ((G.GAME.current_round.kcv_mults_scored or 0) * 0.2)
                 return {
-                    x_mult = G.GAME.current_round.kcv_powergrid_xmult,
+                    x_mult = xmult,
                     card = context.blueprint_card or card
                 }
             end
-        end
-
-        if context.end_of_round then
-            card.ability.cur_xmult = 1
         end
     end
 }
