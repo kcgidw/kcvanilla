@@ -1,3 +1,0 @@
--   test debuffed joker
--   better installation steps
--   add info queues
