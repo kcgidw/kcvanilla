@@ -8,7 +8,7 @@ A small Joker pack mod for Balatro, featuring plausible, vanilla-style powers an
 
 Requires [Steamodded 1.0](https://github.com/Steamopollys/Steamodded)
 
-Unzip the latest release (or pull the repo) into your Mods/ folder.
+Unzip the latest [release](https://github.com/kcgidw/kcvanilla/releases) (or pull the repo) into your Mods/ folder.
 
 # Credits
 
