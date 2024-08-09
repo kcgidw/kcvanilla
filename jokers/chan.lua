@@ -19,7 +19,7 @@ SMODS.Joker {
     },
     loc_txt = {
         name = "Joker-chan",
-        text = {"At end of round, gains {C:mult}+#1#{} Mult", "for each Common Joker",
+        text = {"At end of round, gains {C:mult}+#1#{} Mult", "for each {C:blue}Common{} Joker",
                 "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult){}"}
     },
     loc_vars = function(self, info_queue, card)
