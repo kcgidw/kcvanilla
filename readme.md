@@ -4,8 +4,6 @@ A small Joker pack mod for Balatro, featuring plausible, vanilla-style powers an
 
 [Joker list](https://kcgidw.github.io/kcvanilla/)
 
-In development
-
 # Installation
 
 Requires [Steamodded 1.0](https://github.com/Steamopollys/Steamodded)
