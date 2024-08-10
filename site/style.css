@@ -30,6 +30,10 @@ main {
 	align-items: center;
 }
 
+main > * {
+	width: 100%;
+}
+
 h1 {
 	font-size: 3rem;
 }
@@ -40,12 +44,12 @@ h4 {
 	font-weight: normal;
 }
 
-.intro .desc {
+.desc {
 	border: 2px solid white;
 	border-radius: 1rem;
 	background-color: #374244;
 	width: fit-content;
-	padding: 0 1rem;
+	padding: 1rem 2rem;
 }
 
 .cards {
