@@ -1,3 +1,15 @@
+function kcv_get_irish_normal(card)
+    local x = G.GAME.probabilities.normal
+    if card and card:is_suit("Clubs") then
+        for i, joker in ipairs(G.jokers.cards) do
+            if joker.ability.name == 'Luck of the Irish' and not joker.debuff then
+                x = x * 4
+            end
+        end
+    end
+    return x
+end
+
 SMODS.Joker {
     key = "irish",
     name = "Luck of the Irish",

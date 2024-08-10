@@ -36,17 +36,7 @@ pattern = "if pseudorandom('lucky_mult') < G.GAME.probabilities.normal/5 then"
 position = 'at'
 match_indent = true
 payload = '''
-
-local kcv_irish_factor = 1
-if self:is_suit("Clubs") then
-    for i, joker in ipairs(G.jokers.cards) do
-        if joker.ability.name == 'Luck of the Irish' and not joker.debuff then
-            kcv_irish_factor = kcv_irish_factor * 4
-        end
-    end
-end
-if pseudorandom('lucky_mult') < (G.GAME.probabilities.normal * kcv_irish_factor)/5 then
-
+if pseudorandom('lucky_mult') < kcv_get_irish_normal(self)/5 then
 '''
 
 # Luck of the Irish (money effect)
@@ -57,17 +47,18 @@ pattern = "if pseudorandom('lucky_money') < G.GAME.probabilities.normal/15 then"
 position = 'at'
 match_indent = true
 payload = '''
+if pseudorandom('lucky_money') < kcv_get_irish_normal(self)/15 then
+'''
 
-local kcv_irish_factor = 1
-if self:is_suit("Clubs") then
-    for i, joker in ipairs(G.jokers.cards) do
-        if joker.ability.name == 'Luck of the Irish' and not joker.debuff then
-            kcv_irish_factor = kcv_irish_factor * 4
-        end
-    end
-end
-if pseudorandom('lucky_money') < (G.GAME.probabilities.normal * kcv_irish_factor)/15 then
-
+# Luck of the Irish: text
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = "elseif _c.effect == 'Lucky Card' then loc_vars = {G.GAME.probabilities.normal, _c.config.mult, 5, _c.config.p_dollars, 15}"
+position = 'at'
+match_indent = true
+payload = '''
+elseif _c.effect == 'Lucky Card' then loc_vars = {kcv_get_irish_normal(card), _c.config.mult, 5, _c.config.p_dollars, 15}
 '''
 
 # Five-Day Forecast must rank-up cards *before* context.before runs so other jokers can get updated ranks
@@ -143,7 +134,6 @@ position = 'after'
 match_indent = true
 payload = '''
     G.GAME.current_round.kcv_mults_scored = 0
-    kcv_log(G.GAME.current_round.kcv_mults_scored)
 
 '''
 
@@ -156,7 +146,6 @@ position = 'after'
 match_indent = true
 payload = '''
     G.GAME.current_round.kcv_mults_scored = (G.GAME.current_round.kcv_mults_scored or 0) + 1
-    kcv_log(G.GAME.current_round.kcv_mults_scored)
 
 '''
 
@@ -169,6 +158,5 @@ position = 'after'
 match_indent = true
 payload = '''
     G.GAME.current_round.kcv_mults_scored = 0
-    kcv_log(G.GAME.current_round.kcv_mults_scored)
 
 '''
