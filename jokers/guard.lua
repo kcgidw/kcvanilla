@@ -7,7 +7,7 @@ SMODS.Joker {
         y = kcv_getJokerAtlasIndex('guard')
     },
     rarity = 3,
-    cost = 6,
+    cost = 8,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
