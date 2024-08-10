@@ -21,7 +21,7 @@ SMODS.Joker {
         name = "Power Grid",
         text = {'Scored {C:attention}Mult{} cards give {X:mult,C:white} X#1# {} Mult',
                 'for each {C:attention}Mult{} card scored this round',
-                "{C:inactive}(Currently {X:mult,C:white} X#2# {C:inactive} Mult)"}
+                "{C:inactive}(Next: {X:mult,C:white} X#2# {C:inactive} Mult)"}
     },
     loc_vars = function(self, info_queue, card)
         local xmult = 1.2 + ((G.GAME.current_round.kcv_mults_scored or 0) * 0.2)
