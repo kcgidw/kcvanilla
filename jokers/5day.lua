@@ -1,4 +1,4 @@
-local function kcv_rank_up(card)
+local function kcv_rank_up_discreetly(card)
     local suit_prefix = string.sub(card.base.suit, 1, 1) .. '_'
     local rank_suffix = card.base.id == 14 and 2 or math.min(card.base.id + 1, 14)
     if rank_suffix < 10 then
@@ -15,7 +15,7 @@ local function kcv_rank_up(card)
         rank_suffix = 'A'
     end
     card.kcv_ignore_debuff_check = true
-    card.kcv_dont_update_sprites = true
+    card.kcv_ranked_up_discreetly = true
     card:set_base(G.P_CARDS[suit_prefix .. rank_suffix])
 end
 
@@ -51,7 +51,7 @@ SMODS.Joker {
             if next(context.poker_hands["Straight"]) then
                 for i, other_c in ipairs(context.scoring_hand) do
                     if other_c:get_id() ~= 14 then
-                        kcv_rank_up(other_c)
+                        kcv_rank_up_discreetly(other_c)
                     end
                 end
             end
@@ -60,7 +60,7 @@ SMODS.Joker {
             if next(context.poker_hands["Straight"]) then
                 local targets = {}
                 for i, other_c in ipairs(context.scoring_hand) do
-                    if other_c.kcv_dont_update_sprites then
+                    if other_c.kcv_ranked_up_discreetly then
                         table.insert(targets, other_c)
                     end
                 end
@@ -87,9 +87,9 @@ SMODS.Joker {
                     local percent = 0.85 + (i_3 - 0.999) / (#G.hand.cards - 0.998) * 0.3
                     G.E_MANAGER:add_event(Event({
                         func = function()
-                            -- update sprites that were postponed by kcv_dont_update_sprites
+                            -- update sprites that were postponed by kcv_ranked_up_discreetly
                             other_c_3:set_sprites(other_c_3.config.center, other_c_3)
-                            other_c_3.kcv_dont_update_sprites = nil
+                            other_c_3.kcv_ranked_up_discreetly = nil
                             other_c_3.kcv_ignore_debuff_check = nil
                             play_sound('tarot2', percent, 0.6)
                             other_c_3:flip()

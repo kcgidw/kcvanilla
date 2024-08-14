@@ -76,7 +76,7 @@ payload = '''
 
 '''
 
-# Five-Day Forecast: use kcv_dont_update_sprites
+# Five-Day Forecast: use kcv_ranked_up_discreetly
 [[patches]]
 [patches.pattern]
 target = 'card.lua'
@@ -85,7 +85,7 @@ position = 'at'
 match_indent = true
 payload = '''
 
-if next(card) and not self.kcv_dont_update_sprites then
+if next(card) and not self.kcv_ranked_up_discreetly then
 
 '''
 
