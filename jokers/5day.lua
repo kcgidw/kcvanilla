@@ -47,7 +47,7 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.kcv_forecast_event then
+        if context.kcv_forecast_event and context.scoring_hand then
             if next(context.poker_hands["Straight"]) then
                 for i, other_c in ipairs(context.scoring_hand) do
                     if other_c:get_id() ~= 14 then
@@ -60,7 +60,7 @@ SMODS.Joker {
             if next(context.poker_hands["Straight"]) then
                 local targets = {}
                 for i, other_c in ipairs(context.scoring_hand) do
-                    if other_c:get_id() ~= 14 then
+                    if other_c.kcv_dont_update_sprites then
                         table.insert(targets, other_c)
                     end
                 end
@@ -99,6 +99,9 @@ SMODS.Joker {
                     delay(0.15)
                 end
             end
+        end
+        if context.individual then
+
         end
     end
 }
