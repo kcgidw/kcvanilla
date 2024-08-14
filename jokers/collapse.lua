@@ -16,7 +16,7 @@ SMODS.Joker {
     config = {},
     loc_txt = {
         name = "Cosmic Collapse",
-        text = {'At end of round, held {C:planet}Planet{}', 'cards each have {C:green}#1# in 3{} chance',
+        text = {'At end of round, held {C:planet}Planet{}', 'cards each have {C:green}#1# in 2{} chance',
                 'to transform into a {C:spectral}Black Hole{}'}
     },
     loc_vars = function(self, info_queue, card)
@@ -29,8 +29,7 @@ SMODS.Joker {
             local success_planets = {}
             for i, consumable in ipairs(G.consumeables.cards) do
                 if consumable.ability.set == 'Planet' and not consumable.kcv_collapse then
-                    local success = pseudorandom('cosmiccollapse') < G.GAME.probabilities.normal / 3
-                    -- kcv_log('success? ' .. tostring(success))
+                    local success = pseudorandom('cosmiccollapse') < G.GAME.probabilities.normal / 2
                     if success then
                         table.insert(success_planets, consumable)
                         -- ensure dupe jokers don't try to collapse the same card
