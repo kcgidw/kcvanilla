@@ -154,7 +154,7 @@ payload = '''
 [patches.pattern]
 target = 'functions/state_events.lua'
 pattern = "if G.GAME.round_resets.ante == G.GAME.win_ante and G.GAME.blind:get_type() == 'Boss' then"
-position = 'after'
+position = 'before'
 match_indent = true
 payload = '''
     G.GAME.current_round.kcv_mults_scored = 0

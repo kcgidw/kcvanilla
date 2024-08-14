@@ -24,7 +24,7 @@ SMODS.Joker {
                 "{C:inactive}(Next: {X:mult,C:white} X#2# {C:inactive} Mult)"}
     },
     loc_vars = function(self, info_queue, card)
-        local xmult = 1.2 + ((G.GAME.current_round.kcv_mults_scored or 0) * 0.2)
+        local xmult = 1 + card.ability.extra + ((G.GAME.current_round.kcv_mults_scored or 0) * card.ability.extra)
         return {
             vars = {card.ability.extra, xmult}
         }
@@ -33,7 +33,8 @@ SMODS.Joker {
         if context.individual and context.cardarea == G.play then
             local other = context.other_card
             if other.ability.name == 'Mult' and not other.debuff then
-                local xmult = 1.2 + ((G.GAME.current_round.kcv_mults_scored or 0) * 0.2)
+                local xmult = 1 + card.ability.extra +
+                                  ((G.GAME.current_round.kcv_mults_scored or 0) * card.ability.extra)
                 return {
                     x_mult = xmult,
                     card = context.blueprint_card or card
