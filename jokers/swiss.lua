@@ -27,7 +27,7 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.after and not context.blueprint then
+        if context.after and context.scoring_hand and context.full_hand and not context.blueprint then
             local nonscoring_count = 0
             for i, v in ipairs(context.scoring_hand) do
                 if v.debuff then

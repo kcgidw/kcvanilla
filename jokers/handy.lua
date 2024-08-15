@@ -34,7 +34,7 @@ SMODS.Joker {
             end
             juice_card_until(card, eval, true)
         end
-        if context.discard and not context.blueprint then
+        if context.discard and context.full_hand and not context.blueprint then
             if #context.full_hand == 1 and context.other_card.config.center ~= G.P_CENTERS.c_base then
                 card.ability.x_mult = card.ability.x_mult + 1
                 card_eval_status_text(card, 'extra', nil, nil, nil, {
