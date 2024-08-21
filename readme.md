@@ -8,13 +8,13 @@ Balatro content mod featuring plausible, vanilla-style Jokers and a faithful art
 
 Requires [Steamodded 1.0](https://github.com/Steamopollys/Steamodded)
 
-Unzip the latest [release](https://github.com/kcgidw/kcvanilla/releases) (or pull the repo) into your Mods/ folder.
+Unzip the [latest release](https://github.com/kcgidw/kcvanilla/releases) (or pull the repo) into your Mods/ folder.
 
 # Credits
 
-Art, design, and programming by krackocloud
+Art, design, and programming by krackocloud (Support me on [Ko-fi](https://ko-fi.com/krackocloud))
 
-Site template from https://github.com/notmario/balatrowebsitetemplate with modifications
+[Site template by notmario](https://github.com/notmario/balatrowebsitetemplate) with modifications
 
 # License
 
