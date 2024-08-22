@@ -11,7 +11,7 @@ SMODS.Joker {
     unlocked = true,
     discovered = true,
     eternal_compat = true,
-    perishable_compat = true,
+    perishable_compat = false,
     blueprint_compat = true,
     config = {
         mult = 0,
