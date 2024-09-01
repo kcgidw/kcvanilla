@@ -80,12 +80,14 @@ payload = '''
 [[patches]]
 [patches.pattern]
 target = 'card.lua'
-pattern = "if next(card) then"
+pattern = "self:set_sprites(nil, card)"
 position = 'at'
 match_indent = true
 payload = '''
 
-if next(card) and not self.kcv_ranked_up_discreetly then
+if not self.kcv_ranked_up_discreetly then
+    self:set_sprites(nil, card)
+end
 
 '''
 
