@@ -1,4 +1,4 @@
-local function kcv_rank_up_discreetly(card)
+local function kcv_get_rank_up_card(card)
     local suit_prefix = string.sub(card.base.suit, 1, 1) .. '_'
     local rank_suffix = card.base.id == 14 and 2 or math.min(card.base.id + 1, 14)
     if rank_suffix < 10 then
@@ -14,9 +14,14 @@ local function kcv_rank_up_discreetly(card)
     elseif rank_suffix == 14 then
         rank_suffix = 'A'
     end
+    return G.P_CARDS[suit_prefix .. rank_suffix]
+end
+
+local function kcv_rank_up_discreetly(card)
+    local newcard = kcv_get_rank_up_card(card)
     card.kcv_ignore_debuff_check = true
     card.kcv_ranked_up_discreetly = true
-    card:set_base(G.P_CARDS[suit_prefix .. rank_suffix])
+    card:set_base(newcard)
 end
 
 SMODS.Joker {
@@ -50,7 +55,7 @@ SMODS.Joker {
         if context.kcv_forecast_event and context.scoring_hand then
             if next(context.poker_hands["Straight"]) then
                 for i, other_c in ipairs(context.scoring_hand) do
-                    if other_c:get_id() ~= 14 then
+                    if other_c:get_id() ~= 14 and not other_c.kcv_ranked_up_discreetly then
                         kcv_rank_up_discreetly(other_c)
                     end
                 end
@@ -87,8 +92,9 @@ SMODS.Joker {
                     local percent = 0.85 + (i_3 - 0.999) / (#G.hand.cards - 0.998) * 0.3
                     G.E_MANAGER:add_event(Event({
                         func = function()
-                            -- update sprites that were postponed by kcv_ranked_up_discreetly
-                            other_c_3:set_sprites(other_c_3.config.center, other_c_3)
+                            -- set_base again to update sprites that were postponed by kcv_ranked_up_discreetly
+                            local newcard = kcv_get_rank_up_card(other_c_3)
+                            other_c_3:set_base(newcard)
                             other_c_3.kcv_ranked_up_discreetly = nil
                             other_c_3.kcv_ignore_debuff_check = nil
                             play_sound('tarot2', percent, 0.6)
