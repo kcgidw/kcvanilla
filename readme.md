@@ -12,7 +12,7 @@ Unzip the [latest release](https://github.com/kcgidw/kcvanilla/releases) (or pul
 
 # Credits
 
-Art, design, and programming by krackocloud (Support me on [Ko-fi](https://ko-fi.com/krackocloud))
+Art, design, and programming by krackocloud ([Ko-fi](https://ko-fi.com/krackocloud))
 
 [Site template by notmario](https://github.com/notmario/balatrowebsitetemplate) with modifications
 
