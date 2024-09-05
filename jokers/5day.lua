@@ -1,26 +1,35 @@
-local function kcv_get_rank_up_card(card)
-    local suit_prefix = string.sub(card.base.suit, 1, 1) .. '_'
-    local rank_suffix = card.base.id == 14 and 2 or math.min(card.base.id + 1, 14)
-    if rank_suffix < 10 then
-        rank_suffix = tostring(rank_suffix)
-    elseif rank_suffix == 10 then
-        rank_suffix = 'T'
-    elseif rank_suffix == 11 then
-        rank_suffix = 'J'
-    elseif rank_suffix == 12 then
-        rank_suffix = 'Q'
-    elseif rank_suffix == 13 then
-        rank_suffix = 'K'
-    elseif rank_suffix == 14 then
-        rank_suffix = 'A'
+local function kcv_get_suit_prefix(card)
+    local suit_prefix = string.sub(card.base.suit, 1, 1)
+    return suit_prefix
+end
+
+local function kcv_get_rank_suffix(id)
+    if id < 10 then
+        return tostring(id)
+    elseif id == 10 then
+        return 'T'
+    elseif id == 11 then
+        return 'J'
+    elseif id == 12 then
+        return 'Q'
+    elseif id == 13 then
+        return 'K'
+    else
+        return 'A'
     end
-    return G.P_CARDS[suit_prefix .. rank_suffix]
+end
+
+local function kcv_get_rank_up_pcard(card)
+    local suit_prefix = kcv_get_suit_prefix(card)
+    local rank_suffix = kcv_get_rank_suffix(math.min(card.base.id + 1, 14))
+    return G.P_CARDS[suit_prefix .. '_' .. rank_suffix]
 end
 
 local function kcv_rank_up_discreetly(card)
-    local newcard = kcv_get_rank_up_card(card)
+    local newcard = kcv_get_rank_up_pcard(card)
     card.kcv_ignore_debuff_check = true
     card.kcv_ranked_up_discreetly = true
+    card.kcv_display_id = card.kcv_display_id and card.kcv_display_id or card.base.id
     card:set_base(newcard)
 end
 
@@ -55,13 +64,13 @@ SMODS.Joker {
         if context.kcv_forecast_event and context.scoring_hand then
             if next(context.poker_hands["Straight"]) then
                 for i, other_c in ipairs(context.scoring_hand) do
-                    if other_c:get_id() ~= 14 and not other_c.kcv_ranked_up_discreetly then
+                    if other_c:get_id() ~= 14 then
                         kcv_rank_up_discreetly(other_c)
                     end
                 end
             end
         end
-        if context.before then
+        if context.before and context.scoring_hand then
             if next(context.poker_hands["Straight"]) then
                 local targets = {}
                 for i, other_c in ipairs(context.scoring_hand) do
@@ -80,6 +89,10 @@ SMODS.Joker {
                     local percent = 1.15 - (i_2 - 0.999) / (#G.hand.cards - 0.998) * 0.3
                     G.E_MANAGER:add_event(Event({
                         func = function()
+                            if not other_c_2.kcv_ranked_up_discreetly then
+                                -- was complete, but another 5-day joker is targeting this card
+                                return true
+                            end
                             play_sound('card1', percent)
                             other_c_2:flip()
                             return true
@@ -92,22 +105,31 @@ SMODS.Joker {
                     local percent = 0.85 + (i_3 - 0.999) / (#G.hand.cards - 0.998) * 0.3
                     G.E_MANAGER:add_event(Event({
                         func = function()
+                            if not other_c_3.kcv_ranked_up_discreetly then
+                                -- was complete, but another 5-day joker is targeting this card
+                                return true
+                            end
+                            -- kcv_log(other_c_3.base.id .. ' - ' .. other_c_3.kcv_display_id)
+                            other_c_3.kcv_display_id = other_c_3.kcv_display_id + 1
+                            local suit_prefix = kcv_get_suit_prefix(other_c_3)
+                            local rank_suffix = kcv_get_rank_suffix(other_c_3.kcv_display_id)
+                            local newcard = G.P_CARDS[suit_prefix .. '_' .. rank_suffix]
                             -- set_base again to update sprites that were postponed by kcv_ranked_up_discreetly
-                            local newcard = kcv_get_rank_up_card(other_c_3)
-                            other_c_3.kcv_ranked_up_discreetly = nil
-                            other_c_3:set_base(newcard)
-                            other_c_3.kcv_ignore_debuff_check = nil
+                            other_c_3:set_sprites(nil, newcard)
                             play_sound('tarot2', percent, 0.6)
                             other_c_3:flip()
+                            if other_c_3.kcv_display_id >= other_c_3.base.id then
+                                -- cleanup
+                                other_c_3.kcv_ranked_up_discreetly = nil
+                                other_c_3.kcv_ignore_debuff_check = nil
+                                other_c_3.kcv_display_id = nil
+                            end
                             return true
                         end
                     }))
                     delay(0.15)
                 end
             end
-        end
-        if context.individual then
-
         end
     end
 }
