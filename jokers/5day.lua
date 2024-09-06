@@ -61,6 +61,9 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
+        -- TODO: How should this behave with Midas?
+        -- kcv_forecast_event is like `before` but occurs just prior.
+        -- Using `before` directly causes weird *player-perceived* desyncs between kcv_rank_up_discreetly, E_MANAGER events, and other calcs 
         if context.kcv_forecast_event and context.scoring_hand then
             if next(context.poker_hands["Straight"]) then
                 for i, other_c in ipairs(context.scoring_hand) do
