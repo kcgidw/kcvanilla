@@ -104,26 +104,20 @@ if not initial and not self.kcv_ignore_debuff_check then G.GAME.blind:debuff_car
 
 '''
 
-# Composition: allow scoring both mult and chips at once
+# Composition: score chips along with mult
 [[patches]]
 [patches.pattern]
 target = 'functions/state_events.lua'
-pattern = "if effects.jokers then"
-position = 'at'
+pattern = "local effects = eval_card(_card, {cardarea = G.jokers, full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, joker_main = true})"
+position = 'after'
 match_indent = true
 payload = '''
 
-if effects.jokers and effects.jokers.kcv_composition then
-    hand_chips = mod_chips(hand_chips + effects.jokers.kcv_composition.kcv_chips)
+if effects.jokers and effects.jokers.kcv_composition_chips_effect then
+    hand_chips = mod_chips(hand_chips + effects.jokers.kcv_composition_chips_effect.chip_mod)
     update_hand_text({delay = 0}, {chips = hand_chips})
-    card_eval_status_text(effects.jokers.kcv_composition.kcv_card, 'chips', effects.jokers.kcv_composition.kcv_chips, percent)
-
-    mult = mod_mult(mult + effects.jokers.kcv_composition.kcv_mult)
-    update_hand_text({delay = 0}, {mult = mult})
-    card_eval_status_text(effects.jokers.kcv_composition.kcv_card, 'h_mult', effects.jokers.kcv_composition.kcv_mult, percent)
+    card_eval_status_text(_card, 'jokers', nil, percent, nil, effects.jokers.kcv_composition_chips_effect)
 end
-
-if effects.jokers and not effects.jokers.kcv_composition then
 
 '''
 

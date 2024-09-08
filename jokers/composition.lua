@@ -64,14 +64,52 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.joker_main then
-            local effect = kcv_composition_calc_effect(context.blueprint_card or card)
-            return {
-                kcv_composition = {
-                    kcv_chips = effect.chips,
-                    kcv_mult = effect.mult,
-                    kcv_card = context.blueprint_card or card
+            local target_card = context.blueprint_card or card
+            local effect = kcv_composition_calc_effect(target_card)
+
+            if effect.chips == 0 and effect.mult == 0 then
+                return
+            end
+
+            -- nested chip_mod result to be extracted and evaluated separately from mult_mod
+            local kcv_composition_chips_effect = {
+                chip_mod = effect.chips,
+                message = localize {
+                    type = 'variable',
+                    key = 'a_chips',
+                    vars = {effect.chips}
                 }
             }
+
+            return {
+                kcv_composition_chips_effect = kcv_composition_chips_effect,
+                mult_mod = effect.mult,
+                message = localize {
+                    type = 'variable',
+                    key = 'a_mult',
+                    vars = {effect.mult}
+                }
+            }
+
+            -- Below works, but cannot hook into the "percent" sfx modifier
+            -- SMODS.eval_this(target_card, {
+            --     message = localize {
+            --         type = 'variable',
+            --         key = 'a_chips',
+            --         vars = {effect.chips}
+            --     },
+            --     chip_mod = effect.chips,
+            --     colour = G.C.CHIPS
+            -- })
+            -- SMODS.eval_this(target_card, {
+            --     message = localize {
+            --         type = 'variable',
+            --         key = 'a_mult',
+            --         vars = {effect.mult}
+            --     },
+            --     mult_mod = effect.mult,
+            --     colour = G.C.MULT
+            -- })
         end
     end
 }
