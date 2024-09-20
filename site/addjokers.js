@@ -1,7 +1,7 @@
 let jokers = [
 	{
 		name: 'Composition',
-		text: ['+4 Mult for each Joker to the left, +30 Chips for each Joker to the right'],
+		text: ['+4 Mult for each Joker to the left, +25 Chips for each Joker to the right'],
 		image_url: 'assets/originals/mondrian.png',
 		rarity: 'Common',
 	},
@@ -33,11 +33,11 @@ let jokers = [
 		name: 'Red Envelope',
 		text: ['When Boss Blind is defeated, earn $8 for each Common Joker'],
 		image_url: 'assets/originals/redenvelope.png',
-		rarity: 'Common',
+		rarity: 'Uncommon',
 	},
 	{
 		name: 'Swiss Joker',
-		text: ['+10 Mult for each card played in previous hand that did not score'],
+		text: ['+12 Mult for each card played in previous hand that did not score'],
 		image_url: 'assets/originals/cheese.png',
 		rarity: 'Uncommon',
 	},
@@ -79,7 +79,7 @@ let jokers = [
 	},
 	{
 		name: 'Royal Guard',
-		text: ['After 13 Kings or Queens score, sell this to make a random Joker Negative'],
+		text: ['After 15 Kings or Queens score, sell this to make a random Joker Negative'],
 		image_url: 'assets/originals/guard.png',
 		rarity: 'Rare',
 	},

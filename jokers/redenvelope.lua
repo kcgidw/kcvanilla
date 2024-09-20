@@ -6,7 +6,7 @@ SMODS.Joker {
         x = 0,
         y = kcv_getJokerAtlasIndex('redenvelope')
     },
-    rarity = 1,
+    rarity = 2,
     cost = 6,
     unlocked = true,
     discovered = true,

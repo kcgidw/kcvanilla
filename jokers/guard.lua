@@ -15,7 +15,7 @@ SMODS.Joker {
     blueprint_compat = false,
     config = {
         progress = 0,
-        required_progress = 13
+        required_progress = 15
     },
     loc_txt = {
         name = "Royal Guard",

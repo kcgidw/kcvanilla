@@ -14,16 +14,17 @@ SMODS.Joker {
     perishable_compat = true,
     blueprint_compat = true,
     config = {
-        mult = 0
+        mult = 0,
+        extra = 12
     },
     loc_txt = {
         name = "Swiss Joker",
-        text = {'{C:mult}+10{} Mult for each', 'card played in previous hand', 'that did not score',
-                '{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)'}
+        text = {'{C:mult}+#1#{} Mult for each', 'card played in previous hand', 'that did not score',
+                '{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)'}
     },
     loc_vars = function(self, info_queue, card)
         return {
-            vars = {card.ability.mult}
+            vars = {card.ability.extra, card.ability.mult}
         }
     end,
     calculate = function(self, card, context)
@@ -35,7 +36,7 @@ SMODS.Joker {
                 end
             end
             nonscoring_count = nonscoring_count + (#context.full_hand - #context.scoring_hand)
-            card.ability.mult = 10 * nonscoring_count
+            card.ability.mult = card.ability.extra * nonscoring_count
             card_eval_status_text(card, 'extra', nil, nil, nil, {
                 message = localize {
                     type = 'variable',

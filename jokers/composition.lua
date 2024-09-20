@@ -1,4 +1,4 @@
-local function kcv_composition_calc_effect(card)
+local function kcv_composition_calc_effect(card, extramult, extrachips)
     if not G.jokers then
         -- viewing card outside a run
         return {
@@ -18,8 +18,8 @@ local function kcv_composition_calc_effect(card)
             cards_to_right = cards_to_right + 1
         end
     end
-    local chips = cards_to_right * 30
-    local mult = cards_to_left * 4
+    local chips = cards_to_right * extrachips
+    local mult = cards_to_left * extramult
     if my_pos == nil then
         chips = 0
         mult = 0
@@ -47,25 +47,25 @@ SMODS.Joker {
     blueprint_compat = true,
     config = {
         extra = {
-            chips = 0,
-            mult = 0
+            mult = 4,
+            chips = 25
         }
     },
     loc_txt = {
         name = "Composition",
-        text = {"{C:mult}+4{} Mult for each Joker to the left,", "{C:chips}+30{} Chips for each Joker to the right",
-                "{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult and {C:chips}+#2#{C:inactive} Chips){}"}
+        text = {"{C:mult}+#1#{} Mult for each Joker to the left,", "{C:chips}+#2#{} Chips for each Joker to the right",
+                "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult and {C:chips}+#4#{C:inactive} Chips){}"}
     },
     loc_vars = function(self, info_queue, card)
-        local effect = kcv_composition_calc_effect(card)
+        local effect = kcv_composition_calc_effect(card, card.ability.extra.mult, card.ability.extra.chips)
         return {
-            vars = {effect.mult, effect.chips}
+            vars = {card.ability.extra.mult, card.ability.extra.chips, effect.mult, effect.chips}
         }
     end,
     calculate = function(self, card, context)
         if context.joker_main then
             local target_card = context.blueprint_card or card
-            local effect = kcv_composition_calc_effect(target_card)
+            local effect = kcv_composition_calc_effect(target_card, card.ability.extra.mult, card.ability.extra.chips)
 
             if effect.chips == 0 and effect.mult == 0 then
                 return
