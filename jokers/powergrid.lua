@@ -13,7 +13,7 @@ SMODS.Joker {
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = true,
-    enhancement_gate = 'm_mult',
+    -- enhancement_gate = 'm_mult',
     config = {
         extra = 0.2
     },
