@@ -62,3 +62,13 @@ SMODS.Joker {
         end
     end
 }
+
+if SMODS.Mods['JokerDisplay'] and _G['JokerDisplay'] then
+    local jd_def = JokerDisplay.Definitions
+    jd_def["j_kcva_robo"] = {
+        text = {
+            { text = "+", colour = G.C.CHIPS },
+            { ref_table = "card.ability", ref_value = "chips", retrigger_type = "mult", colour = G.C.CHIPS }
+        }
+    }
+end

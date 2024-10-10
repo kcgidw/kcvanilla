@@ -30,3 +30,23 @@ SMODS.Joker {
         end
     end
 }
+
+if SMODS.Mods['JokerDisplay'] and _G['JokerDisplay'] then
+    local jd_def = JokerDisplay.Definitions
+    jd_def["j_kcva_redenvelope"] = {
+        text = {
+            { text = "+$", colour = G.C.MONEY },
+            { ref_table = "card.joker_display_values", ref_value = "bonus", retrigger_type = "mult", colour = G.C.MONEY }
+        },
+        reminder_text = {
+            { text = "(" },
+            { text = localize("k_common"), colour = G.C.BLUE },
+            { text = " " },
+            { text = localize("b_jokers"), colour = G.C.JOKER_GREY },
+            { text = ")" }
+        },
+        calc_function = function(card)
+            card.joker_display_values.bonus = 8 * kcv_common_joker_count()
+        end
+    }
+end

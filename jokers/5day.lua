@@ -137,3 +137,26 @@ SMODS.Joker {
         end
     end
 }
+
+if SMODS.Mods['JokerDisplay'] and _G['JokerDisplay'] then
+    local jd_def = JokerDisplay.Definitions
+    jd_def["j_kcva_5day"] = {
+        text = {
+            { text = localize("ph_score_cards_played") },
+            { text = " +1 ", colour = G.C.IMPORTANT },
+            { text = localize("k_rank") }
+        },
+        extra = {
+            {
+                { text = "(Excludes ", colour = G.C.JOKER_GREY, scale = 0.2 },
+                { text = localize("k_aces"), colour = G.C.IMPORTANT,  scale = 0.2 },
+                { text = ")", colour = G.C.JOKER_GREY, scale = 0.2 }
+            }
+        },
+        reminder_text = {
+            { text = "(", scale = 0.2 },
+            { text = localize("Straight", "poker_hands"), colour = G.C.IMPORTANT, scale = 0.2 },
+            { text = ")", scale = 0.2 }
+        }
+    }
+end
