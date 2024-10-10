@@ -93,7 +93,7 @@ let jokers = [
 	},
 	{
 		name: 'Luck of the Irish',
-		text: ['Lucky Clubs are 4X more likely to succeed'],
+		text: ['Lucky Clubs are 4X more likely to successfully trigger'],
 		image_url: 'assets/originals/irish.png',
 		rarity: 'Rare',
 	},
