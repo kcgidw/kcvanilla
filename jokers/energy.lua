@@ -62,3 +62,27 @@ SMODS.Joker {
         end
     end
 }
+
+if SMODS.Mods['JokerDisplay'] and _G['JokerDisplay'] then
+    local jd_def = JokerDisplay.Definitions
+    jd_def["j_kcva_energy"] = {
+        text = {
+            { text = "+10", colour = G.C.MULT },
+            { text = " " .. localize("k_or") .. " " },
+            { text = "+100", colour = G.C.CHIPS },
+            { text = " " .. localize("k_or") .. " " },
+            {
+                border_nodes = {
+                    { text = "X2", scale = 0.3 }
+                }
+            },
+            { text = " " .. localize("k_or") .. " ", scale = 0.2 },
+            { text = "$5", colour = G.C.MONEY, scale = 0.2 }
+        },
+        reminder_text = {
+            { text = "(" },
+            { text = "Wild Cards", colour = G.C.IMPORTANT }, -- No localization for "Wild", "Cards", or "Wildcard(s)"
+            { text = ")" }
+        }
+    }
+end

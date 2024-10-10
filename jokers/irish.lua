@@ -39,3 +39,19 @@ SMODS.Joker {
     calculate = function(self, card, context)
     end
 }
+
+if SMODS.Mods['JokerDisplay'] and _G['JokerDisplay'] then
+    local jd_def = JokerDisplay.Definitions
+    jd_def["j_kcva_irish"] = {
+        text = {
+            {
+                border_nodes = {
+                    { text = "4X" }
+                },
+                border_colour = G.C.CHANCE
+            },
+            { text = " Lucky ", colour = G.C.IMPORTANT }, -- No localization for "Lucky"
+            { text = localize("Clubs", "suits_plural"), colour = lighten(G.C.SUITS["Clubs"], 0.35) }
+        }
+    }
+end

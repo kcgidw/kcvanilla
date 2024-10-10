@@ -77,3 +77,13 @@ SMODS.Joker {
         end
     end
 }
+
+if SMODS.Mods['JokerDisplay'] and _G['JokerDisplay'] then
+    local jd_def = JokerDisplay.Definitions
+    jd_def["j_kcva_fortunecookie"] = {
+        text = {
+            { text = "+", colour = G.C.CHIPS },
+            { ref_table = "card.ability.extra", ref_value = "chips", retrigger_type = "mult", colour = G.C.CHIPS }
+        }
+    }
+end

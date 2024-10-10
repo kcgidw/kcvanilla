@@ -56,3 +56,17 @@ SMODS.Joker {
         end
     end
 }
+
+if SMODS.Mods['JokerDisplay'] and _G['JokerDisplay'] then
+    local jd_def = JokerDisplay.Definitions
+    jd_def["j_kcva_handy"] = {
+        text = {
+            {
+                border_nodes = {
+                    { text = "X" },
+                    { ref_table = "card.ability", ref_value = "x_mult", retrigger_type = "exp" }
+                }
+            }
+        }
+    }
+end
