@@ -64,3 +64,22 @@ SMODS.Joker {
         end
     end
 }
+
+if SMODS.Mods['JokerDisplay'] and _G['JokerDisplay'] then
+    local jd_def = JokerDisplay.Definitions
+    jd_def["j_kcva_collapse"] = {
+        text = {
+            { text = "(", colour = G.C.GREEN, scale = 0.3 },
+            { ref_table = "card.joker_display_values", ref_value = "odds", colour = G.C.GREEN, scale = 0.3 },
+            { text = ")", colour = G.C.GREEN, scale = 0.3 },
+        },
+        reminder_text = {
+            { text = "(" },
+            { text = localize("b_stat_planets"), colour = G.C.SECONDARY_SET.Planet },
+            { text = ")" }
+        },
+        calc_function = function(card)
+            card.joker_display_values.odds = localize { type = 'variable', key = "jdis_odds", vars = { (G.GAME and G.GAME.probabilities.normal or 1), 2 } }
+        end
+    }
+end

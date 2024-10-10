@@ -43,3 +43,31 @@ SMODS.Joker {
         end
     end
 }
+
+if SMODS.Mods['JokerDisplay'] and _G['JokerDisplay'] then
+    local jd_def = JokerDisplay.Definitions
+    jd_def["j_kcva_powergrid"] = {
+        --[[
+            This PR includes tooltips for all Jokers except for Power Grid. I don't understand what that Joker does...
+
+            I assume it should be starting at "x1.0" and gaining "x0.2" for every playing card scored with +Mult, then resetting on round end.
+            Testing in game, however, I can't get it to increase (or decrease) from "x1.2"... It even starts the round at "x1.2"!
+            And even while claiming "x1.2", it doesn't seem to ever actually apply that "x0.2" mult anywhere. Played hands just skip this Joker.
+            I've tried +Mult, xMult, Holographic, Polychrome, Lucky, and Red Seal. Nothing changes. The code looks fine, so I don't understand.
+
+            Testing was done with:
+                - Balatro 1.0.1g
+                - Lovely 0.5.0-beta7
+                - Steammodded 1.0.0-1006a
+                - "_RELEASE_MODE = false"
+
+            I wasn't even including JokerDisplay compat in testing, just this mod and the Joker's core functionality.
+
+            *shrugs* I'm leaving it with no display for now. I don't want to add something that I cannot test for.
+            I assume just a simple "x_mult" border_node is all that is needed. (Can be copied directly from Handy.)
+            Please discuss within this PR (or Discord) and I will update it, or you may merge this and do so yourself.
+
+            ~Toranaado (@TehSeph)
+        ]] --
+    }
+end
