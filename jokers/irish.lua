@@ -29,7 +29,7 @@ SMODS.Joker {
     config = {},
     loc_txt = {
         name = "Luck of the Irish",
-        text = {"{C:attention}Lucky{} {C:clubs}Clubs{} are {C:green}4X{} more", "likely to succeed"}
+        text = { "{C:attention}Lucky{} {C:clubs}Clubs{} are {X:green,C:white} 4X {} more", "likely to successfully trigger" }
     },
     loc_vars = function(self, info_queue, card)
         return {
