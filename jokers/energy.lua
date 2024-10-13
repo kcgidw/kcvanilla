@@ -73,16 +73,17 @@ if SMODS.Mods['JokerDisplay'] and _G['JokerDisplay'] then
             { text = " " .. localize("k_or") .. " " },
             {
                 border_nodes = {
-                    { text = "X2", scale = 0.3 }
+                    { text = "X2", scale = 0.25 }
                 }
             },
             { text = " " .. localize("k_or") .. " ", scale = 0.2 },
             { text = "$5", colour = G.C.MONEY, scale = 0.2 }
         },
         reminder_text = {
-            { text = "(" },
-            { text = "Wild Cards", colour = G.C.IMPORTANT }, -- No localization for "Wild", "Cards", or "Wildcard(s)"
-            { text = ")" }
+            { text = "(", scale = 0.2 },
+            { text = "Wild ", colour = G.C.IMPORTANT, scale = 0.2 }, -- No localization for "Wild"
+            { text = "Cards", colour = G.C.WHITE, scale = 0.2 },     -- No localization for "Cards"
+            { text = ")", scale = 0.2 }
         }
     }
 end

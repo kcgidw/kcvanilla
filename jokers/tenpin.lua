@@ -81,11 +81,15 @@ if SMODS.Mods['JokerDisplay'] and _G['JokerDisplay'] then
         },
         extra = {
             {
-                { text = "(" },
-                { ref_table = "card.ability", ref_value = "hands_remaining" },
-                { text = localize("k_hud_hands") .. " " .. localize("b_remaining") },
-                { text = ")" }
+                { text = "(", scale = 0.2 },
+                { ref_table = "card.joker_display_values", ref_value = "remaining", scale = 0.2 }, -- bugfix, see below
+                { text = localize("k_hud_hands") .. " " .. localize("b_remaining"), scale = 0.2 },
+                { text = ")", scale = 0.2 }
             }
-        }
+        },
+        -- This is required because of a bug in the code above allowing "card.ability.hands_remaining" to go negative
+        calc_function = function(card)
+            card.joker_display_values.remaining = (card.ability.hands_remaining > 0) and card.ability.hands_remaining or 0
+        end
     }
 end
