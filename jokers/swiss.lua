@@ -58,3 +58,13 @@ SMODS.Joker {
         end
     end
 }
+
+if SMODS.Mods['JokerDisplay'] and _G['JokerDisplay'] then
+    local jd_def = JokerDisplay.Definitions
+    jd_def["j_kcva_swiss"] = {
+        text = {
+            { text = "+", colour = G.C.MULT },
+            { ref_table = "card.ability", ref_value = "mult", retrigger_type = "mult", colour = G.C.MULT }
+        }
+    }
+end
