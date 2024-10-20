@@ -89,7 +89,8 @@ SMODS.Joker {
                 });
 
                 for i_2, other_c_2 in ipairs(targets) do
-                    local percent = 1.15 - (i_2 - 0.999) / (#G.hand.cards - 0.998) * 0.3
+                    kcv_log(#context.scoring_hand)
+                    local percent = 1.15 - (i_2 - 0.999) / (#context.scoring_hand - 0.998) * 0.3
                     G.E_MANAGER:add_event(Event({
                         func = function()
                             if not other_c_2.kcv_ranked_up_discreetly then
@@ -105,7 +106,7 @@ SMODS.Joker {
                 end
                 delay(0.3)
                 for i_3, other_c_3 in ipairs(targets) do
-                    local percent = 0.85 + (i_3 - 0.999) / (#G.hand.cards - 0.998) * 0.3
+                    local percent = 0.85 + (i_3 - 0.999) / (#context.scoring_hand - 0.998) * 0.3
                     G.E_MANAGER:add_event(Event({
                         func = function()
                             if not other_c_3.kcv_ranked_up_discreetly then
