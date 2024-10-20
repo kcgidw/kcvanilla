@@ -1,5 +1,5 @@
 local function kcv_get_suit_prefix(card)
-    local suit_prefix = string.sub(card.base.suit, 1, 1)
+    local suit_prefix = SMODS.Suits[card.base.suit].card_key
     return suit_prefix
 end
 
