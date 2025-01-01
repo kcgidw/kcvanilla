@@ -18,16 +18,16 @@ let jokers = [
 		rarity: 'Common',
 	},
 	{
-		name: 'Squid',
-		text: ['+5 hand size on final 2 hands of round'],
-		image_url: 'assets/originals/squid.png',
-		rarity: 'Common',
-	},
-	{
 		name: 'Ten-Pin',
 		text: [`If played hand contains a scoring 10, X2 Mult for next 2 hands`],
 		image_url: 'assets/originals/tenpin.png',
 		rarity: 'Common',
+	},
+	{
+		name: 'Squid',
+		text: ['+5 hand size on final 2 hands of round'],
+		image_url: 'assets/originals/squid.png',
+		rarity: 'Uncommon',
 	},
 	{
 		name: 'Red Envelope',

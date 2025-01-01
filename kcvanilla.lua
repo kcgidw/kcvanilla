@@ -36,9 +36,9 @@ end
 
 NFS.load(SMODS.current_mod.path .. 'jokers/composition.lua')()
 NFS.load(SMODS.current_mod.path .. 'jokers/fortunecookie.lua')()
+NFS.load(SMODS.current_mod.path .. 'jokers/tenpin.lua')()
 NFS.load(SMODS.current_mod.path .. 'jokers/robo.lua')()
 NFS.load(SMODS.current_mod.path .. 'jokers/squid.lua')()
-NFS.load(SMODS.current_mod.path .. 'jokers/tenpin.lua')()
 NFS.load(SMODS.current_mod.path .. 'jokers/redenvelope.lua')()
 NFS.load(SMODS.current_mod.path .. 'jokers/swiss.lua')()
 NFS.load(SMODS.current_mod.path .. 'jokers/chan.lua')()
