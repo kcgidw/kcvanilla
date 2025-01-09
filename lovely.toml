@@ -96,38 +96,19 @@ end
 
 '''
 
-# Powergrid: init count
-[[patches]]
-[patches.pattern]
-target = 'functions/state_events.lua'
-pattern = "G.GAME.current_round.used_packs = {}"
-position = 'after'
-match_indent = true
-payload = '''
-    G.GAME.current_round.kcv_mults_scored = 0
-
-'''
-
 # Powergrid: increment count when mult card scored
 [[patches]]
 [patches.pattern]
 target = 'functions/state_events.lua'
-pattern = "if effects[ii].mult then"
-position = 'after'
-match_indent = true
-payload = '''
-    G.GAME.current_round.kcv_mults_scored = (G.GAME.current_round.kcv_mults_scored or 0) + 1
-
-'''
-
-# Powergrid: reset count at end of round, to be safe
-[[patches]]
-[patches.pattern]
-target = 'functions/state_events.lua'
-pattern = "if G.GAME.round_resets.ante == G.GAME.win_ante and G.GAME.blind:get_type() == 'Boss' then"
+pattern = "local effects = {eval_card(scoring_hand[i],*"
 position = 'before'
 match_indent = true
 payload = '''
-    G.GAME.current_round.kcv_mults_scored = 0
+
+-- KCVanilla check for Power Grid
+local kc_scored_enhancements = SMODS.get_enhancements(scoring_hand[i])
+if kc_scored_enhancements and kc_scored_enhancements.m_mult then
+    G.GAME.current_round.kcv_mults_scored = (G.GAME.current_round.kcv_mults_scored or 0) + 1
+end
 
 '''
