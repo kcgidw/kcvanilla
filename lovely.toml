@@ -44,11 +44,7 @@ pattern = "local hand_text_set = false"
 position = 'after'
 match_indent = true
 payload = '''
-
-    for kcv_i, kcv_joker in ipairs(G.jokers.cards) do
-        kcv_joker:calculate_joker({scoring_hand = scoring_hand, poker_hands = poker_hands, kcv_forecast_event = true})
-    end
-
+SMODS.calculate_context({full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, kcv_forecast_event = true}, percent)
 '''
 
 # Five-Day Forecast: use kcv_ranked_up_discreetly
@@ -59,11 +55,9 @@ pattern = "self:set_sprites(nil, card)"
 position = 'at'
 match_indent = true
 payload = '''
-
 if not self.kcv_ranked_up_discreetly then
     self:set_sprites(nil, card)
 end
-
 '''
 
 # 5-day forecast: set_base() will re-evaluate debuffs, causing just-played cards to debuff during The Pillar
