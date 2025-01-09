@@ -9,7 +9,7 @@ SMODS.Joker {
     rarity = 3,
     cost = 8,
     unlocked = true,
-    discovered = false,
+    discovered = true,
     eternal_compat = false,
     perishable_compat = true,
     blueprint_compat = false,
@@ -19,12 +19,12 @@ SMODS.Joker {
     },
     loc_txt = {
         name = "Royal Guard",
-        text = {"After {C:attention}#2#{} {C:attention}Kings{} or {C:attention}Queens{}", "score, sell this to make a",
-                "random Joker {C:dark_edition}Negative{}", "{C:inactive}(Progress: #1#/#2#){}"}
+        text = { "After {C:attention}#2#{} {C:attention}Kings{} or {C:attention}Queens{}", "score, sell this to make a",
+            "random Joker {C:dark_edition}Negative{}", "{C:inactive}(Progress: #1#/#2#){}" }
     },
     loc_vars = function(self, info_queue, card)
         return {
-            vars = {card.ability.progress, card.ability.required_progress}
+            vars = { card.ability.progress, card.ability.required_progress }
         }
     end,
     calculate = function(self, card, context)
