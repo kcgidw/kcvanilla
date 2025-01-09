@@ -79,23 +79,6 @@ if not initial and not self.kcv_ignore_debuff_check then G.GAME.blind:debuff_car
 
 '''
 
-# Composition: score chips along with mult
-[[patches]]
-[patches.pattern]
-target = 'functions/state_events.lua'
-pattern = "local effects = eval_card(_card, {cardarea = G.jokers, full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, joker_main = true})"
-position = 'after'
-match_indent = true
-payload = '''
-
-if effects.jokers and effects.jokers.kcv_composition_chips_effect then
-    hand_chips = mod_chips(hand_chips + effects.jokers.kcv_composition_chips_effect.chip_mod)
-    update_hand_text({delay = 0}, {chips = hand_chips})
-    card_eval_status_text(_card, 'jokers', nil, percent, nil, effects.jokers.kcv_composition_chips_effect)
-end
-
-'''
-
 # Powergrid: increment count when mult card scored
 [[patches]]
 [patches.pattern]
