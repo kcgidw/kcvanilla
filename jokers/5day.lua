@@ -89,7 +89,7 @@ SMODS.Joker {
                 });
 
                 for i_2, other_c_2 in ipairs(targets) do
-                    kcv_log(#context.scoring_hand)
+                    -- kcv_log(#context.scoring_hand)
                     local percent = 1.15 - (i_2 - 0.999) / (#context.scoring_hand - 0.998) * 0.3
                     G.E_MANAGER:add_event(Event({
                         func = function()
