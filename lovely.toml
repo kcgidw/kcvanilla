@@ -1,32 +1,7 @@
 [manifest]
 version = "1.0.0"
 dump_lua = true
-priority = 0
-
-# add `kcv_juice_card_until` field to context.individual return object
-# Provides an appropriate timeslot to call juice_card_until during  context.individual
-[[patches]]
-[patches.pattern]
-target = 'functions/state_events.lua'
-pattern = "if effects[ii].extra then"
-position = 'before'
-match_indent = true
-payload = '''
-
-if effects[ii].kcv_juice_card_until then
-    G.E_MANAGER:add_event(Event({
-        trigger = 'immediate',
-        func = function()
-            local eval = function(card)
-                return true
-            end
-            juice_card_until(effects[ii].card, eval, true)
-            return true
-        end
-    }))
-end
-
-'''
+priority = 1
 
 # Luck of the Irish (mult effect)
 [[patches]]
@@ -54,11 +29,11 @@ if pseudorandom('lucky_money') < kcv_get_irish_normal(self)/15 then
 [[patches]]
 [patches.pattern]
 target = 'functions/common_events.lua'
-pattern = "elseif _c.effect == 'Lucky Card' then loc_vars = {G.GAME.probabilities.normal, _c.config.mult, 5, _c.config.p_dollars, 15}"
+pattern = "elseif _c.effect == 'Lucky Card' then loc_vars = {G.GAME.probabilities.normal, cfg.mult, 5, cfg.p_dollars, 15}"
 position = 'at'
 match_indent = true
 payload = '''
-elseif _c.effect == 'Lucky Card' then loc_vars = {kcv_get_irish_normal(card), _c.config.mult, 5, _c.config.p_dollars, 15}
+elseif _c.effect == 'Lucky Card' then loc_vars = {kcv_get_irish_normal(card), cfg.mult, 5, cfg.p_dollars, 15}
 '''
 
 # Five-Day Forecast must rank-up cards *before* context.before runs so other jokers can get updated ranks
