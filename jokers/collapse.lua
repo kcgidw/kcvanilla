@@ -20,6 +20,7 @@ SMODS.Joker {
                 'to transform into a {C:spectral}Black Hole{}'}
     },
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.c_black_hole
         return {
             vars = {'' .. (G.GAME and G.GAME.probabilities.normal or 1)}
         }
