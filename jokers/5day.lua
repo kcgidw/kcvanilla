@@ -95,9 +95,10 @@ SMODS.Joker {
                             other_c_3.kcv_display_id = other_c_3.kcv_display_id + 1
 
                             -- Copying method SMODs uses
-                            local card_suit = other_c_3.base.suit
-                            local card_rank = other_c_3.base.value
+                            local card_suit = SMODS.Suits[other_c_3.base.suit].card_key
+                            local card_rank = SMODS.Ranks[other_c_3.base.value].card_key
                             local newcard = G.P_CARDS[('%s_%s'):format(card_suit, card_rank)]
+                            
                             -- set_base again to update sprites that were postponed by kcv_ranked_up_discreetly
                             other_c_3:set_sprites(nil, newcard)
                             play_sound('tarot2', percent, 0.6)
