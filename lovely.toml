@@ -44,7 +44,7 @@ pattern = "local hand_text_set = false"
 position = 'after'
 match_indent = true
 payload = '''
-SMODS.calculate_context({full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, kcv_forecast_event = true}, percent)
+SMODS.calculate_context({full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, kcv_forecast_event = true})
 '''
 
 # Five-Day Forecast: use kcv_ranked_up_discreetly
