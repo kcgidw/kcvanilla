@@ -32,6 +32,7 @@ SMODS.Joker {
         text = {"{C:attention}Lucky{} {C:clubs}Clubs{} are {C:green}4X{} more", "likely to succeed"}
     },
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_lucky
         return {
             vars = {}
         }
