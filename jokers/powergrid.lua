@@ -13,7 +13,7 @@ SMODS.Joker {
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = true,
-    -- enhancement_gate = 'm_mult',
+    enhancement_gate = 'm_mult',
     config = {
         extra = 0.2
     },
@@ -24,6 +24,7 @@ SMODS.Joker {
                 "{C:inactive}(Next: {X:mult,C:white} X#2# {C:inactive} Mult)"}
     },
     loc_vars = function(self, info_queue, card)
+        info_queue[#info_queue + 1] = G.P_CENTERS.m_mult
         local xmult = 1 + card.ability.extra + ((G.GAME.current_round.kcv_mults_scored or 0) * card.ability.extra)
         return {
             vars = {card.ability.extra, xmult}
