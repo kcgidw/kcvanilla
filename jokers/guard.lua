@@ -9,7 +9,7 @@ SMODS.Joker {
     rarity = 3,
     cost = 8,
     unlocked = true,
-    discovered = true,
+    discovered = false,
     eternal_compat = false,
     perishable_compat = true,
     blueprint_compat = false,
@@ -19,13 +19,13 @@ SMODS.Joker {
     },
     loc_txt = {
         name = "Royal Guard",
-        text = {"After {C:attention}#2#{} {C:attention}Kings{} or {C:attention}Queens{}", "score, sell this to make a",
-                "random Joker {C:dark_edition}Negative{}", "{C:inactive}(Progress: #1#/#2#){}"}
+        text = { "After {C:attention}#2#{} {C:attention}Kings{} or {C:attention}Queens{}", "score, sell this to make a",
+            "random Joker {C:dark_edition}Negative{}", "{C:inactive}(Progress: #1#/#2#){}" }
     },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
         return {
-            vars = {card.ability.progress, card.ability.required_progress}
+            vars = { card.ability.progress, card.ability.required_progress }
         }
     end,
     calculate = function(self, card, context)
@@ -35,7 +35,7 @@ SMODS.Joker {
                 if card.ability.progress < card.ability.required_progress then
                     card.ability.progress = card.ability.progress + 1
                     local sell_ready = card.ability.progress >= card.ability.required_progress
-                    return {
+                    local ret = {
                         extra = {
                             focus = card,
                             message = sell_ready and localize('k_active_ex') or
@@ -43,8 +43,20 @@ SMODS.Joker {
                         },
                         card = card,
                         colour = G.C.FILTER,
-                        kcv_juice_card_until = sell_ready
                     }
+                    if sell_ready then
+                        ret.func = function()
+                            G.E_MANAGER:add_event(Event({
+                                trigger = 'immediate',
+                                func = function()
+                                    local eval = function(card) return not card.REMOVED end
+                                    juice_card_until(card, eval, true)
+                                    return true
+                                end
+                            }))
+                        end
+                    end
+                    return ret
                 end
             end
         end
