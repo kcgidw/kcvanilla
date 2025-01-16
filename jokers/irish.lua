@@ -29,7 +29,7 @@ SMODS.Joker {
     config = {},
     loc_txt = {
         name = "Luck of the Irish",
-        text = {"{C:attention}Lucky{} {C:clubs}Clubs{} are {C:green}4X{} more", "likely to succeed"}
+        text = { "{C:attention}Lucky{} {C:clubs}Clubs{} are {X:green,C:white} 4X {} more", "likely to successfully trigger" }
     },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_lucky
@@ -40,3 +40,19 @@ SMODS.Joker {
     calculate = function(self, card, context)
     end
 }
+
+if SMODS.Mods['JokerDisplay'] and _G['JokerDisplay'] then
+    local jd_def = JokerDisplay.Definitions
+    jd_def["j_kcva_irish"] = {
+        text = {
+            { text = "Lucky ", colour = G.C.IMPORTANT }, -- No localization for "Lucky"
+            { text = localize("Clubs", "suits_plural").." ", colour = G.C.SUITS.Clubs },
+            {
+                border_nodes = {
+                    { text = "4X" }
+                },
+                border_colour = G.C.CHANCE
+            }
+        }
+    }
+end

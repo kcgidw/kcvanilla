@@ -60,3 +60,14 @@ SMODS.Joker {
         end
     end
 }
+
+if SMODS.Mods['JokerDisplay'] and _G['JokerDisplay'] then
+    local jd_def = JokerDisplay.Definitions
+    jd_def["j_kcva_squid"] = {
+        text = {
+            { text = "+", colour = G.C.FILTER },
+            { ref_table = "card.ability", ref_value = "h_size", colour = G.C.FILTER },
+            { text = " Hand Size", colour = G.C.FILTER } -- No localization for "Hand Size"
+        }
+    }
+end
