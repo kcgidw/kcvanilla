@@ -4,6 +4,8 @@ Balatro content mod. A small pack of plausible Jokers with a faithful art style.
 
 [Joker list](https://kcgidw.github.io/kcvanilla/)
 
+Jokers are unlocked by default. To undiscover/rediscover all Jokers: In the game, go to Mods > KCVanilla > Config
+
 Feedback? Log an issue or hmu on the [KCVanilla thread](https://discord.com/channels/1116389027176787968/1259676012086689804) in the Balatro Discord server.
 
 ## Installation
