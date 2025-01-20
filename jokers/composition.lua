@@ -41,7 +41,7 @@ SMODS.Joker {
     rarity = 1,
     cost = 4,
     unlocked = true,
-    discovered = false,
+    discovered = true,
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = true,
@@ -53,13 +53,13 @@ SMODS.Joker {
     },
     loc_txt = {
         name = "Composition",
-        text = { "{C:mult}+#1#{} Mult for each Joker to the left,", "{C:chips}+#2#{} Chips for each Joker to the right",
-            "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult and {C:chips}+#4#{C:inactive} Chips){}" }
+        text = {"{C:mult}+#1#{} Mult for each Joker to the left,", "{C:chips}+#2#{} Chips for each Joker to the right",
+                "{C:inactive}(Currently {C:mult}+#3#{C:inactive} Mult and {C:chips}+#4#{C:inactive} Chips){}"}
     },
     loc_vars = function(self, info_queue, card)
         local effect = kcv_composition_calc_effect(card, card.ability.extra.mult, card.ability.extra.chips)
         return {
-            vars = { card.ability.extra.mult, card.ability.extra.chips, effect.mult, effect.chips }
+            vars = {card.ability.extra.mult, card.ability.extra.chips, effect.mult, effect.chips}
         }
     end,
     calculate = function(self, card, context)
@@ -76,7 +76,7 @@ SMODS.Joker {
                 message = localize {
                     type = 'variable',
                     key = 'a_chips',
-                    vars = { effect.chips }
+                    vars = {effect.chips}
                 },
                 colour = G.C.CHIPS,
                 extra = {
@@ -84,9 +84,9 @@ SMODS.Joker {
                     message = localize {
                         type = 'variable',
                         key = 'a_mult',
-                        vars = { effect.mult },
+                        vars = {effect.mult}
                     },
-                    colour = G.C.MULT,
+                    colour = G.C.MULT
                 }
             }
         end
