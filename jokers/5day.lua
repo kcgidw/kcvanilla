@@ -6,7 +6,7 @@ local function kcv_rank_up_discreetly(card)
 
     local old_rank = SMODS.Ranks[card.base.value]
     local new_rank = old_rank.next[1]
-    card.kcv_display_id = card.kcv_display_id and card.kcv_display_id or card.base.id
+    card.kcv_display_rank = card.kcv_display_rank and card.kcv_display_rank or old_rank
 
     SMODS.change_base(card, card.base.suit, new_rank) -- Should respect "kcv_ranked_up_discreetly" as it uses card:set_base
 end
@@ -90,22 +90,23 @@ SMODS.Joker {
                                 -- was complete, but another 5-day joker is targeting this card
                                 return true
                             end
-                            -- kcv_log(other_c_3.base.id .. ' - ' .. other_c_3.kcv_display_id)
-                            other_c_3.kcv_display_id = other_c_3.kcv_display_id + 1
+                            -- kcv_log(other_c_3.base.id .. ' - ' .. other_c_3.kcv_display_rank)
+                            other_c_3.kcv_display_rank = SMODS.Ranks[other_c_3.kcv_display_rank.next[1]]
 
                             -- Copying method SMODs uses
-                            local card_suit = other_c_3.base.suit
-                            local card_rank = other_c_3.base.value
+                            local card_suit = SMODS.Suits[other_c_3.base.suit].card_key
+                            local card_rank = other_c_3.kcv_display_rank.card_key
                             local newcard = G.P_CARDS[('%s_%s'):format(card_suit, card_rank)]
+                            
                             -- set_base again to update sprites that were postponed by kcv_ranked_up_discreetly
                             other_c_3:set_sprites(nil, newcard)
                             play_sound('tarot2', percent, 0.6)
                             other_c_3:flip()
-                            if other_c_3.kcv_display_id >= other_c_3.base.id then
+                            if other_c_3.kcv_display_rank.card_key == SMODS.Ranks[other_c_3.base.value].card_key then
                                 -- cleanup
                                 other_c_3.kcv_ranked_up_discreetly = nil
                                 other_c_3.kcv_ignore_debuff_check = nil
-                                other_c_3.kcv_display_id = nil
+                                other_c_3.kcv_display_rank = nil
                             end
                             return true
                         end
