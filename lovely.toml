@@ -1,32 +1,7 @@
 [manifest]
 version = "1.0.0"
 dump_lua = true
-priority = 0
-
-# add `kcv_juice_card_until` field to context.individual return object
-# Provides an appropriate timeslot to call juice_card_until during  context.individual
-[[patches]]
-[patches.pattern]
-target = 'functions/state_events.lua'
-pattern = "if effects[ii].extra then"
-position = 'before'
-match_indent = true
-payload = '''
-
-if effects[ii].kcv_juice_card_until then
-    G.E_MANAGER:add_event(Event({
-        trigger = 'immediate',
-        func = function()
-            local eval = function(card)
-                return true
-            end
-            juice_card_until(effects[ii].card, eval, true)
-            return true
-        end
-    }))
-end
-
-'''
+priority = 1
 
 # Luck of the Irish (mult effect)
 [[patches]]
@@ -54,11 +29,11 @@ if pseudorandom('lucky_money') < kcv_get_irish_normal(self)/15 then
 [[patches]]
 [patches.pattern]
 target = 'functions/common_events.lua'
-pattern = "elseif _c.effect == 'Lucky Card' then loc_vars = {G.GAME.probabilities.normal, _c.config.mult, 5, _c.config.p_dollars, 15}"
+pattern = "elseif _c.effect == 'Lucky Card' then loc_vars = {G.GAME.probabilities.normal, cfg.mult, 5, cfg.p_dollars, 15}"
 position = 'at'
 match_indent = true
 payload = '''
-elseif _c.effect == 'Lucky Card' then loc_vars = {kcv_get_irish_normal(card), _c.config.mult, 5, _c.config.p_dollars, 15}
+elseif _c.effect == 'Lucky Card' then loc_vars = {kcv_get_irish_normal(card), cfg.mult, 5, cfg.p_dollars, 15}
 '''
 
 # Five-Day Forecast must rank-up cards *before* context.before runs so other jokers can get updated ranks
@@ -69,11 +44,7 @@ pattern = "local hand_text_set = false"
 position = 'after'
 match_indent = true
 payload = '''
-
-    for kcv_i, kcv_joker in ipairs(G.jokers.cards) do
-        kcv_joker:calculate_joker({scoring_hand = scoring_hand, poker_hands = poker_hands, kcv_forecast_event = true})
-    end
-
+SMODS.calculate_context({full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, kcv_forecast_event = true})
 '''
 
 # Five-Day Forecast: use kcv_ranked_up_discreetly
@@ -84,11 +55,9 @@ pattern = "self:set_sprites(nil, card)"
 position = 'at'
 match_indent = true
 payload = '''
-
 if not self.kcv_ranked_up_discreetly then
     self:set_sprites(nil, card)
 end
-
 '''
 
 # 5-day forecast: set_base() will re-evaluate debuffs, causing just-played cards to debuff during The Pillar
@@ -104,55 +73,19 @@ if not initial and not self.kcv_ignore_debuff_check then G.GAME.blind:debuff_car
 
 '''
 
-# Composition: score chips along with mult
-[[patches]]
-[patches.pattern]
-target = 'functions/state_events.lua'
-pattern = "local effects = eval_card(_card, {cardarea = G.jokers, full_hand = G.play.cards, scoring_hand = scoring_hand, scoring_name = text, poker_hands = poker_hands, joker_main = true})"
-position = 'after'
-match_indent = true
-payload = '''
-
-if effects.jokers and effects.jokers.kcv_composition_chips_effect then
-    hand_chips = mod_chips(hand_chips + effects.jokers.kcv_composition_chips_effect.chip_mod)
-    update_hand_text({delay = 0}, {chips = hand_chips})
-    card_eval_status_text(_card, 'jokers', nil, percent, nil, effects.jokers.kcv_composition_chips_effect)
-end
-
-'''
-
-# Powergrid: init count
-[[patches]]
-[patches.pattern]
-target = 'functions/state_events.lua'
-pattern = "G.GAME.current_round.used_packs = {}"
-position = 'after'
-match_indent = true
-payload = '''
-    G.GAME.current_round.kcv_mults_scored = 0
-
-'''
-
 # Powergrid: increment count when mult card scored
 [[patches]]
 [patches.pattern]
 target = 'functions/state_events.lua'
-pattern = "if effects[ii].mult then"
-position = 'after'
-match_indent = true
-payload = '''
-    G.GAME.current_round.kcv_mults_scored = (G.GAME.current_round.kcv_mults_scored or 0) + 1
-
-'''
-
-# Powergrid: reset count at end of round, to be safe
-[[patches]]
-[patches.pattern]
-target = 'functions/state_events.lua'
-pattern = "if G.GAME.round_resets.ante == G.GAME.win_ante and G.GAME.blind:get_type() == 'Boss' then"
+pattern = "local effects = {eval_card(scoring_hand[i],*"
 position = 'before'
 match_indent = true
 payload = '''
-    G.GAME.current_round.kcv_mults_scored = 0
+
+-- KCVanilla check for Power Grid
+local kc_scored_enhancements = SMODS.get_enhancements(scoring_hand[i])
+if kc_scored_enhancements and kc_scored_enhancements.m_mult then
+    G.GAME.current_round.kcv_mults_scored = (G.GAME.current_round.kcv_mults_scored or 0) + 1
+end
 
 '''

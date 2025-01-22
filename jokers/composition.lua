@@ -71,45 +71,24 @@ SMODS.Joker {
                 return
             end
 
-            -- nested chip_mod result to be extracted and evaluated separately from mult_mod
-            local kcv_composition_chips_effect = {
+            return {
                 chip_mod = effect.chips,
                 message = localize {
                     type = 'variable',
                     key = 'a_chips',
                     vars = {effect.chips}
+                },
+                colour = G.C.CHIPS,
+                extra = {
+                    mult_mod = effect.mult,
+                    message = localize {
+                        type = 'variable',
+                        key = 'a_mult',
+                        vars = {effect.mult}
+                    },
+                    colour = G.C.MULT
                 }
             }
-
-            return {
-                kcv_composition_chips_effect = kcv_composition_chips_effect,
-                mult_mod = effect.mult,
-                message = localize {
-                    type = 'variable',
-                    key = 'a_mult',
-                    vars = {effect.mult}
-                }
-            }
-
-            -- Below works, but cannot hook into the "percent" sfx modifier
-            -- SMODS.eval_this(target_card, {
-            --     message = localize {
-            --         type = 'variable',
-            --         key = 'a_chips',
-            --         vars = {effect.chips}
-            --     },
-            --     chip_mod = effect.chips,
-            --     colour = G.C.CHIPS
-            -- })
-            -- SMODS.eval_this(target_card, {
-            --     message = localize {
-            --         type = 'variable',
-            --         key = 'a_mult',
-            --         vars = {effect.mult}
-            --     },
-            --     mult_mod = effect.mult,
-            --     colour = G.C.MULT
-            -- })
         end
     end
 }

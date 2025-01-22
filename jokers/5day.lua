@@ -1,36 +1,14 @@
-local function kcv_get_suit_prefix(card)
-    local suit_prefix = SMODS.Suits[card.base.suit].card_key
-    return suit_prefix
-end
-
-local function kcv_get_rank_suffix(id)
-    if id < 10 then
-        return tostring(id)
-    elseif id == 10 then
-        return 'T'
-    elseif id == 11 then
-        return 'J'
-    elseif id == 12 then
-        return 'Q'
-    elseif id == 13 then
-        return 'K'
-    else
-        return 'A'
-    end
-end
-
-local function kcv_get_rank_up_pcard(card)
-    local suit_prefix = kcv_get_suit_prefix(card)
-    local rank_suffix = kcv_get_rank_suffix(math.min(card.base.id + 1, 14))
-    return G.P_CARDS[suit_prefix .. '_' .. rank_suffix]
-end
-
 local function kcv_rank_up_discreetly(card)
-    local newcard = kcv_get_rank_up_pcard(card)
+    -- local newcard = kcv_get_rank_up_pcard(card)
     card.kcv_ignore_debuff_check = true
     card.kcv_ranked_up_discreetly = true
-    card.kcv_display_id = card.kcv_display_id and card.kcv_display_id or card.base.id
-    card:set_base(newcard)
+    -- card:set_base(newcard)
+
+    local old_rank = SMODS.Ranks[card.base.value]
+    local new_rank = old_rank.next[1]
+    card.kcv_display_rank = card.kcv_display_rank and card.kcv_display_rank or old_rank
+
+    SMODS.change_base(card, card.base.suit, new_rank) -- Should respect "kcv_ranked_up_discreetly" as it uses card:set_base
 end
 
 SMODS.Joker {
@@ -112,26 +90,30 @@ SMODS.Joker {
                                 -- was complete, but another 5-day joker is targeting this card
                                 return true
                             end
-                            -- kcv_log(other_c_3.base.id .. ' - ' .. other_c_3.kcv_display_id)
-                            other_c_3.kcv_display_id = other_c_3.kcv_display_id + 1
-                            local suit_prefix = kcv_get_suit_prefix(other_c_3)
-                            local rank_suffix = kcv_get_rank_suffix(other_c_3.kcv_display_id)
-                            local newcard = G.P_CARDS[suit_prefix .. '_' .. rank_suffix]
+                            -- kcv_log(other_c_3.base.id .. ' - ' .. other_c_3.kcv_display_rank)
+                            other_c_3.kcv_display_rank = SMODS.Ranks[other_c_3.kcv_display_rank.next[1]]
+
+                            -- Copying method SMODs uses
+                            local card_suit = SMODS.Suits[other_c_3.base.suit].card_key
+                            local card_rank = other_c_3.kcv_display_rank.card_key
+                            local newcard = G.P_CARDS[('%s_%s'):format(card_suit, card_rank)]
+                            
                             -- set_base again to update sprites that were postponed by kcv_ranked_up_discreetly
                             other_c_3:set_sprites(nil, newcard)
                             play_sound('tarot2', percent, 0.6)
                             other_c_3:flip()
-                            if other_c_3.kcv_display_id >= other_c_3.base.id then
+                            if other_c_3.kcv_display_rank.card_key == SMODS.Ranks[other_c_3.base.value].card_key then
                                 -- cleanup
                                 other_c_3.kcv_ranked_up_discreetly = nil
                                 other_c_3.kcv_ignore_debuff_check = nil
-                                other_c_3.kcv_display_id = nil
+                                other_c_3.kcv_display_rank = nil
                             end
                             return true
                         end
                     }))
                     delay(0.15)
                 end
+                delay(0.5)
             end
         end
     end

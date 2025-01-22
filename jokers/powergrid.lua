@@ -31,16 +31,22 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
+        if context.setting_blind then
+            G.GAME.current_round.kcv_mults_scored = 0
+        end
         if context.individual and context.cardarea == G.play then
             local other = context.other_card
-            if other.ability.name == 'Mult' and not other.debuff then
-                local xmult = 1 + card.ability.extra +
-                                  ((G.GAME.current_round.kcv_mults_scored or 0) * card.ability.extra)
+            local other_enhancements = SMODS.get_enhancements(other)
+            if other_enhancements and other_enhancements.m_mult and not other.debuff then
+                local xmult = 1 + ((G.GAME.current_round.kcv_mults_scored or 0) * card.ability.extra)
                 return {
                     x_mult = xmult,
                     card = context.blueprint_card or card
                 }
             end
+        end
+        if context.end_of_round then
+            G.GAME.current_round.kcv_mults_scored = 0
         end
     end
 }

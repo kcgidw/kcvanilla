@@ -35,16 +35,30 @@ SMODS.Joker {
                 if card.ability.progress < card.ability.required_progress then
                     card.ability.progress = card.ability.progress + 1
                     local sell_ready = card.ability.progress >= card.ability.required_progress
-                    return {
+                    local ret = {
                         extra = {
                             focus = card,
                             message = sell_ready and localize('k_active_ex') or
                                 (card.ability.progress .. "/" .. card.ability.required_progress)
                         },
                         card = card,
-                        colour = G.C.FILTER,
-                        kcv_juice_card_until = sell_ready
+                        colour = G.C.FILTER
                     }
+                    if sell_ready then
+                        ret.func = function()
+                            G.E_MANAGER:add_event(Event({
+                                trigger = 'immediate',
+                                func = function()
+                                    local eval = function(card)
+                                        return not card.REMOVED
+                                    end
+                                    juice_card_until(card, eval, true)
+                                    return true
+                                end
+                            }))
+                        end
+                    end
+                    return ret
                 end
             end
         end
