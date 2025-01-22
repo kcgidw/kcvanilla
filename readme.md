@@ -14,6 +14,8 @@ Requires [Steamodded 1.0](https://github.com/Steamopollys/Steamodded)
 
 Unzip the [latest release](https://github.com/kcgidw/kcvanilla/releases) (or pull the repo) into your Mods/ folder.
 
+(If you're on Steamodded version below alpha-1304a, manually download the `old-calc` branch of this repo)
+
 ## Credits
 
 Art, design, and programming by krackocloud ([Ko-fi](https://ko-fi.com/krackocloud))
