@@ -16,6 +16,12 @@ Unzip the [latest release](https://github.com/kcgidw/kcvanilla/releases) (or pul
 
 (If you're on Steamodded version below alpha-1304a, manually download the `old-calc` branch of this repo)
 
+## Contributing
+
+PRs are welcome. Please keep PRs scoped to one goal.
+
+Localization PRs are welcome, but please understand that I won't maintain translations myself and they may break in the future.
+
 ## Credits
 
 Art, design, and programming by krackocloud ([Ko-fi](https://ko-fi.com/krackocloud))
