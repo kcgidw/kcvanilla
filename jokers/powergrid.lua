@@ -15,7 +15,8 @@ SMODS.Joker {
     blueprint_compat = true,
     enhancement_gate = 'm_mult',
     config = {
-        extra = 0.2
+        extra = 0.2,
+        jd_xmult = 1
     },
     loc_txt = {
         name = "Power Grid",
@@ -50,3 +51,31 @@ SMODS.Joker {
         end
     end
 }
+
+if SMODS.Mods['JokerDisplay'] and _G['JokerDisplay'] then
+    local jd_def = JokerDisplay.Definitions
+    jd_def["j_kcva_powergrid"] = {
+        text = {
+            {
+                border_nodes = {
+                    { text = "X" },
+                    { ref_table = "card.ability", ref_value = "jd_xmult", retrigger_type = "exp" }
+                }
+            }
+        },
+        calc_function = function(card)
+            local total = 1
+            local mod = 1 + ((G.GAME.current_round.kcv_mults_scored or 0) * card.ability.extra)
+            local text, poker_hands, scoring_hand = JokerDisplay.evaluate_hand()
+            for _, scoring_card in pairs(scoring_hand) do
+                if scoring_card.ability.name == 'Mult' and not scoring_card.debuff then
+                    mod = mod + card.ability.extra
+                    total = total * mod
+                end
+            end
+            if not next(G.play.cards) then
+                card.ability.jd_xmult = total
+            end
+        end
+    }
+end

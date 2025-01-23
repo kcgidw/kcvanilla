@@ -92,3 +92,20 @@ SMODS.Joker {
         end
     end
 }
+
+if SMODS.Mods['JokerDisplay'] and _G['JokerDisplay'] then
+    local jd_def = JokerDisplay.Definitions
+    jd_def["j_kcva_composition"] = {
+        text = {
+            { text = "+", colour = G.C.MULT },
+            { ref_table = "card.joker_display_values", ref_value = "mult", retrigger_type = "mult", colour = G.C.MULT },
+            { text = "+", colour = G.C.CHIPS },
+            { ref_table = "card.joker_display_values", ref_value = "chips", retrigger_type = "mult", colour = G.C.CHIPS }
+        },
+        calc_function = function(card)
+            local effect = kcv_composition_calc_effect(card, card.ability.extra.mult, card.ability.extra.chips)
+            card.joker_display_values.mult = effect.mult
+            card.joker_display_values.chips = effect.chips
+        end
+    }
+end

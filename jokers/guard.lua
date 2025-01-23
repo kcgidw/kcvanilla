@@ -78,3 +78,24 @@ SMODS.Joker {
         end
     end
 }
+
+if SMODS.Mods['JokerDisplay'] and _G['JokerDisplay'] then
+    local jd_def = JokerDisplay.Definitions
+    jd_def["j_kcva_guard"] = {
+        text = {
+            { ref_table = "card.joker_display_values", ref_value = "progress" },
+        },
+        reminder_text = {
+            { text = "(", scale = 0.2 },
+            { text = localize("King", "ranks") .. "s", colour = G.C.IMPORTANT, scale = 0.2 },
+            { text = " " .. localize("k_or") .. " ", scale = 0.2 },
+            { text = localize("Queen", "ranks") .. "s", colour = G.C.IMPORTANT, scale = 0.2 },
+            { text = ")", scale = 0.2 }
+        },
+        calc_function = function(card)
+            local active = card.ability.progress >= card.ability.required_progress
+            local remaining = card.ability.required_progress - card.ability.progress
+            card.joker_display_values.progress = localize { type = 'variable', key = active and 'loyalty_active' or 'loyalty_inactive', vars = { remaining } }
+        end
+    }
+end
