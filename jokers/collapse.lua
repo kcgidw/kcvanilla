@@ -14,11 +14,7 @@ SMODS.Joker {
     perishable_compat = true,
     blueprint_compat = true,
     config = {},
-    loc_txt = {
-        name = "Cosmic Collapse",
-        text = {'At end of round, held {C:planet}Planet{}', 'cards each have {C:green}#1# in 2{} chance',
-                'to transform into a {C:spectral}Black Hole{}'}
-    },
+    loc_txt = {set = 'Joker', key = 'j_kcvanilla_collapse'},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.c_black_hole
         return {

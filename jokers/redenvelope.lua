@@ -14,11 +14,7 @@ SMODS.Joker {
     perishable_compat = true,
     blueprint_compat = false,
     config = {},
-    loc_txt = {
-        name = "Red Envelope",
-        text = {'When Boss Blind is defeated,', 'earn {C:money}$8{} for each {C:blue}Common{} Joker',
-                '{C:inactive}(Currently {C:money}$#1#{C:inactive})'}
-    },
+    loc_txt = {set = 'Joker', key = 'j_kcvanilla_redenvelope'},
     loc_vars = function(self, info_queue, card)
         return {
             vars = {8 * kcv_common_joker_count()}

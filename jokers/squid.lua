@@ -17,10 +17,7 @@ SMODS.Joker {
         h_size = 0,
         h_mod = 5
     },
-    loc_txt = {
-        name = "Squid",
-        text = {"{C:attention}+#1#{} hand size on final", "2 hands of round", "{C:inactive}#2#"}
-    },
+    loc_txt = {set = 'Joker', key = 'j_kcvanilla_squid'},
     loc_vars = function(self, info_queue, card)
         return {
             vars = {card.ability.h_mod, card.ability.h_size > 0 and "(Active)" or "(Inactive)"}

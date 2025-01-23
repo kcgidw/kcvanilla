@@ -17,11 +17,7 @@ SMODS.Joker {
         mult = 0,
         extra = 10
     },
-    loc_txt = {
-        name = "Swiss Joker",
-        text = {'{C:mult}+#1#{} Mult for each', 'card played in previous hand', 'that did not score',
-                '{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)'}
-    },
+    loc_txt = {set = 'Joker', key = 'j_kcvanilla_swiss'},
     loc_vars = function(self, info_queue, card)
         return {
             vars = {card.ability.extra, card.ability.mult}

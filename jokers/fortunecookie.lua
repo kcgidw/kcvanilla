@@ -19,10 +19,7 @@ SMODS.Joker {
             chip_mod = 50
         }
     },
-    loc_txt = {
-        name = "Fortune Cookie",
-        text = {"{C:chips}+#1#{} Chips,", "{C:chips}-#2#{} Chips when", "{C:tarot}Tarot{} card is used"}
-    },
+    loc_txt = {set = 'Joker', key = 'j_kcvanilla_fortunecookie'},
     loc_vars = function(self, info_queue, card)
         return {
             vars = {card.ability.extra.chips, card.ability.extra.chip_mod}

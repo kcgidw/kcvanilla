@@ -27,12 +27,7 @@ SMODS.Joker {
     perishable_compat = true,
     blueprint_compat = true,
     config = {},
-    loc_txt = {
-        name = "Five-Day Forecast",
-        text = {"If played hand contains a {C:attention}Straight{},",
-                "increase played cards' ranks by {C:attention}1{}",
-                "{C:inactive}(Excludes {C:attention}Aces{C:inactive})"}
-    },
+    loc_txt = {set = 'Joker', key = 'j_kcvanilla_5day'},
     loc_vars = function(self, info_queue, card)
         return {
             vars = {}
