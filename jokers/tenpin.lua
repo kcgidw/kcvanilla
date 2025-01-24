@@ -17,11 +17,6 @@ SMODS.Joker {
         x_mult = 1,
         hands_remaining = 0
     },
-    loc_txt = {
-        name = "Ten-Pin",
-        text = {'If played hand contains a scoring {C:attention}10{},', '{X:mult,C:white} X2 {} Mult for next 2 hands',
-                '{C:inactive}#1#{}'}
-    },
     loc_vars = function(self, info_queue, card)
         local remaining_txt
         if card.ability.hands_remaining > 1 then

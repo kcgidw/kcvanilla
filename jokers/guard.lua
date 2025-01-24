@@ -17,11 +17,6 @@ SMODS.Joker {
         progress = 0,
         required_progress = 15
     },
-    loc_txt = {
-        name = "Royal Guard",
-        text = {"After {C:attention}#2#{} {C:attention}Kings{} or {C:attention}Queens{}", "score, sell this to make a",
-                "random Joker {C:dark_edition}Negative{}", "{C:inactive}(Progress: #1#/#2#){}"}
-    },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
         return {

@@ -17,11 +17,6 @@ SMODS.Joker {
         chips = 0,
         extra = 0
     },
-    loc_txt = {
-        name = "Jimbot",
-        text = {"Gains the {C:chips}Chip{} value of the first", "scored card ranked {C:attention}2-10{} each round",
-                "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"}
-    },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {card.ability.chips}
