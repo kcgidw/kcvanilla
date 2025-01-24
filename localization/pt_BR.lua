@@ -108,7 +108,7 @@ return {
 				text = {
 					"{C:attention}+#1#{} tamanho de mão nas", 
 					"2 últimas mãos da rodada", 
-					"{C:inactive}#2#"
+					"{C:inactive}(#2#)"
 				}
 			},
 			j_kcvanilla_swiss = {
@@ -126,7 +126,7 @@ return {
 					'Se a mão jogada contém',
 					'um {C:attention}10{} pontuado, {X:mult,C:white} X2 {} Multi', 
 					'pelas próximas 2 mãos',
-					'{C:inactive}#1#{}'
+					'{C:inactive}(#1#){}'
 				}
 			}
 		}

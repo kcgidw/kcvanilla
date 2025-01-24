@@ -19,12 +19,14 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         local remaining_txt
-        if card.ability.hands_remaining > 1 then
-            remaining_txt = '(Active for ' .. card.ability.hands_remaining .. ' more hands)'
-        elseif card.ability.hands_remaining == 1 then
-            remaining_txt = '(Active for 1 more hand)'
+        if card.ability.hands_remaining > 0 then
+            remaining_txt = localize {
+                type = 'variable',
+                key = 'kcv_active_for_X_more_hands',
+                vars = {card.ability.hands_remaining}
+            }
         else
-            remaining_txt = '(Inactive)'
+            remaining_txt = localize('kcv_inactive')
         end
         return {
             vars = {remaining_txt}

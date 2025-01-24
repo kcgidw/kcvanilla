@@ -18,8 +18,9 @@ SMODS.Joker {
         h_mod = 5
     },
     loc_vars = function(self, info_queue, card)
+        local active_txt = localize(card.ability.h_size > 0 and "kcv_active" or "kcv_inactive")
         return {
-            vars = {card.ability.h_mod, card.ability.h_size > 0 and "(Active)" or "(Inactive)"}
+            vars = {card.ability.h_mod, active_txt}
         }
     end,
     calculate = function(self, card, context)
