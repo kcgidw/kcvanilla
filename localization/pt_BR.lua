@@ -132,7 +132,12 @@ return {
 		}
 	},
 	misc = {
-		dictionary = {},
-		v_dictionary = {}
+		dictionary = {
+			kcv_active = "Ativo",
+        		kcv_inactive = "Inativo"
+        	},
+        	v_dictionary = {
+            		kcv_active_for_X_more_hands = "Ativo pelas próximas #1# mão(s)"
+        	}
 	}
 }
