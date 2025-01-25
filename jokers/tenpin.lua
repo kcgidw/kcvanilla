@@ -47,14 +47,6 @@ SMODS.Joker {
                 card_eval_status_text(card, 'extra', nil, nil, nil, {
                     message = localize('k_active_ex')
                 });
-                G.E_MANAGER:add_event(Event({
-                    trigger = 'immediate',
-                    func = function()
-                        local eval = function(card) return not card.REMOVED and card.ability.x_mult > 1 end
-                        juice_card_until(card, eval, true)
-                        return true
-                    end
-                }))
             else
                 card.ability.hands_remaining = card.ability.hands_remaining - 1
                 if card.ability.hands_remaining > 0 then
