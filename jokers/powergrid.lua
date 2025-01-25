@@ -1,10 +1,10 @@
-SMODS.Enhancement:take_ownership('m_mult', {
-    calculate = function(self, card, context)
-        if context.main_scoring then
-            G.GAME.current_round.kcv_mults_scored = (G.GAME.current_round.kcv_mults_scored or 0) + 1
-        end
-    end
-}, true)
+-- SMODS.Enhancement:take_ownership('m_mult', {
+--     calculate = function(self, card, context)
+--         if context.main_scoring then
+--             G.GAME.current_round.kcv_mults_scored = (G.GAME.current_round.kcv_mults_scored or 0) + 1
+--         end
+--     end
+-- }, true)
 
 SMODS.Joker {
     key = "powergrid",

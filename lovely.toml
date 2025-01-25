@@ -72,3 +72,19 @@ payload = '''
 if not initial and not self.kcv_ignore_debuff_check then G.GAME.blind:debuff_card(self) end
 
 '''
+
+# Powergrid: increment count when mult card scored
+[[patches]]
+[patches.pattern]
+target = 'functions/common_events.lua'
+pattern = "if context.cardarea == G.play and context.main_scoring then"
+position = 'after'
+match_indent = true
+payload = '''
+
+    -- KCVanilla check for Power Grid
+    if SMODS.has_enhancement(card, 'm_mult') and not card.debuff then
+        G.GAME.current_round.kcv_mults_scored = (G.GAME.current_round.kcv_mults_scored or 0) + 1
+    end
+
+'''
