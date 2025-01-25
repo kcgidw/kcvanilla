@@ -9,7 +9,7 @@ SMODS.Joker {
     rarity = 1,
     cost = 6,
     unlocked = true,
-    discovered = false,
+    discovered = true,
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = true,
@@ -17,19 +17,16 @@ SMODS.Joker {
         x_mult = 1,
         hands_remaining = 0
     },
-    loc_txt = {
-        name = "Ten-Pin",
-        text = {'If played hand contains a scoring {C:attention}10{},', '{X:mult,C:white} X2 {} Mult for next 2 hands',
-                '{C:inactive}#1#{}'}
-    },
     loc_vars = function(self, info_queue, card)
         local remaining_txt
-        if card.ability.hands_remaining > 1 then
-            remaining_txt = '(Active for ' .. card.ability.hands_remaining .. ' more hands)'
-        elseif card.ability.hands_remaining == 1 then
-            remaining_txt = '(Active for 1 more hand)'
+        if card.ability.hands_remaining > 0 then
+            remaining_txt = localize {
+                type = 'variable',
+                key = 'kcv_active_for_X_more_hands',
+                vars = {card.ability.hands_remaining}
+            }
         else
-            remaining_txt = '(Inactive)'
+            remaining_txt = localize('kcv_inactive')
         end
         return {
             vars = {remaining_txt}

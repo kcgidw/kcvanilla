@@ -9,7 +9,7 @@ SMODS.Joker {
     rarity = 1,
     cost = 5,
     unlocked = true,
-    discovered = false,
+    discovered = true,
     eternal_compat = false,
     perishable_compat = true,
     blueprint_compat = true,
@@ -18,10 +18,6 @@ SMODS.Joker {
             chips = 150,
             chip_mod = 50
         }
-    },
-    loc_txt = {
-        name = "Fortune Cookie",
-        text = {"{C:chips}+#1#{} Chips,", "{C:chips}-#2#{} Chips when", "{C:tarot}Tarot{} card is used"}
     },
     loc_vars = function(self, info_queue, card)
         return {

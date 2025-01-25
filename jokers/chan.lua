@@ -9,18 +9,13 @@ SMODS.Joker {
     rarity = 2,
     cost = 6,
     unlocked = true,
-    discovered = false,
+    discovered = true,
     eternal_compat = true,
     perishable_compat = false,
     blueprint_compat = true,
     config = {
         mult = 0,
         extra = 2
-    },
-    loc_txt = {
-        name = "Joker-chan",
-        text = {"At end of round, gains {C:mult}+#1#{} Mult", "for each {C:blue}Common{} Joker",
-                "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult){}"}
     },
     loc_vars = function(self, info_queue, card)
         return {

@@ -9,18 +9,13 @@ SMODS.Joker {
     rarity = 1,
     cost = 5,
     unlocked = true,
-    discovered = false,
+    discovered = true,
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = true,
     config = {
         chips = 0,
         extra = 0
-    },
-    loc_txt = {
-        name = "Jimbot",
-        text = {"Gains the {C:chips}Chip{} value of the first", "scored card ranked {C:attention}2-10{} each round",
-                "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"}
     },
     loc_vars = function(self, info_queue, card)
         return {

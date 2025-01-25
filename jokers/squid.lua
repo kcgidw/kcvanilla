@@ -9,7 +9,7 @@ SMODS.Joker {
     rarity = 2,
     cost = 5,
     unlocked = true,
-    discovered = false,
+    discovered = true,
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = false,
@@ -17,13 +17,10 @@ SMODS.Joker {
         h_size = 0,
         h_mod = 5
     },
-    loc_txt = {
-        name = "Squid",
-        text = {"{C:attention}+#1#{} hand size on final", "2 hands of round", "{C:inactive}#2#"}
-    },
     loc_vars = function(self, info_queue, card)
+        local active_txt = localize(card.ability.h_size > 0 and "kcv_active" or "kcv_inactive")
         return {
-            vars = {card.ability.h_mod, card.ability.h_size > 0 and "(Active)" or "(Inactive)"}
+            vars = {card.ability.h_mod, active_txt}
         }
     end,
     calculate = function(self, card, context)

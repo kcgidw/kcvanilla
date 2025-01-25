@@ -17,19 +17,13 @@ SMODS.Joker {
     rarity = 2,
     cost = 6,
     unlocked = true,
-    discovered = false,
+    discovered = true,
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = true,
     enhancement_gate = 'm_mult',
     config = {
         extra = 0.2
-    },
-    loc_txt = {
-        name = "Power Grid",
-        text = { 'Scored {C:attention}Mult{} cards give {X:mult,C:white} X#1# {} Mult',
-            'for each {C:attention}Mult{} card scored this round',
-            "{C:inactive}(Next: {X:mult,C:white} X#2# {C:inactive} Mult)" }
     },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_mult

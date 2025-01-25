@@ -22,17 +22,11 @@ SMODS.Joker {
     rarity = 2,
     cost = 6,
     unlocked = true,
-    discovered = false,
+    discovered = true,
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = true,
     config = {},
-    loc_txt = {
-        name = "Five-Day Forecast",
-        text = {"If played hand contains a {C:attention}Straight{},",
-                "increase played cards' ranks by {C:attention}1{}",
-                "{C:inactive}(Excludes {C:attention}Aces{C:inactive})"}
-    },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {}
@@ -97,7 +91,7 @@ SMODS.Joker {
                             local card_suit = SMODS.Suits[other_c_3.base.suit].card_key
                             local card_rank = other_c_3.kcv_display_rank.card_key
                             local newcard = G.P_CARDS[('%s_%s'):format(card_suit, card_rank)]
-                            
+
                             -- set_base again to update sprites that were postponed by kcv_ranked_up_discreetly
                             other_c_3:set_sprites(nil, newcard)
                             play_sound('tarot2', percent, 0.6)

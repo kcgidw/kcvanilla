@@ -62,29 +62,49 @@ NFS.load(SMODS.current_mod.path .. 'jokers/guard.lua')()
 NFS.load(SMODS.current_mod.path .. 'jokers/collapse.lua')()
 NFS.load(SMODS.current_mod.path .. 'jokers/irish.lua')()
 
-function G.FUNCS.unlock_kcvanilla_jokers()
+function G.FUNCS.kcv_discover_all()
     for _, key in ipairs(kcv_jokerAtlasOrder) do
-        discover_card(G.P_CENTERS["j_kcvanilla_" .. key])
+        local card = G.P_CENTERS["j_kcvanilla_" .. key]
+        discover_card(card)
     end
+end
+function G.FUNCS.kcv_undiscover_all()
+    for _, key in ipairs(kcv_jokerAtlasOrder) do
+        local card = G.P_CENTERS["j_kcvanilla_" .. key]
+        kcv_undiscover(card)
+    end
+end
+
+function kcv_undiscover(card)
+    if G.GAME.seeded or G.GAME.challenge then
+        return
+    end
+    card.discovered = false
+    set_discover_tallies()
+    G.E_MANAGER:add_event(Event({
+        func = (function()
+            G:save_progress()
+            return true
+        end)
+    }))
 end
 
 SMODS.current_mod.config_tab = function()
     return {
         n = G.UIT.ROOT,
-        config = { align = "cm", minh = G.ROOM.T.h * 0.25, padding = 0.2, r = 0.1, colour = G.C.GREY },
-        nodes = {
-            UIBox_button({
-                label = { "Discover KCVanilla Cards" },
-                -- w = 4.5,
-                button = 'unlock_kcvanilla_jokers',
-            }),
-            {
-                n = G.UIT.R,
-                config = { align = "cm", minh = 0.05 },
-                nodes = {
-                    { n = G.UIT.T, config = { text = "This cannot be undone", scale = 0.3, colour = G.C.UI.TEXT_LIGHT } }
-                }
-            }
-        }
+        config = {
+            align = "cm",
+            minh = G.ROOM.T.h * 0.25,
+            padding = 0.2,
+            r = 0.1,
+            colour = G.C.GREY
+        },
+        nodes = {UIBox_button({
+            label = {"Discover all"},
+            button = 'kcv_discover_all'
+        }), UIBox_button({
+            label = {"Uniscover all"},
+            button = 'kcv_undiscover_all'
+        })}
     }
 end

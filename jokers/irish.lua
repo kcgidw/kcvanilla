@@ -21,16 +21,12 @@ SMODS.Joker {
     rarity = 3,
     cost = 8,
     unlocked = true,
-    discovered = false,
+    discovered = true,
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = false,
     -- enhancement_gate = 'm_lucky',
     config = {},
-    loc_txt = {
-        name = "Luck of the Irish",
-        text = {"{C:attention}Lucky{} {C:clubs}Clubs{} are {C:green}4X{} more", "likely to succeed"}
-    },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_lucky
         return {

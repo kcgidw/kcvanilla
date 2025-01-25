@@ -9,7 +9,7 @@ SMODS.Joker {
     rarity = 3,
     cost = 8,
     unlocked = true,
-    discovered = false,
+    discovered = true,
     eternal_compat = false,
     perishable_compat = true,
     blueprint_compat = false,
@@ -17,15 +17,10 @@ SMODS.Joker {
         progress = 0,
         required_progress = 15
     },
-    loc_txt = {
-        name = "Royal Guard",
-        text = { "After {C:attention}#2#{} {C:attention}Kings{} or {C:attention}Queens{}", "score, sell this to make a",
-            "random Joker {C:dark_edition}Negative{}", "{C:inactive}(Progress: #1#/#2#){}" }
-    },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.e_negative
         return {
-            vars = { card.ability.progress, card.ability.required_progress }
+            vars = {card.ability.progress, card.ability.required_progress}
         }
     end,
     calculate = function(self, card, context)
@@ -42,14 +37,16 @@ SMODS.Joker {
                                 (card.ability.progress .. "/" .. card.ability.required_progress)
                         },
                         card = card,
-                        colour = G.C.FILTER,
+                        colour = G.C.FILTER
                     }
                     if sell_ready then
                         ret.func = function()
                             G.E_MANAGER:add_event(Event({
                                 trigger = 'immediate',
                                 func = function()
-                                    local eval = function(card) return not card.REMOVED end
+                                    local eval = function(card)
+                                        return not card.REMOVED
+                                    end
                                     juice_card_until(card, eval, true)
                                     return true
                                 end

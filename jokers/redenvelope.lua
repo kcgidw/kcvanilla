@@ -9,16 +9,11 @@ SMODS.Joker {
     rarity = 2,
     cost = 5,
     unlocked = true,
-    discovered = false,
+    discovered = true,
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = false,
     config = {},
-    loc_txt = {
-        name = "Red Envelope",
-        text = {'When Boss Blind is defeated,', 'earn {C:money}$8{} for each {C:blue}Common{} Joker',
-                '{C:inactive}(Currently {C:money}$#1#{C:inactive})'}
-    },
     loc_vars = function(self, info_queue, card)
         return {
             vars = {8 * kcv_common_joker_count()}

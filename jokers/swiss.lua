@@ -9,18 +9,13 @@ SMODS.Joker {
     rarity = 2,
     cost = 5,
     unlocked = true,
-    discovered = false,
+    discovered = true,
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = true,
     config = {
         mult = 0,
         extra = 10
-    },
-    loc_txt = {
-        name = "Swiss Joker",
-        text = {'{C:mult}+#1#{} Mult for each', 'card played in previous hand', 'that did not score',
-                '{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)'}
     },
     loc_vars = function(self, info_queue, card)
         return {

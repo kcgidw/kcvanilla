@@ -9,18 +9,12 @@ SMODS.Joker {
     rarity = 2,
     cost = 6,
     unlocked = true,
-    discovered = false,
+    discovered = true,
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = true,
     config = {
         x_mult = 1
-    },
-    loc_txt = {
-        name = "Handy Joker",
-        text = {'If first discard of round', 'is a single enhanced card,',
-                'gain {X:mult,C:white} X1 {} Mult, resets when', 'Boss Blind is defeated',
-                '{C:inactive}(Currently {X:mult,C:white} X#1# {C:inactive} Mult)'}
     },
     loc_vars = function(self, info_queue, card)
         return {
