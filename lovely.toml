@@ -72,20 +72,3 @@ payload = '''
 if not initial and not self.kcv_ignore_debuff_check then G.GAME.blind:debuff_card(self) end
 
 '''
-
-# Powergrid: increment count when mult card scored
-[[patches]]
-[patches.pattern]
-target = 'functions/state_events.lua'
-pattern = "local effects = {eval_card(scoring_hand[i],*"
-position = 'before'
-match_indent = true
-payload = '''
-
--- KCVanilla check for Power Grid
-local kc_scored_enhancements = SMODS.get_enhancements(scoring_hand[i])
-if kc_scored_enhancements and kc_scored_enhancements.m_mult then
-    G.GAME.current_round.kcv_mults_scored = (G.GAME.current_round.kcv_mults_scored or 0) + 1
-end
-
-'''
