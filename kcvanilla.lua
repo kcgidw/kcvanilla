@@ -1,3 +1,15 @@
+KCVanilla = SMODS.current_mod
+
+-- Using this to reset Power Grid, in the scenario Power Grid was destroyed mid-round
+function KCVanilla.reset_game_globals(run_start)
+    if run_start then
+        -- Globals for a whole run (like Fortune Teller)
+    else
+        -- Globals for a single blind (like Idol)
+        G.GAME.current_round.kcv_mults_scored = 0  -- Power Grid
+    end
+end
+
 SMODS.Atlas {
     key = 'kcvanillajokeratlas',
     path = "jokeratlas.png",

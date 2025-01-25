@@ -42,7 +42,15 @@ SMODS.Joker {
             end
 
             for i, planet in ipairs(success_planets) do
-                -- need this bc OG doesn't accomodate for transforming planets
+                -- Balatro vanilla doesn't do this on set_ability, only on card removal
+                -- Doesn't matter in Vanilla, but it does here
+                for k, v in pairs(G.P_CENTERS) do
+                    if v.name == planet.ability.name then
+                        G.GAME.used_jokers[k] = nil
+                    end
+                end
+
+                -- need this because vanilla doesn't accomodate for transforming planets
                 planet.config.card = {}
                 G.E_MANAGER:add_event(Event({
                     func = function()
