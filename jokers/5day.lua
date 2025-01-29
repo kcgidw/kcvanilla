@@ -13,7 +13,6 @@ end
 
 SMODS.Joker {
     key = "5day",
-    name = "Five-Day Forecast",
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,

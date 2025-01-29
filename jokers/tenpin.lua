@@ -1,6 +1,5 @@
 SMODS.Joker {
     key = "tenpin",
-    name = "Ten-Pin",
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,

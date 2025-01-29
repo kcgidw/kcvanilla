@@ -1,6 +1,5 @@
 SMODS.Joker {
     key = "fortunecookie",
-    name = "Fortune Cookie",
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,

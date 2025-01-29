@@ -32,7 +32,6 @@ end
 
 SMODS.Joker {
     key = "composition",
-    name = "Composition",
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,

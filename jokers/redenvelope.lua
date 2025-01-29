@@ -1,6 +1,5 @@
 SMODS.Joker {
     key = "redenvelope",
-    name = "Red Envelope",
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,

@@ -1,6 +1,5 @@
 SMODS.Joker {
     key = "handy",
-    name = "Handy Joker",
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,

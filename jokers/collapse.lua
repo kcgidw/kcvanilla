@@ -1,6 +1,5 @@
 SMODS.Joker {
     key = "collapse",
-    name = "Cosmic Collapse",
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,

@@ -12,7 +12,6 @@ end
 
 SMODS.Joker {
     key = "irish",
-    name = "Luck of the Irish",
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,

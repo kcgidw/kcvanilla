@@ -1,6 +1,5 @@
 SMODS.Joker {
     key = "energy",
-    name = "Joker Energy",
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,

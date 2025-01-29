@@ -5,10 +5,8 @@
 --         end
 --     end
 -- }, true)
-
 SMODS.Joker {
     key = "powergrid",
-    name = "Power Grid",
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
@@ -29,7 +27,7 @@ SMODS.Joker {
         info_queue[#info_queue + 1] = G.P_CENTERS.m_mult
         local xmult = 1 + card.ability.extra + ((G.GAME.current_round.kcv_mults_scored or 0) * card.ability.extra)
         return {
-            vars = { card.ability.extra, xmult }
+            vars = {card.ability.extra, xmult}
         }
     end,
     calculate = function(self, card, context)

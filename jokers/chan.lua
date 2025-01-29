@@ -1,6 +1,5 @@
 SMODS.Joker {
     key = "chan",
-    name = "Joker-chan",
     atlas = 'kcvanillajokeratlas',
     pos = {
         x = 0,
