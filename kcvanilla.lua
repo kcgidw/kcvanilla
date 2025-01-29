@@ -6,7 +6,7 @@ function KCVanilla.reset_game_globals(run_start)
         -- Globals for a whole run (like Fortune Teller)
     else
         -- Globals for a single blind (like Idol)
-        G.GAME.current_round.kcv_mults_scored = 0  -- Power Grid
+        G.GAME.current_round.kcv_mults_scored = 0 -- Power Grid
     end
 end
 
@@ -21,8 +21,9 @@ function kcv_log(str)
     sendInfoMessage(str, "KCVanilla")
 end
 
-local kcv_jokerAtlasOrder = {'5day', 'chan', 'swiss', 'collapse', 'energy', 'fortunecookie', 'guard', 'irish',
-                             'composition', 'powergrid', 'redenvelope', 'robo', 'handy', 'squid', 'tenpin'}
+local kcv_jokerAtlasOrder = {'5day', 'chan', 'swiss', 'collapse', 'drummajor', 'energy', 'fortunecookie', 'guard',
+                             'irish', 'composition', 'powergrid', 'rakugo', 'rats', 'redenvelope', 'robo', 'handy',
+                             'squid', 'tenpin'}
 
 function kcv_getJokerAtlasIndex(jokerKey)
     for i, v in ipairs(kcv_jokerAtlasOrder) do
@@ -61,6 +62,9 @@ NFS.load(SMODS.current_mod.path .. 'jokers/powergrid.lua')()
 NFS.load(SMODS.current_mod.path .. 'jokers/guard.lua')()
 NFS.load(SMODS.current_mod.path .. 'jokers/collapse.lua')()
 NFS.load(SMODS.current_mod.path .. 'jokers/irish.lua')()
+NFS.load(SMODS.current_mod.path .. 'jokers/drummajor.lua')()
+NFS.load(SMODS.current_mod.path .. 'jokers/rakugo.lua')()
+NFS.load(SMODS.current_mod.path .. 'jokers/rats.lua')()
 
 function G.FUNCS.kcv_discover_all()
     for _, key in ipairs(kcv_jokerAtlasOrder) do

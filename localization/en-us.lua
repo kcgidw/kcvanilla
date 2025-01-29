@@ -78,6 +78,19 @@ return {
                 name = "Ten-Pin",
                 text = {'If played hand contains a scoring {C:attention}10{},',
                         '{X:mult,C:white} X2 {} Mult for next 2 hands', '{C:inactive}(#1#){}'}
+            },
+            j_kcvanilla_drummajor = {
+                name = "Drum Major",
+                text = {'?'}
+            },
+            j_kcvanilla_rakugo = {
+                name = "Rakugo",
+                text = {'If played hand contains a {C:attention}Straight{},',
+                        'retrigger each played {C:attention}4 5 6 7{} or {C:attention}8{}'}
+            },
+            j_kcvanilla_rats = {
+                name = "Rats!",
+                text = {'?'}
             }
         }
     },
