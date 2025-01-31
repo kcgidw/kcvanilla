@@ -6,27 +6,27 @@ SMODS.Joker {
         y = kcv_getJokerAtlasIndex('rakugo')
     },
     rarity = 2,
-    cost = 7,
+    cost = 5,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = true,
-    config = {
-        extra = {
-            count = 1,
-            other_x_mult = 1.5
-        }
-    },
+    config = {},
     loc_vars = function(self, info_queue, card)
         return {}
     end,
     calculate = function(self, card, context)
-        if context.other_joker then
-            local this_idx = 0
-            local other_idx = 0
-            if this_idx < other_idx then
-
+        if context.repetition and context.other_card then
+            if next(context.poker_hands["Straight"]) then
+                local rank = context.other_card:get_id()
+                if rank == 4 or rank == 5 or rank == 6 or rank == 7 or rank == 8 then
+                    return {
+                        message = localize('k_again_ex'),
+                        repetitions = 1,
+                        card = card
+                    }
+                end
             end
         end
     end
