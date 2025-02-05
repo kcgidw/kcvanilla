@@ -12,9 +12,9 @@ Feedback? Log an issue or hmu on the [KCVanilla thread](https://discord.com/chan
 
 Requires [Steamodded 1.0](https://github.com/Steamopollys/Steamodded)
 
-Unzip the [latest release](https://github.com/kcgidw/kcvanilla/releases) (or pull the repo) into your Mods/ folder.
+Unzip the [latest release](https://github.com/kcgidw/kcvanilla/releases) (or clone the repo) into your Mods/ folder.
 
-(If you're on Steamodded version below alpha-1304a, manually download the `old-calc` branch of this repo)
+(If you're on Steamodded version below alpha-1304a, download the `old-calc` legacy branch.)
 
 ## Contributing
 
