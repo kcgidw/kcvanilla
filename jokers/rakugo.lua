@@ -17,7 +17,7 @@ SMODS.Joker {
         return {}
     end,
     calculate = function(self, card, context)
-        if context.repetition and context.other_card then
+        if context.repetition and context.other_card and context.poker_hands then
             if next(context.poker_hands["Straight"]) then
                 local rank = context.other_card:get_id()
                 if rank == 4 or rank == 5 or rank == 6 or rank == 7 or rank == 8 then
