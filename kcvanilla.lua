@@ -69,13 +69,18 @@ NFS.load(SMODS.current_mod.path .. 'jokers/rakugo.lua')()
 function G.FUNCS.kcv_discover_all()
     for _, key in ipairs(kcv_jokerAtlasOrder) do
         local card = G.P_CENTERS["j_kcvanilla_" .. key]
-        discover_card(card)
+        if card then
+            discover_card(card)
+        end
     end
 end
+
 function G.FUNCS.kcv_undiscover_all()
     for _, key in ipairs(kcv_jokerAtlasOrder) do
         local card = G.P_CENTERS["j_kcvanilla_" .. key]
-        kcv_undiscover(card)
+        if card then
+            kcv_undiscover(card)
+        end
     end
 end
 
