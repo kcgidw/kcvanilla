@@ -2,7 +2,7 @@ function kcv_get_irish_normal(card)
     local x = G.GAME.probabilities.normal
     if G.jokers and card and card:is_suit("Clubs") then
         for i, joker in ipairs(G.jokers.cards) do
-            if joker.ability.name == 'Luck of the Irish' and not joker.debuff then
+            if joker.ability.name == 'j_kcvanilla_irish' and not joker.debuff then
                 x = x * 4
             end
         end
