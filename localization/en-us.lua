@@ -46,7 +46,7 @@ return {
             },
             j_kcvanilla_irish = {
                 name = "Luck of the Irish",
-                text = {"{C:attention}Lucky{} {C:clubs}Clubs{} are {C:green}4X{} more", "likely to succeed"}
+                text = {"{C:attention}Lucky{} {C:clubs}Clubs{} are {C:green}3X{} more", "likely to succeed"}
             },
             j_kcvanilla_powergrid = {
                 name = "Power Grid",
