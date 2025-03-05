@@ -73,7 +73,7 @@ return {
 				name = "Sorte de Irlandês",
 				text = {
 					"{C:attention}Cartas de Sorte{} de {C:clubs}Paus{}",
-					"têm {C:green}4X{} mais chances", 
+					"têm {C:green}#1#X{} mais chances", 
 					"de darem seus bônus"
 				}
 			},

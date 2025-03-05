@@ -29,7 +29,8 @@ SMODS.Joker {
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_lucky
         return {
-            vars = {}
+            vars = {3 -- ONLY used for l10n
+            }
         }
     end,
     calculate = function(self, card, context)
