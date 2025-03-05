@@ -1,6 +1,6 @@
 local function kcv_rank_up_discreetly(card)
     card.kcv_ignore_debuff_check = true
-    card.kcv_ranked_up_discreetly = tru
+    card.kcv_ranked_up_discreetly = true
 
     local old_rank = SMODS.Ranks[card.base.value]
     local new_rank = old_rank.next[1]
