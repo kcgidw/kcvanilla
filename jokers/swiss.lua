@@ -5,8 +5,8 @@ SMODS.Joker {
         x = 0,
         y = kcv_getJokerAtlasIndex('swiss')
     },
-    rarity = 2,
-    cost = 5,
+    rarity = 1,
+    cost = 4,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -14,7 +14,7 @@ SMODS.Joker {
     blueprint_compat = true,
     config = {
         mult = 0,
-        extra = 10
+        extra = 4
     },
     loc_vars = function(self, info_queue, card)
         return {
