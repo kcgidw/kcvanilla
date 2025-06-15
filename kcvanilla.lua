@@ -62,7 +62,6 @@ assert(SMODS.load_file('jokers/powergrid.lua'))()
 assert(SMODS.load_file('jokers/guard.lua'))()
 assert(SMODS.load_file('jokers/collapse.lua'))()
 assert(SMODS.load_file('jokers/irish.lua'))()
--- assert(SMODS.load_file('jokers/drummajor.lua'))()
 assert(SMODS.load_file('jokers/rakugo.lua'))()
 -- assert(SMODS.load_file('jokers/rats.lua'))()
 

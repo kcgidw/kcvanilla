@@ -71,17 +71,13 @@ return {
             },
             j_kcvanilla_swiss = {
                 name = "Swiss Joker",
-                text = {'{C:mult}+#1#{} Mult for each', 'card played in previous hand', 'that did not score',
+                text = {'{C:mult}+#1#{} Mult for each', 'card that did not score', 'in the previous hand',
                         '{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)'}
             },
             j_kcvanilla_tenpin = {
                 name = "Ten-Pin",
                 text = {'If played hand contains a scoring {C:attention}10{},',
                         '{X:mult,C:white} X2 {} Mult for next 2 hands', '{C:inactive}(#1#){}'}
-            },
-            j_kcvanilla_drummajor = {
-                name = "Drum Major",
-                text = {'?'}
             },
             j_kcvanilla_rakugo = {
                 name = "Rakugo",
