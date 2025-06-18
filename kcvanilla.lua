@@ -21,7 +21,7 @@ function kcv_log(str)
     sendInfoMessage(str, "KCVanilla")
 end
 
-local kcv_jokerAtlasOrder = {'5day', 'chan', 'swiss', 'collapse', 'drummajor', 'energy', 'fortunecookie', 'guard',
+local kcv_jokerAtlasOrder = {'5day', 'chan', 'swiss', 'collapse', 'energy', 'fortunecookie', 'guard',
                              'irish', 'composition', 'powergrid', 'rakugo', 'rats', 'redenvelope', 'robo', 'handy',
                              'squid', 'tenpin'}
 
