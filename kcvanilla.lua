@@ -21,9 +21,9 @@ function kcv_log(str)
     sendInfoMessage(str, "KCVanilla")
 end
 
-local kcv_jokerAtlasOrder = {'5day', 'chan', 'swiss', 'collapse', 'energy', 'fortunecookie', 'guard',
-                             'irish', 'composition', 'powergrid', 'rakugo', 'rats', 'redenvelope', 'robo', 'handy',
-                             'squid', 'tenpin'}
+local kcv_jokerAtlasOrder = {'5day', 'chan', 'swiss', 'collapse', 'energy', 'fortunecookie', 'guard', 'irish',
+                             'composition', 'powergrid', 'rakugo', 'rats', 'redenvelope', 'robo', 'handy', 'squid',
+                             'tenpin'}
 
 function kcv_getJokerAtlasIndex(jokerKey)
     for i, v in ipairs(kcv_jokerAtlasOrder) do
@@ -63,7 +63,7 @@ assert(SMODS.load_file('jokers/guard.lua'))()
 assert(SMODS.load_file('jokers/collapse.lua'))()
 assert(SMODS.load_file('jokers/irish.lua'))()
 assert(SMODS.load_file('jokers/rakugo.lua'))()
--- assert(SMODS.load_file('jokers/rats.lua'))()
+assert(SMODS.load_file('jokers/rats.lua'))()
 
 function G.FUNCS.kcv_discover_all()
     for _, key in ipairs(kcv_jokerAtlasOrder) do

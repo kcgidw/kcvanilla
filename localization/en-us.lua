@@ -86,14 +86,17 @@ return {
             },
             j_kcvanilla_rats = {
                 name = "Rats!",
-                text = {'?'}
+                text = {'When round begins,', '{C:attention}destroy{} a random card in',
+                        'hand and {C:attention}duplicate{} this Joker', '{C:inactive}(Must have room,',
+                        '{C:inactive}removes {C:dark_edition}Negative{C:inactive} from copy)'}
             }
         }
     },
     misc = {
         dictionary = {
             kcv_active = "Active",
-            kcv_inactive = "Inactive"
+            kcv_inactive = "Inactive",
+            kcv_rats_msg = "Rats!"
         },
         v_dictionary = {
             kcv_active_for_X_more_hands = "Active for #1# more hand(s)"
