@@ -11,7 +11,7 @@ SMODS.Joker {
     discovered = true,
     eternal_compat = true,
     perishable_compat = true,
-    blueprint_compat = false,
+    blueprint_compat = true,
     config = {},
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.c_black_hole
@@ -20,7 +20,7 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.end_of_round and not context.repetition and not context.individual and not context.blueprint then
+        if context.end_of_round and not context.repetition and not context.individual then
             local success_planets = {}
             for i, consumable in ipairs(G.consumeables.cards) do
                 if consumable.ability.set == 'Planet' and not consumable.kcv_collapse then
