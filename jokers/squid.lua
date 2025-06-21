@@ -31,7 +31,7 @@ SMODS.Joker {
                     message = localize {
                         type = 'variable',
                         key = 'a_handsize',
-                        vars = {G.GAME.chips}
+                        vars = {card.ability.h_mod}
                     },
                     colour = G.C.FILTER
                 });
