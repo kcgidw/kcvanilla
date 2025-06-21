@@ -111,7 +111,7 @@ SMODS.current_mod.config_tab = function()
             label = {"Discover all"},
             button = 'kcv_discover_all'
         }), UIBox_button({
-            label = {"Uniscover all"},
+            label = {"Undiscover all"},
             button = 'kcv_undiscover_all'
         })}
     }

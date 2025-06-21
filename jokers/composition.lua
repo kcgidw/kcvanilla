@@ -56,24 +56,15 @@ SMODS.Joker {
             vars = {card.ability.extra.mult, card.ability.extra.chips, effect.mult, effect.chips}
         }
     end,
+    
     calculate = function(self, card, context)
         if context.joker_main then
             local target_card = context.blueprint_card or card
             local effect = kcv_composition_calc_effect(target_card, card.ability.extra.mult, card.ability.extra.chips)
-
-            if effect.chips == 0 and effect.mult == 0 then
-                return
-            end
-
-            return {
-                chip_mod = effect.chips,
-                message = localize {
-                    type = 'variable',
-                    key = 'a_chips',
-                    vars = {effect.chips}
-                },
-                colour = G.C.CHIPS,
-                extra = {
+        
+            local mult_message = nil
+            if effect.mult > 0 then
+                mult_message = {
                     mult_mod = effect.mult,
                     message = localize {
                         type = 'variable',
@@ -82,7 +73,22 @@ SMODS.Joker {
                     },
                     colour = G.C.MULT
                 }
-            }
+            end
+            
+            if effect.chips > 0 then
+                return {
+                    chip_mod = effect.chips,
+                    message = localize {
+                        type = 'variable',
+                        key = 'a_chips',
+                        vars = {effect.chips}
+                    },
+                    colour = G.C.CHIPS,
+                    extra = mult_message
+                }
+            else
+                return mult_message
+            end
         end
     end
 }
