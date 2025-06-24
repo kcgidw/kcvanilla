@@ -23,7 +23,9 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if ((context.after and G.GAME.chips + math.floor(hand_chips*mult) < G.GAME.blind.chips) or context.setting_blind or context.first_hand_drawn) and G.GAME.current_round.hands_left <= 2 then
+        local winning_hand = G.GAME.chips + math.floor(hand_chips * mult) >= G.GAME.blind.chips
+        if ((context.after and not winning_hand) or context.setting_blind or context.first_hand_drawn) and
+            G.GAME.current_round.hands_left <= 2 then
             if card.ability.h_size == 0 then
                 card.ability.h_size = card.ability.h_mod
                 G.hand:change_size(card.ability.h_size)
