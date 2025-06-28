@@ -40,7 +40,7 @@ return {
             },
             j_kcvanilla_handy = {
                 name = "Handy Joker",
-                text = {'If first discard of round', 'is a single enhanced card,',
+                text = {'If {C:attention}first discard{} of round', 'is a single enhanced card,',
                         'gain {X:mult,C:white} X1 {} Mult, resets when', 'Boss Blind is defeated',
                         '{C:inactive}(Currently {X:mult,C:white} X#1# {C:inactive} Mult)'}
             },
@@ -64,6 +64,11 @@ return {
                 text = {"Gains the {C:chips}Chip{} value of", "the first scored card",
                         "ranked {C:attention}2-10{} each round",
                         "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"}
+            },
+            j_kcvanilla_scapegoat = {
+                name = "Scapegoat",
+                text = {'If {C:attention}first discard{} of round', 'has only {C:attention}1{} card, destroy',
+                        'it and give its {C:chips}Chips{} to', 'a random card in hand'}
             },
             j_kcvanilla_squid = {
                 name = "Squid",
