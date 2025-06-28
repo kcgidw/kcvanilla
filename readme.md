@@ -12,7 +12,7 @@ Feedback? Log an issue or hmu on the [KCVanilla thread](https://discord.com/chan
 
 ## Installation
 
-Requires [Steamodded 1.0](https://github.com/Steamopollys/Steamodded)
+Requires [Steamodded](https://github.com/Steamopollys/Steamodded)
 
 Unzip the [latest release](https://github.com/kcgidw/kcvanilla/releases) (or clone the repo) into your Mods/ folder.
 
@@ -20,9 +20,9 @@ Unzip the [latest release](https://github.com/kcgidw/kcvanilla/releases) (or clo
 
 PRs are welcome. Please keep PRs scoped to one goal.
 
-Localization PRs are appreciated! But please understand that I won't maintain translations myself and they may break in the future.
+Localization PRs are appreciated! Please note that I can't maintain translations myself and they may become outdated over time.
 
-## Credits
+## Credits and thanks
 
 Art, design, and programming by krackocloud ([Ko-fi](https://ko-fi.com/krackocloud))
 
