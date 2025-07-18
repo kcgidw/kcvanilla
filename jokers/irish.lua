@@ -1,15 +1,3 @@
-function kcv_get_irish_normal(card)
-    local x = G.GAME.probabilities.normal
-    if G.jokers and card and card:is_suit("Clubs") then
-        for i, joker in ipairs(G.jokers.cards) do
-            if joker.ability.name == 'j_kcvanilla_irish' and not joker.debuff then
-                x = x * 3
-            end
-        end
-    end
-    return x
-end
-
 SMODS.Joker {
     key = "irish",
     atlas = 'kcvanillajokeratlas',
@@ -25,14 +13,24 @@ SMODS.Joker {
     perishable_compat = true,
     blueprint_compat = false,
     enhancement_gate = 'm_lucky',
-    config = {},
+    config = {
+        factor = 3
+    },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_lucky
         return {
-            vars = {3 -- ONLY used for l10n
-            }
+            vars = {card.ability.factor}
         }
     end,
     calculate = function(self, card, context)
+        if context.mod_probability and not context.blueprint then
+            local lucky_card = context.trigger_obj
+            local is_lucky_event = context.identifier == 'lucky_mult' or context.identifier == 'lucky_money'
+            if lucky_card and lucky_card.is_suit and lucky_card:is_suit("Clubs") and is_lucky_event then
+                return {
+                    numerator = context.numerator * card.ability.factor
+                }
+            end
+        end
     end
 }

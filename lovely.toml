@@ -3,39 +3,6 @@ version = "1.0.0"
 dump_lua = true
 priority = 1
 
-# Luck of the Irish (mult effect)
-[[patches]]
-[patches.pattern]
-target = 'card.lua'
-pattern = "if pseudorandom('lucky_mult') < G.GAME.probabilities.normal/5 then"
-position = 'at'
-match_indent = true
-payload = '''
-if pseudorandom('lucky_mult') < kcv_get_irish_normal(self)/5 then
-'''
-
-# Luck of the Irish (money effect)
-[[patches]]
-[patches.pattern]
-target = 'card.lua'
-pattern = "if pseudorandom('lucky_money') < G.GAME.probabilities.normal/15 then"
-position = 'at'
-match_indent = true
-payload = '''
-if pseudorandom('lucky_money') < kcv_get_irish_normal(self)/15 then
-'''
-
-# Luck of the Irish: text
-[[patches]]
-[patches.pattern]
-target = 'functions/common_events.lua'
-pattern = "elseif _c.effect == 'Lucky Card' then loc_vars = {G.GAME.probabilities.normal, cfg.mult, 5, cfg.p_dollars, 15}"
-position = 'at'
-match_indent = true
-payload = '''
-elseif _c.effect == 'Lucky Card' then loc_vars = {kcv_get_irish_normal(card), cfg.mult, 5, cfg.p_dollars, 15}
-'''
-
 # Five-Day Forecast must rank-up cards *before* context.before runs so other jokers can get updated ranks
 [[patches]]
 [patches.pattern]
