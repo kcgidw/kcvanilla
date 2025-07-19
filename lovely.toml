@@ -27,19 +27,6 @@ if not self.kcv_ranked_up_discreetly then
 end
 '''
 
-# 5-day forecast: set_base() will re-evaluate debuffs, causing just-played cards to debuff during The Pillar
-[[patches]]
-[patches.pattern]
-target = 'card.lua'
-pattern = "if not initial then G.GAME.blind:debuff_card(self) end"
-position = 'at'
-match_indent = true
-payload = '''
-
-if not initial and not self.kcv_ignore_debuff_check then G.GAME.blind:debuff_card(self) end
-
-'''
-
 # Powergrid: increment count when mult card scored
 [[patches]]
 [patches.pattern]
