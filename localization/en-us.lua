@@ -14,7 +14,7 @@ return {
             },
             j_kcvanilla_collapse = {
                 name = "Cosmic Collapse",
-                text = {'At end of round, held {C:planet}Planet{}', 'cards each have {C:green}#1# in 2{} chance',
+                text = {'At end of round, held {C:planet}Planet{}', 'cards each have {C:green}#1# in #2#{} chance',
                         'to transform into a {C:spectral}Black Hole{}'}
             },
             j_kcvanilla_composition = {

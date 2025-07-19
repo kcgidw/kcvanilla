@@ -12,11 +12,16 @@ SMODS.Joker {
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = true,
-    config = {},
+    config = {
+        numerator = 1,
+        denominator = 2
+    },
     loc_vars = function(self, info_queue, card)
+        local numerator, denominator = SMODS.get_probability_vars(card, card.ability.numerator,
+            card.ability.denominator, 'cosmiccollapse')
         info_queue[#info_queue + 1] = G.P_CENTERS.c_black_hole
         return {
-            vars = {'' .. (G.GAME and G.GAME.probabilities.normal or 1)}
+            vars = {numerator, denominator}
         }
     end,
     calculate = function(self, card, context)
@@ -24,7 +29,8 @@ SMODS.Joker {
             local success_planets = {}
             for i, consumable in ipairs(G.consumeables.cards) do
                 if consumable.ability.set == 'Planet' and not consumable.kcv_collapse then
-                    local success = pseudorandom('cosmiccollapse') < G.GAME.probabilities.normal / 2
+                    local success = SMODS.pseudorandom_probability(consumable, 'cosmiccollapse', card.ability.numerator,
+                        card.ability.denominator, 'cosmiccollapse')
                     if success then
                         table.insert(success_planets, consumable)
                         -- ensure dupe jokers don't try to collapse the same card
