@@ -5,8 +5,8 @@ SMODS.Joker {
         x = 0,
         y = kcv_getJokerAtlasIndex('rats')
     },
-    rarity = 3,
-    cost = 7,
+    rarity = 2,
+    cost = 6,
     unlocked = true,
     discovered = true,
     eternal_compat = true,

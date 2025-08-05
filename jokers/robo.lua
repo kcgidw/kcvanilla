@@ -5,7 +5,7 @@ SMODS.Joker {
         x = 0,
         y = kcv_getJokerAtlasIndex('robo')
     },
-    rarity = 1,
+    rarity = 2,
     cost = 5,
     unlocked = true,
     discovered = true,
