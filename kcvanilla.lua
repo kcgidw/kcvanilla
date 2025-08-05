@@ -22,8 +22,8 @@ function kcv_log(str)
 end
 
 local kcv_jokerAtlasOrder = {'5day', 'chan', 'swiss', 'collapse', 'energy', 'fortunecookie', 'guard', 'irish',
-                             'composition', 'powergrid', 'rakugo', 'rats', 'redenvelope', 'robo', 'scapegoat', 'handy',
-                             'squid', 'tenpin'}
+                             'loosetooth', 'composition', 'powergrid', 'rakugo', 'rats', 'redenvelope', 'robo',
+                             'scapegoat', 'handy', 'squid', 'tenpin'}
 
 function kcv_getJokerAtlasIndex(jokerKey)
     for i, v in ipairs(kcv_jokerAtlasOrder) do
@@ -65,6 +65,7 @@ assert(SMODS.load_file('jokers/irish.lua'))()
 assert(SMODS.load_file('jokers/rakugo.lua'))()
 assert(SMODS.load_file('jokers/rats.lua'))()
 assert(SMODS.load_file('jokers/scapegoat.lua'))()
+assert(SMODS.load_file('jokers/loosetooth.lua'))()
 
 function G.FUNCS.kcv_discover_all()
     for _, key in ipairs(kcv_jokerAtlasOrder) do

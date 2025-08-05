@@ -94,6 +94,11 @@ return {
                 text = {'When round begins, {C:attention}destroy{}', 'a random card in hand',
                         'and {C:attention}duplicate{} this Joker', '{C:inactive}(Must have room,',
                         '{C:inactive}removes {C:dark_edition}Negative{C:inactive} from copy)'}
+            },
+            j_kcvanilla_loosetooth = {
+                name = "Loose Tooth",
+                text = {'Create a {C:tarot}Tarot{} card if', 'played hand has a', '{C:attention}non-scoring Ace{}',
+                        '{C:inactive}(Must have room){}'}
             }
         }
     },
