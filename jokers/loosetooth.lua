@@ -10,7 +10,7 @@ end
 local function get_has_nonscoring_ace(full_hand, scoring_hand)
     for i, card in ipairs(full_hand) do
         if card:get_id() == 14 then
-            if card.debuff or not get_has_item(card, scoring_hand) then
+            if card.debuff or not get_has_item(scoring_hand, card) then
                 return true
             end
         end
@@ -39,7 +39,7 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.before and context.scoring_hand and context.full_hand then
+        if context.after and context.scoring_hand and context.full_hand then
             local has_nonscoring_ace = get_has_nonscoring_ace(context.full_hand, context.scoring_hand)
             local has_room = #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit
 
