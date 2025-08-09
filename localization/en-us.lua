@@ -90,7 +90,7 @@ return {
             },
             j_kcvanilla_rats = {
                 name = "Rats!",
-                text = {'When round begins, {C:attention}destroy{}', 'a random card in hand',
+                text = {'When round begins, destroy', 'a random card in hand',
                         'and {C:attention}duplicate{} this Joker', '{C:inactive}(Must have room,',
                         '{C:inactive}removes {C:dark_edition}Negative{C:inactive} from copy)'}
             },
