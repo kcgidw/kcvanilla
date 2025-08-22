@@ -23,20 +23,21 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        local winning_hand = G.GAME.chips + math.floor(hand_chips * mult) >= G.GAME.blind.chips
-        if ((context.after and not winning_hand) or context.setting_blind or context.first_hand_drawn) and
-            G.GAME.current_round.hands_left <= 2 then
-            if card.ability.h_size == 0 then
-                card.ability.h_size = card.ability.h_mod
-                G.hand:change_size(card.ability.h_size)
-                card_eval_status_text(card, 'extra', nil, nil, nil, {
-                    message = localize {
-                        type = 'variable',
-                        key = 'a_handsize',
-                        vars = {card.ability.h_mod}
-                    },
-                    colour = G.C.FILTER
-                });
+        if context.after or context.setting_blind or context.first_hand_drawn then
+            local winning_hand = G.GAME.chips + math.floor(hand_chips * mult) >= G.GAME.blind.chips
+            if not winning_hand and G.GAME.current_round.hands_left <= 2 then
+                if card.ability.h_size == 0 then
+                    card.ability.h_size = card.ability.h_mod
+                    G.hand:change_size(card.ability.h_size)
+                    card_eval_status_text(card, 'extra', nil, nil, nil, {
+                        message = localize {
+                            type = 'variable',
+                            key = 'a_handsize',
+                            vars = {card.ability.h_mod}
+                        },
+                        colour = G.C.FILTER
+                    });
+                end
             end
         end
         if context.end_of_round and card.ability.h_size > 0 then
