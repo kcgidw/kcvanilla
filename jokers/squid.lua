@@ -23,7 +23,7 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.after or context.setting_blind or context.first_hand_drawn then
+        if hand_chips and (context.after or context.setting_blind or context.first_hand_drawn) then
             local winning_hand = G.GAME.chips + math.floor(hand_chips * mult) >= G.GAME.blind.chips
             if not winning_hand and G.GAME.current_round.hands_left <= 2 then
                 if card.ability.h_size == 0 then
