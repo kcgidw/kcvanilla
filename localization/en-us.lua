@@ -50,8 +50,9 @@ return {
             },
             j_kcvanilla_powergrid = {
                 name = "Power Grid",
-                text = {'Scored {C:attention}Mult{} cards', 'give {X:mult,C:white} X#1# {} Mult',
-                        'for each {C:attention}Mult{} card', 'scored this round',
+                text = { 'Gains {X:mult,C:white} X#1# {} Mult',
+                	'per {C:attention}Mult{} card',
+                	'scored this round',
                         "{C:inactive}(Next: {X:mult,C:white} X#2# {C:inactive} Mult)"}
             },
             j_kcvanilla_redenvelope = {
