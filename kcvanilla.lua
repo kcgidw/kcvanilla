@@ -110,10 +110,10 @@ SMODS.current_mod.config_tab = function()
             colour = G.C.GREY
         },
         nodes = {UIBox_button({
-            label = {"Discover all"},
+            label = {localize("kcv_discover_all") or "Discover all"},
             button = 'kcv_discover_all'
         }), UIBox_button({
-            label = {"Undiscover all"},
+            label = {localize("kcv_undiscover_all") or "Undiscover all"},
             button = 'kcv_undiscover_all'
         })}
     }

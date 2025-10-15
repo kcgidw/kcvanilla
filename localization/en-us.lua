@@ -105,7 +105,9 @@ return {
         dictionary = {
             kcv_active = "Active",
             kcv_inactive = "Inactive",
-            kcv_rats_msg = "Rats!"
+            kcv_rats_msg = "Rats!",
+            kcv_discover_all = "Discover all",
+            kcv_undiscover_all = "Undiscover all"
         },
         v_dictionary = {
             kcv_active_for_X_more_hands = "Active for #1# more hand(s)"
