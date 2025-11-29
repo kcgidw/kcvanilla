@@ -36,7 +36,7 @@ return {
                 name = "Royal Guard",
                 text = {"If played hand has ", "no {C:attention}Kings{} and {C:attention}Queens{},",
                         "{C:chips}+#1#{} Chips for each", "{C:attention}King{} or {C:attention}Queen{} in",
-                        "your {C:attention}full deck{}.", "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)"}
+                        "your {C:attention}full deck{}", "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)"}
             },
             j_kcvanilla_handy = {
                 name = "Handy Joker",
