@@ -52,12 +52,6 @@ return {
 			},
 			j_kcvanilla_guard = {
 				name = "Guarda Real",
-				text = {
-					"Após {C:attention}#2#{} {C:attention}Reis{} ou {C:attention}Rainhas{}", 
-					"pontuarem, venda este Curinga para",
-					"criar um Curinga {C:dark_edition}Negativo{} aleatório",
-					"{C:inactive}(Progresso: #1#/#2#){}"
-				}
 			},
 			j_kcvanilla_handy = {
 				name = "Mãozinha Curinga",

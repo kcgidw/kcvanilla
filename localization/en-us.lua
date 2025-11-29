@@ -34,9 +34,9 @@ return {
             },
             j_kcvanilla_guard = {
                 name = "Royal Guard",
-                text = {"After {C:attention}#2#{} {C:attention}Kings{} or {C:attention}Queens{}",
-                        "score, sell this to make a", "random Joker {C:dark_edition}Negative{}",
-                        "{C:inactive}(Progress: #1#/#2#){}"}
+                text = {"If played hand has ", "no {C:attention}Kings{} and {C:attention}Queens{},",
+                        "{C:chips}+#1#{} Chips for each", "{C:attention}King{} or {C:attention}Queen{} in",
+                        "your {C:attention}full deck{}.", "{C:inactive}(Currently {C:chips}+#2#{C:inactive} Chips)"}
             },
             j_kcvanilla_handy = {
                 name = "Handy Joker",

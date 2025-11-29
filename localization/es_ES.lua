@@ -53,12 +53,6 @@ return {
             },
             j_kcvanilla_guard = {
                 name = "Guardia real",
-                text = {
-                    "Tras jugar {C:attention}#2#{} {C:attention}reyes{} o {C:attention}reinas{},",
-                    "vende este comodín para hacer un",
-                    "comodín al azar {C:dark_edition}negativo{}",
-                    "{C:inactive}(Progreso: #1#/#2#)"
-                }
             },
             j_kcvanilla_handy = {
                 name = "Comodín útil",

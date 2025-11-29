@@ -53,11 +53,6 @@ return {
             },
             j_kcvanilla_guard = {
                 name = "皇家禁卫",
-                text = {
-                    "在{C:attention}#2#{}张{C:attention}K{}或{C:attention}Q{}计分后，",
-                    "出售此牌可给一张随机小丑牌添加{C:dark_edition}负片{}版本",
-                    "{C:inactive}（进度：#1#/#2#）{}"
-                }
             },
             j_kcvanilla_handy = {
                 name = "手偶小丑",
