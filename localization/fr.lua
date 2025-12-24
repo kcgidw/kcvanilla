@@ -36,7 +36,12 @@ return {
                         "carte {C:tarot}Tarot{} est utilisée"}
             },
             j_kcvanilla_guard = {
-                name = "Garde Royal"
+                name = "Garde Royal",
+                text = {"Si la main jouée ne contient",
+                         "aucun {C:attention}Roi{} ni {C:attention}Reine{}",
+                         "{C:chips}+#1#{} Jetons pour chaque",
+                         "{C:attention}Roi{} ou {C:attention}Reine{} dans votre {C:attention}Jeu complet{}.",
+                         "{C:inactive}(Actuellement {C:chips}+#2#{C:inactive} Jetons)"}		
             },
             j_kcvanilla_handy = {
                 name = "Joker Pratique",
