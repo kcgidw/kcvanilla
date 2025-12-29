@@ -20,7 +20,7 @@ Unzip the [latest release](https://github.com/kcgidw/kcvanilla/releases) (or clo
 
 PRs are welcome. Please keep PRs scoped to one goal.
 
-Localization PRs are appreciated! Please note that I can't maintain translations myself and they may become outdated over time.
+Localization PRs are appreciated! Translators are welcome to credit themselves with a comment at the top of a localization file if desired. Please note that I'm unable to maintain translations, and they may become outdated over time.
 
 ## Credits and thanks
 
