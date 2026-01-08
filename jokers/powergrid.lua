@@ -14,7 +14,7 @@ SMODS.Joker {
     blueprint_compat = true,
     enhancement_gate = 'm_mult',
     config = {
-        extra = 0.2
+        extra = 0.1
     },
     loc_vars = function(self, info_queue, card)
         info_queue[#info_queue + 1] = G.P_CENTERS.m_mult
