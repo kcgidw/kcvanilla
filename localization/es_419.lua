@@ -116,13 +116,7 @@ return {
                 }
             },
             j_kcvanilla_swiss = {
-                name = "Comodín suizo",
-                text = {
-                    "{C:mult}+#1#{} multi por cada",
-                    "carta que no se jugó",
-                    "en la mano anterior",
-                    "{C:inactive}(Actual: {C:mult}+#2#{C:inactive} multi)"
-                }
+                name = "Comodín suizo"
             },
             j_kcvanilla_tenpin = {
                 name = "Bolo",

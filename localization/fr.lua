@@ -82,9 +82,7 @@ return {
                         "{C:inactive}(#2#)"}
             },
             j_kcvanilla_swiss = {
-                name = "Joker Suisse",
-                text = {'{C:mult}+#1#{} Multi pour chaque', 'carte qui n\'a pas marqué', 'dans la main précédente',
-                        '{C:inactive}(Actuellement {C:mult}+#2#{C:inactive} Multi)'}
+                name = "Joker Suisse"
             },
             j_kcvanilla_tenpin = {
                 name = "Quille",

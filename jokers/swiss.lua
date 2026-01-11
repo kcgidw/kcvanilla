@@ -1,3 +1,22 @@
+local function kcv_count_unique_gaps(cards)
+    local ranks_in_hand = {}
+    for _, card in ipairs(cards) do
+        local id = card:get_id()
+        ranks_in_hand[id] = true
+    end
+    local count = 0
+    for n = 3, 13 do
+        if ranks_in_hand[n - 1] and ranks_in_hand[n + 1] and not ranks_in_hand[n] then
+            count = count + 1
+        end
+    end
+    -- A 2 3
+    if ranks_in_hand[14] and ranks_in_hand[3] and not ranks_in_hand[2] then
+        count = count + 1
+    end
+    return count
+end
+
 SMODS.Joker {
     key = "swiss",
     atlas = 'kcvanillajokeratlas',
@@ -5,50 +24,29 @@ SMODS.Joker {
         x = 0,
         y = kcv_getJokerAtlasIndex('swiss')
     },
-    rarity = 1,
-    cost = 4,
+    rarity = 3,
+    cost = 8,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
     perishable_compat = true,
     blueprint_compat = true,
     config = {
-        mult = 0,
-        extra = 4
+        extra = {
+            xmult = 1
+        }
     },
     loc_vars = function(self, info_queue, card)
-        return {
-            vars = {card.ability.extra, card.ability.mult}
-        }
+        return {}
     end,
     calculate = function(self, card, context)
-        if context.after and context.scoring_hand and context.full_hand and not context.blueprint then
-            local nonscoring_count = 0
-            for i, v in ipairs(context.scoring_hand) do
-                if v.debuff then
-                    nonscoring_count = nonscoring_count + 1
-                end
+        if context.joker_main and context.scoring_hand then
+            local count = kcv_count_unique_gaps(context.scoring_hand)
+            if count > 0 then
+                return {
+                    xmult = (count * card.ability.extra.xmult) + 1
+                }
             end
-            nonscoring_count = nonscoring_count + (#context.full_hand - #context.scoring_hand)
-            card.ability.mult = card.ability.extra * nonscoring_count
-            card_eval_status_text(card, 'extra', nil, nil, nil, {
-                message = localize {
-                    type = 'variable',
-                    key = 'a_mult',
-                    vars = {card.ability.mult}
-                },
-                colour = G.C.MULT
-            });
-        end
-        if context.joker_main and card.ability.mult > 0 then
-            return {
-                message = localize {
-                    type = 'variable',
-                    key = 'a_mult',
-                    vars = {card.ability.mult}
-                },
-                mult_mod = card.ability.mult
-            }
         end
     end
 }

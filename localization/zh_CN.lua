@@ -122,13 +122,7 @@ return {
                 }
             },
             j_kcvanilla_swiss = {
-                name = "瑞士小丑",
-                text = {
-                    '上一次出牌中',
-                    '每有一张未计分的牌',
-                    '本次出牌{C:mult}+#1#{}倍率',
-                    '{C:inactive}（当前为{C:mult}+#2#{C:inactive}倍率）'
-                }
+                name = "瑞士小丑"
             },
             j_kcvanilla_tenpin = {
                 name = "十瓶保龄",

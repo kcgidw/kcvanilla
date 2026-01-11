@@ -80,9 +80,10 @@ return {
                 text = {"{C:attention}+#1#{} hand size on final", "2 hands of round", "{C:inactive}(#2#)"}
             },
             j_kcvanilla_swiss = {
-                name = "Swiss Joker",
-                text = {'{C:mult}+#1#{} Mult for each', 'card that did not score', 'in the previous hand',
-                        '{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult)'}
+                name = "Swiss Cheese",
+                text = {"{X:mult,C:white} X1 {} Mult for each", "{C:attention}gap of 1 rank{} ", "between the ranks of",
+                        "played poker hand",
+                        "{C:inactive}(Ex: {C:attention}2s{C:inactive} and {C:attention}4s{C:inactive}, but no {C:attention}3{C:inactive})"}
             },
             j_kcvanilla_tenpin = {
                 name = "Ten-Pin",

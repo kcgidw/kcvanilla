@@ -106,13 +106,7 @@ return {
 				}
 			},
 			j_kcvanilla_swiss = {
-				name = "Curinga Suíço",
-				text = {
-					'{C:mult}+#1#{} Multi por cada carta', 
-					'jogada na mão anterior', 
-					'e não foi pontuada',
-					'{C:inactive}(No momento, {C:mult}+#2#{C:inactive} Multi)'
-				}
+				name = "Curinga Suíço"
 			},
 			j_kcvanilla_tenpin = {
 				name = "Dez Pinos",
