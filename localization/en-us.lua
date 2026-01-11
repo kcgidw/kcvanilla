@@ -56,8 +56,8 @@ return {
             },
             j_kcvanilla_rakugo = {
                 name = "Rakugo",
-                text = {'If played hand contains a {C:attention}Straight{},',
-                        'retrigger each played {C:attention}numbered{} card'}
+                text = {'If played hand contains a', '{C:attention}Straight{}, retrigger each',
+                        'played {C:attention}numbered{} card'}
             },
             j_kcvanilla_redenvelope = {
                 name = "Red Envelope",
@@ -66,7 +66,8 @@ return {
             },
             j_kcvanilla_robo = {
                 name = "Jimbot",
-                text = {"This gains the {C:chips}Chip{} value", "of the first scoring", "numbered card each round",
+                text = {"This gains the {C:chips}Chip{} value", "of the first scoring",
+                        "{C:attention}numbered{} card each round",
                         "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"}
             },
             j_kcvanilla_scapegoat = {
