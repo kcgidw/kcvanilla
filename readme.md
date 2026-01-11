@@ -14,7 +14,7 @@ Feedback? Log an issue or hmu on the [KCVanilla thread](https://discord.com/chan
 
 Requires [Steamodded](https://github.com/Steamopollys/Steamodded)
 
-Unzip the [latest release](https://github.com/kcgidw/kcvanilla/releases) (or clone the repo) into your Mods/ folder.
+Unzip the [latest release](https://github.com/kcgidw/kcvanilla/releases), or clone the repo, into your Mods/ folder.
 
 ## Contributing
 
