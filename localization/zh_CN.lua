@@ -140,12 +140,7 @@ return {
                 }
             },
             j_kcvanilla_rakugo = {
-                name = "落语艺人",
-                text = {
-                    '若打出的牌中包含{C:attention}顺子{}',
-                    '则重新触发每张',
-                    '打出的{C:attention}4{}、{C:attention}5{}、{C:attention}6{}、{C:attention}7{}和{C:attention}8{}'
-                }
+                name = "落语艺人"
             },
             j_kcvanilla_rats = {
                 name = "耗子！",

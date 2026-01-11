@@ -54,6 +54,11 @@ return {
                         'for each {C:attention}Mult{} card', 'scored this round',
                         "{C:inactive}(Next: {X:mult,C:white} X#2# {C:inactive} Mult)"}
             },
+            j_kcvanilla_rakugo = {
+                name = "Rakugo",
+                text = {'If played hand contains a {C:attention}Straight{},',
+                        'retrigger each played {C:attention}numbered{} card'}
+            },
             j_kcvanilla_redenvelope = {
                 name = "Red Envelope",
                 text = {'When Boss Blind is', 'defeated, earn {C:money}$8{} for', 'each {C:blue}Common{} Joker',
@@ -82,11 +87,6 @@ return {
                 name = "Ten-Pin",
                 text = {'If played hand contains a', 'scoring {C:attention}10{}, {X:mult,C:white} X2 {} Mult',
                         'for next 2 hands', '{C:inactive}(#1#){}'}
-            },
-            j_kcvanilla_rakugo = {
-                name = "Rakugo",
-                text = {'If played hand contains a {C:attention}Straight{},',
-                        'retrigger each played {C:attention}4 5 6 7{} or {C:attention}8{}'}
             },
             j_kcvanilla_rats = {
                 name = "Rats!",

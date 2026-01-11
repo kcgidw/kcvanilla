@@ -134,11 +134,7 @@ return {
                 }
             },
             j_kcvanilla_rakugo = {
-                name = "Rakugo",
-                text = {
-                    "Si la mano jugada contiene una {C:attention}escalera{},",
-                    "reactiva cada {C:attention}4, 5, 6, 7{} o {C:attention}8{} jugado"
-                }
+                name = "Rakugo"
             },
             j_kcvanilla_rats = {
                 name = "¡Ratas!",

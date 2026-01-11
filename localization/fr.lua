@@ -92,9 +92,7 @@ return {
                         'pour les 2 prochaines mains', '{C:inactive}(#1#){}'}
             },
             j_kcvanilla_rakugo = {
-                name = "Rakugo",
-                text = {'Si la main jouée contient une {C:attention}Suite{},',
-                        'réactive chaque {C:attention}4 5 6 7{} ou {C:attention}8{} joué'}
+                name = "Rakugo"
             },
             j_kcvanilla_rats = {
                 name = "Rat!",
