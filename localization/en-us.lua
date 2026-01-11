@@ -9,7 +9,7 @@ return {
             },
             j_kcvanilla_chan = {
                 name = "Joker-chan",
-                text = {"At end of round, gains", "{C:mult}+#1#{} Mult for each", "{C:blue}Common{} Joker",
+                text = {"At end of round,", "gains {C:mult}+#1#{} Mult for", "each {C:blue}Common{} Joker",
                         "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult){}"}
             },
             j_kcvanilla_collapse = {
@@ -83,7 +83,7 @@ return {
                 name = "Swiss Cheese",
                 text = {"{X:mult,C:white} X1 {} Mult for each", "{C:attention}gap of 1 rank{} ", "between the ranks of",
                         "played poker hand",
-                        "{C:inactive}(Ex: {C:attention}2s{C:inactive} and {C:attention}4s{C:inactive}, but no {C:attention}3{C:inactive})"}
+                        "{C:inactive}(ex: {C:attention}2s{C:inactive} and {C:attention}4s{C:inactive}, but no {C:attention}3{C:inactive})"}
             },
             j_kcvanilla_tenpin = {
                 name = "Ten-Pin",
