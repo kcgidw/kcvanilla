@@ -21,7 +21,7 @@ SMODS.Joker {
         y = kcv_getJokerAtlasIndex('5day')
     },
     rarity = 2,
-    cost = 6,
+    cost = 4,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
