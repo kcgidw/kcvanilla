@@ -56,8 +56,8 @@ return {
             },
             j_kcvanilla_rakugo = {
                 name = "Rakugo",
-                text = {'If played hand contains a', '{C:attention}Straight{}, retrigger each',
-                        'played {C:attention}numbered{} card'}
+                text = {'When a {C:attention}Booster Pack{}', 'is skipped, open', 'another {C:attention}Booster Pack{}',
+                        'of the same kind,', 'once between {C:attention}Blinds{}', '{C:inactive}(#1#)'}
             },
             j_kcvanilla_redenvelope = {
                 name = "Red Envelope",
@@ -109,7 +109,9 @@ return {
             kcv_inactive = "Inactive",
             kcv_rats_msg = "Rats!",
             kcv_discover_all = "Discover all",
-            kcv_undiscover_all = "Undiscover all"
+            kcv_undiscover_all = "Undiscover all",
+            kcv_ready = "Currently available",
+            kcv_used = "Already used"
         },
         v_dictionary = {
             kcv_active_for_X_more_hands = "Active for #1# more hand(s)"
