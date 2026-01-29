@@ -141,7 +141,13 @@ return {
                 }
             },
             j_kcvanilla_rakugo = {
-                name = "落语艺人"
+                name = "落语艺人",
+                text = {
+                    '跳过{C:attention}补充包{}时',
+                    '打开一个同类型的{C:attention}补充包{}',
+                    '每两个{C:attention}盲注{}之间限一次',
+                    '{C:inactive}（#1#）{}'
+                }
             },
             j_kcvanilla_rats = {
                 name = "耗子！",
@@ -169,8 +175,10 @@ return {
             kcv_active = "激活",
             kcv_inactive = "未激活",
             kcv_rats_msg = "耗子！",
-            kcv_discover_all = "发现所有小丑",
-            kcv_undiscover_all = "隐藏所有小丑"
+            kcv_discover_all = "发现所有小丑牌",
+            kcv_undiscover_all = "隐藏所有小丑牌",
+            kcv_ready = "当前可用",
+            kcv_used = "已经生效过"
         },
         v_dictionary = {
             kcv_active_for_X_more_hands = "再持续#1#次出牌"
