@@ -41,7 +41,7 @@ SMODS.Joker {
 
             if #success_planets > 0 then
                 card_eval_status_text(context.blueprint_card or card, 'extra', nil, nil, nil, {
-                    message = "Collapse!",
+                    message = localize('kcv_collapse_ex'),
                     card = context.blueprint_card or card
                 });
             end

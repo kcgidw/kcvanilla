@@ -107,6 +107,7 @@ return {
         dictionary = {
             kcv_active = "Active",
             kcv_inactive = "Inactive",
+            kcv_collapse_ex = "Collapse!",
             kcv_rats_msg = "Rats!",
             kcv_discover_all = "Discover all",
             kcv_undiscover_all = "Undiscover all",
