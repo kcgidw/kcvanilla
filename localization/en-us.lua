@@ -9,7 +9,7 @@ return {
             },
             j_kcvanilla_chan = {
                 name = "Joker-chan",
-                text = {"At end of round,", "gains {C:mult}+#1#{} Mult for", "each {C:blue}Common{} Joker",
+                text = {"At end of round, this", "gains {C:mult}+#1#{} Mult for", "each {C:blue}Common{} Joker",
                         "{C:inactive}(Currently {C:mult}+#2#{C:inactive} Mult){}"}
             },
             j_kcvanilla_collapse = {
@@ -41,7 +41,7 @@ return {
             j_kcvanilla_handy = {
                 name = "Handy Joker",
                 text = {'If {C:attention}first discard{} of round', 'is a single enhanced card,',
-                        'gain {X:mult,C:white} X1 {} Mult, resets when', 'Boss Blind is defeated',
+                        'this gains {X:mult,C:white} X1 {} Mult, resets', 'when Boss Blind is defeated',
                         '{C:inactive}(Currently {X:mult,C:white} X#1# {C:inactive} Mult)'}
             },
             j_kcvanilla_irish = {
