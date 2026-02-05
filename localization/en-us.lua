@@ -81,7 +81,7 @@ return {
             },
             j_kcvanilla_swiss = {
                 name = "Swiss Cheese",
-                text = {"{X:mult,C:white} X1 {} Mult for each", "{C:attention}gap of 1 rank{} ", "between the ranks of",
+                text = {"{X:mult,C:white} X1 {} Mult for each", "{C:attention}gap of 1 rank{} ", "between the ranks in",
                         "played poker hand",
                         "{C:inactive}(ex: {C:attention}2s{C:inactive} and {C:attention}4s{C:inactive}, but no {C:attention}3{C:inactive})"}
             },
