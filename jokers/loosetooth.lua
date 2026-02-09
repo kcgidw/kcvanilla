@@ -39,7 +39,7 @@ SMODS.Joker {
         }
     end,
     calculate = function(self, card, context)
-        if context.after and context.scoring_hand and context.full_hand then
+        if context.before and context.scoring_hand and context.full_hand then
             local has_nonscoring_ace = get_has_nonscoring_ace(context.full_hand, context.scoring_hand)
             local has_room = #G.consumeables.cards + G.GAME.consumeable_buffer < G.consumeables.config.card_limit
 
