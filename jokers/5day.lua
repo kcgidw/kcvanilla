@@ -8,7 +8,8 @@ local function kcv_rank_up_discreetly(card)
     SMODS.change_base(card, card.base.suit, new_rank) -- Should respect "kcv_ranked_up_discreetly" as it uses card:set_base
 
     -- played_this_ante is set to true when played, but change_base re-evaluates debuff status,
-    -- causing The Pillar to immediately debuff this on rank-up. So we reset played_this_ante and re-evaluate debuff status one last time
+    -- causing The Pillar to immediately debuff this on rank-up. So we reset played_this_ante and re-evaluate debuff status one last time.
+    -- Technically, this is irrelevant now because I'm no longer ranking up debuffed cards to begin with.
     card.ability.played_this_ante = nil
     G.GAME.blind:debuff_card(card)
 end
@@ -38,7 +39,7 @@ SMODS.Joker {
         if context.kcv_forecast_event and context.scoring_hand then
             if next(context.poker_hands["Straight"]) or next(context.poker_hands["Flush"]) then
                 for i, other_c in ipairs(context.scoring_hand) do
-                    if other_c:get_id() ~= 14 then
+                    if other_c:get_id() ~= 14 and not other_c.debuff then
                         kcv_rank_up_discreetly(other_c)
                     end
                 end
