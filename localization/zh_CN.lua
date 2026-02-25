@@ -3,12 +3,6 @@ return {
         Joker = {
             j_kcvanilla_5day = {
                 name = "五日天气",
-                text = {
-                    "如果打出的牌中",
-                    "包含{C:attention}顺子{}",
-                    "打出的牌的点数提高{C:attention}1{}",
-                    "{C:inactive}（{C:attention}A牌{C:inactive}除外{C:inactive}）"
-                }
             },
             j_kcvanilla_chan = {
                 name = "小丑酱",

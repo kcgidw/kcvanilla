@@ -3,12 +3,6 @@ return {
 		Joker = {
 			j_kcvanilla_5day = {
 				name = "Previsão de Cinco Dias",
-				text = {
-					"Se a mão jogada contém uma",
-					"{C:attention}Sequência{}, aumenta a classe",
-					"das cartas jogadas em {C:attention}1{}",
-					"{C:inactive}(Exceto {C:attention}Ázes{C:inactive})"
-				}
 			},
 			j_kcvanilla_chan = {
 				name = "Curinga-chan",
