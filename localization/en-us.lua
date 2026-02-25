@@ -4,8 +4,8 @@ return {
             j_kcvanilla_5day = {
                 name = "Five-Day Forecast",
                 text = {
-                    "If played hand contains",
-                    "a {C:attention}Straight{}, increase",
+                    "If played hand contains a",
+                    "{C:attention}Straight{} or {C:attention}Flush{}, increase",
                     "played cards' ranks by {C:attention}1{}",
                     "{C:inactive}(Excludes {C:attention}Aces{C:inactive})"
                 }

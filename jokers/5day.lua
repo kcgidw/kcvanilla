@@ -21,7 +21,7 @@ SMODS.Joker {
         y = kcv_getJokerAtlasIndex('5day')
     },
     rarity = 2,
-    cost = 4,
+    cost = 5,
     unlocked = true,
     discovered = true,
     eternal_compat = true,
@@ -36,7 +36,7 @@ SMODS.Joker {
     calculate = function(self, card, context)
         -- kcv_forecast_event needs an indivudal event because ranking up has weird timing
         if context.kcv_forecast_event and context.scoring_hand then
-            if next(context.poker_hands["Straight"]) then
+            if next(context.poker_hands["Straight"]) or next(context.poker_hands["Flush"]) then
                 for i, other_c in ipairs(context.scoring_hand) do
                     if other_c:get_id() ~= 14 then
                         kcv_rank_up_discreetly(other_c)
@@ -45,7 +45,7 @@ SMODS.Joker {
             end
         end
         if context.before and context.scoring_hand then
-            if next(context.poker_hands["Straight"]) then
+            if next(context.poker_hands["Straight"]) or next(context.poker_hands["Flush"]) then
                 local targets = {}
                 for i, other_c in ipairs(context.scoring_hand) do
                     if other_c.kcv_ranked_up_discreetly then
