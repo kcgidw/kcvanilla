@@ -1,3 +1,13 @@
+function kcv_get_cards_except(cards, card)
+    local res = {}
+    for k, v in ipairs(cards) do
+        if v ~= card then
+            table.insert(res, v)
+        end
+    end
+    return res
+end
+
 SMODS.Joker {
     key = "scapegoat",
     atlas = 'kcvanillajokeratlas',
@@ -34,22 +44,27 @@ SMODS.Joker {
                         return true
                     end
                 }))
-                local held_card = pseudorandom_element(G.hand.cards, pseudoseed('kcv_scapegoat'))
-                if held_card and held_card.debuff then
-                    return {
-                        message = localize('k_debuffed'),
-                        colour = G.C.RED,
-                        remove = true,
-                        card = held_card
-                    }
-                elseif held_card then
-                    held_card.ability.perma_bonus = held_card.ability.perma_bonus + chip_val
-                    return {
-                        message = localize('k_upgrade_ex'),
-                        colour = G.C.CHIPS,
-                        remove = true,
-                        card = held_card
-                    }
+
+                local hand_except_discarded = kcv_get_cards_except(G.hand.cards, context.other_card)
+
+                if #hand_except_discarded > 0 then
+                    local held_card = pseudorandom_element(hand_except_discarded, pseudoseed('kcv_scapegoat'))
+                    if held_card and held_card.debuff then
+                        return {
+                            message = localize('k_debuffed'),
+                            colour = G.C.RED,
+                            remove = true,
+                            card = held_card
+                        }
+                    elseif held_card then
+                        held_card.ability.perma_bonus = held_card.ability.perma_bonus + chip_val
+                        return {
+                            message = localize('k_upgrade_ex'),
+                            colour = G.C.CHIPS,
+                            remove = true,
+                            card = held_card
+                        }
+                    end
                 end
             end
         end
