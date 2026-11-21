@@ -10,7 +10,7 @@ cp -r assets/1x release/kcvanilla-dist/assets
 cp -r assets/2x release/kcvanilla-dist/assets
 cp -r jokers/ release/kcvanilla-dist/jokers
 cp -r localization/ release/kcvanilla-dist/localization
-cp  kcvanilla.json release/kcvanilla-dist/kcvanilla.json
+cp  smods.json release/kcvanilla-dist/smods.json
 cp  kcvanilla.lua release/kcvanilla-dist/kcvanilla.lua
 cp  lovely.toml release/kcvanilla-dist/lovely.toml
 cp  readme.md release/kcvanilla-dist/readme.md
