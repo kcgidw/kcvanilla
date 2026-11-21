@@ -1,6 +1,6 @@
 {
     "name": "KCVanilla",
-    "version_number": "3.8.1",
+    "version_number": "3.9.0",
     "website_url": "https://github.com/kcgidw/kcvanilla",
     "description": "A small pack of plausible Jokers with a faithful art style. Intended to look and feel as vanilla as possible.",
     "dependencies": [
