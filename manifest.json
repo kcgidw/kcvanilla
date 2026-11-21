@@ -1,0 +1,10 @@
+{
+    "name": "KCVanilla",
+    "version_number": "3.8.1",
+    "website_url": "https://github.com/kcgidw/kcvanilla",
+    "description": "A small pack of plausible Jokers with a faithful art style. Intended to look and feel as vanilla as possible.",
+    "dependencies": [
+        "Steamodded-Steamodded-1.1814.0",
+        "Thunderstore-lovely-0.9.0"
+    ]
+}

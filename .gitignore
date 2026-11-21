@@ -1,4 +1,4 @@
-dist/
+release/
+private/
 *.code-workspace
-kcvanilla-dist.zip
-upload.sh
+*.tmp.*
