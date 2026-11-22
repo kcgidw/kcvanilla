@@ -13,7 +13,7 @@ cp -r localization/ release/kcvanilla-dist/localization
 cp  smods.json release/kcvanilla-dist/smods.json
 cp  kcvanilla.lua release/kcvanilla-dist/kcvanilla.lua
 cp  lovely.toml release/kcvanilla-dist/lovely.toml
-cp  readme.md release/kcvanilla-dist/readme.md
+cp  README.md release/kcvanilla-dist/README.md
 cp  manifest.json release/kcvanilla-dist/manifest.json
 cp  icon.png release/kcvanilla-dist/icon.png
 
