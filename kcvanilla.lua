@@ -17,6 +17,13 @@ SMODS.Atlas {
     py = 95
 }
 
+SMODS.Atlas({
+    key = "modicon",
+    path = "modicon.png",
+    px = 32,
+    py = 32
+})
+
 function kcv_log(str)
     sendInfoMessage(str, "KCVanilla")
 end
