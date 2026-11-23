@@ -16,6 +16,8 @@ Requires [Steamodded](https://github.com/Steamopollys/Steamodded)
 
 Unzip the [latest release](https://github.com/kcgidw/kcvanilla/releases), or clone the repo, into your Mods/ folder.
 
+Also available on Thunderstore.
+
 ## Contributing
 
 PRs are welcome. Please keep PRs scoped to one goal.
